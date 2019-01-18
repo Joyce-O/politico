@@ -39,7 +39,7 @@
                     </label>
                     <input type="password" placeholder="Password" name="password" required>
                     <div>
-                        <button type="button" id="forgot">Forgot Password?</button>
+                        <button type="button" id="forgot-btn">Forgot Password?</button>
                     </div>
 
                     <div class="white-div2">
@@ -48,10 +48,25 @@
                 </div>
             </form>
 
+            <div id="myModal" class="modal">
+
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div id="reset-psw">
+                        <p class="fill-up">Please enter your email</p>
+                        <form>
+                            <input type="email" placeholder="Email" name="email" required>
+                            <button type="submit" class="signupbtn">Send me a link</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
         </section>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="js/modal.js"></script>
 </body>
 
 
