@@ -70,6 +70,7 @@
     flex: 4;
     box-shadow: 5px 10px #f8f6f6;
     border-radius: 100px / 5px; 
+    margin-top: 80px;
 }
 
 /* Bo */
@@ -227,18 +228,15 @@
   tr:nth-child(even) {
     background-color: rgba(235, 239, 248, 1);
   }
+
+  tr:nth-child(odd) {
+    background-color: rgb(180, 178, 178);
+  }
+  .view {
+    background-color: rgb(180, 178, 178);
+  }
   
-  /*parcel-detail*/
-  #parcel > div:first-child {
-    flex: 0 1 50%;
-    display: flex;
-    align-items: center;
-  }
-  #parcel-ico {
-    width: 180px;
-    height: auto;
-    margin: auto;
-  }
+ 
   #details {
     justify-content: center;
     display: flex;
@@ -251,7 +249,6 @@
     height: 400px;
   }  
   
-  /* For responsiveness */
   .toggler {
     width: 20px;
     height: auto;
