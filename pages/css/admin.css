@@ -13,11 +13,11 @@
     background-repeat: no-repeat;
     height: 400px;
     background-position: center;    
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
   }
   .home-section-admin {
     margin-top: 40px;
@@ -59,26 +59,6 @@
     /* color: white; */
     width: fit-content;
 }
-/* .admin-menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: block;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    /* flex: 1 1 100%; */
-    /* border: 1px solid gray; 
-    height: 80%;
-    margin-top: 20px;
-    padding-bottom: 20px;
-    padding-top: 20px;
-} */
-.admin-menu li {
-    /* flex: 3; */
-    /* color: white; */
-}
 
 .admin-menu li a {
     font-size: 1em;
@@ -88,7 +68,6 @@
 
 .main-admin {
     flex: 4;
-    /* border-left: 2px solid green; */
     box-shadow: 5px 10px #f8f6f6;
     border-radius: 100px / 5px; 
 }
@@ -100,7 +79,6 @@
 }
 #menu {
     padding: 30px 22px 30px 17px;
-    /*height: 110vh;*/
     box-sizing: border-box;
     height: auto;
     position: fixed;
@@ -108,10 +86,41 @@
     top: 0;
     bottom: 0;
   }
+  #welcome-admin {
+    color: darkkhaki;
+    font-weight: bolder;
+    border: none;
+  }
   .menu-ico {
     width: 20px;
     height: auto;
     vertical-align: middle;
+  }
+  .menu-ico-1{
+    color: blueviolet;
+  }
+
+  .menu-ico-2{
+    color: rgb(6, 121, 82);
+  }
+  .menu-ico-3{
+    color: rgb(110, 47, 18);
+  }
+  .menu-ico-4{
+    color: rgb(190, 188, 20);
+  }
+  .menu-ico-5{
+    color: rgb(221, 129, 224);
+  }
+  .menu-ico-6{
+    color: rgb(108, 235, 224);
+  }
+  .menu-ico-d {
+    font-size: 1.2em;
+    margin-right: 5px;
+    display: inline-block;
+    margin-top: -7px;
+    color: darkgreen;
   }
   
   nav {
@@ -240,38 +249,7 @@
   #map {
     width: 300px;
     height: 400px;
-  }
-  
-  /*User Profile*/
-  #user-cont {
-    border-radius: 6px;
-    width: 100%;
-  }
-  #user-img {
-    width: 140px;
-    height: auto;
-  }
-  #user-desc {
-    flex: 0 1 30%;
-    border-right: 1px solid rgba(112, 112, 112, 0.27);
-    padding: 20px;
-  }
-  #user-desc h4 {
-    margin-bottom: 1.5rem;
-    margin-top: 2rem;
-  }
-  #user-desc > img {
-    margin: auto;
-    display: block;
-  }
-  #user-info {
-    flex: 0 1 70%;
-    padding: 20px 40px;
-  }
-  #user-info h4 {
-    margin: 0;
-  }
-  
+  }  
   
   /* For responsiveness */
   .toggler {
@@ -290,7 +268,7 @@
   .toggled-nav > #menu {
     width: 255px;
   }
-  
+
   
 
 @media all and (max-width:1000px) {
