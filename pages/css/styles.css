@@ -3,10 +3,14 @@ p{vertical-align: middle;}
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: fit-content;
+  width: 500px;
   position: relative;
   margin: auto;
   text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  height: 100px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 6px 25px;
 }
 
 /* Slide text */
@@ -15,12 +19,17 @@ p{vertical-align: middle;}
   position: absolute;
   margin-top: 20px;
 }
+.slides a{
+  display: block;
+  font-style: italic;
+  font-size: 1em;
+}
 .slides p {
-  color: rgb(43, 2, 59);
-  font-size: 1.4em;
-  letter-spacing: .2em;
-  line-height: 1.1;
-  font-weight: bolder;
+  color: rgb(10, 0, 14);
+  font-size: 1.2em;
+  letter-spacing: .1em;
+  /* line-height: 1.1; */
+  /* font-weight: bold; */
 }
 
 /* The dot */
@@ -44,9 +53,9 @@ p{vertical-align: middle;}
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
+  -webkit-animation-duration: 1.2s;
   animation-name: fade;
-  animation-duration: 1.5s;
+  animation-duration: 1.2s;
 }
 
 @-webkit-keyframes fade {

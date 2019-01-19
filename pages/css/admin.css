@@ -88,7 +88,7 @@
     bottom: 0;
   }
   #welcome-admin {
-    color: darkkhaki;
+    color: rgb(43, 41, 15);
     font-weight: bolder;
     border: none;
   }
@@ -122,6 +122,9 @@
     display: inline-block;
     margin-top: -7px;
     color: darkgreen;
+  }
+  .menu-ico-black {
+    border: 1px solid black;
   }
   
   nav {
