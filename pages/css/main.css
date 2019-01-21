@@ -15,7 +15,7 @@ body {
     flex-direction: column;
     padding: 20px;
     background-color: green; /* For browsers that do not support gradients replace with an image */
-    background-image: linear-gradient(green, white, white, white, green); /* Standard syntax (must be last) */
+    background-image: linear-gradient(green, white, white, white, green);
     width: 100vw;
     opacity: .8;
     overflow: hidden;
@@ -25,6 +25,9 @@ header {
    display: flex;
    display: -webkit-flex;
    flex-basis: content;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   align-items: stretch;
    width: 100%;
    margin: 20px;
    height: 100px;
@@ -33,20 +36,13 @@ header {
 header #head-text a {
     color: white;
     font-size: 1.5em;
+    font-weight: bolder;
 
 }
 
 .head-login-ul {
     margin-left: auto;
     margin-right: 40px;
-}
-.head-login-ul a {
-    padding: 7px;
-    font-weight: bold;
-    font-size: 1.2em;
-    color: rgb(75, 73, 73);
-    box-shadow: 0px 2px 3px 2px whitesmoke;
-    border-radius: 5px;
 }
 .head-span {
     color: white;
@@ -71,23 +67,52 @@ header #head-text a {
     -ms-filter: blur(10px);
     filter: blur(10px);
   }
-  .home-section {
-    margin-top: 80px;
-    width: 100%;
-    height: 400px;
-    background-position: center;
-    align-self: center;
-    align-items: center;
-    left: 0;
-    right: 0;
-    z-index: 0;
-    padding-bottom:40px;  /* Height of the footer */
-    opacity: 1;
+
+.home-section {
+  margin-top: 80px;
+  width: 100%;
+  height: 400px;
+  background-position: center;
+  align-self: center;
+  align-items: center;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  padding-bottom:40px; 
+  opacity: 1;
+}
+.home-section-home {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+  margin-top: 0px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#action-word {
+  margin-top: -60px;
+  margin-bottom: 40px;
+  color: rgba(1, 51, 1, 0.808);
+
+}
+#action-word span {
+  font-style: oblique;
+  text-shadow: 2px 2px 8px rgb(158, 214, 67);
 }
 
 #signup-btn {
-    color: whitesmoke;
-    margin-right: 10px; 
+    margin-right: 10px;
+    background: white; 
+    padding: 7px;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: rgb(75, 73, 73);
+    box-shadow: 0px 2px 3px 2px whitesmoke;
+    border-radius: 3px;
+}
+button:hover, .head-login-ul a:hover {
+  opacity: .8;;
+  font-weight: bolder;
 }
 
 /* Signup page */
@@ -99,15 +124,16 @@ header #head-text a {
 
 }
 .signup-form {
-    display: flex;
     padding: 20px;
-    width: 100%;
-    flex-direction: column;
-    border-radius: 10px;
+    width: 40%;
+    margin-top: 0px;
+    height: fit-content;
+    border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.16) 0 15px 25px;
     align-self: center;
     font-family: Arial, Helvetica, sans-serif;
     border:1px solid #ccc;
+    background: rgba(1, 51, 1, 0.671);
 }
 /* Full-width input fields */
 input[type=text], input[type=password], input[type=email], input[type=number] {
@@ -117,6 +143,8 @@ input[type=text], input[type=password], input[type=email], input[type=number] {
     display: inline-block;
     border: none;
     background: #f1f1f1;
+    color: black;
+    font-size: 1em;
   }
 
   input[type=file] {
@@ -129,8 +157,8 @@ input[type=text], input[type=password], input[type=email], input[type=number] {
   }
   
   input[type=text]:focus, input[type=password]:focus, input[type=file]:focus {
-    background-color: #ddd;
     outline: none;
+    cursor: text;
   }
   .signup-div .fill-up {
       text-align: center;
@@ -163,9 +191,9 @@ input[type=text], input[type=password], input[type=email], input[type=number] {
   }
  
   .signupbtn {
-    background-color: green;
-    color: white;
-    padding: 14px 20px;
+    background-color: white;
+    color: rgb(75, 73, 73);
+    padding: 10px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
@@ -173,12 +201,8 @@ input[type=text], input[type=password], input[type=email], input[type=number] {
     border-radius: 5px;
     align-self: center;
     text-align: center;
-    opacity: 0.9;
-    font-size: 1em;
-  }
-  
-  button:hover {
-    opacity:1;
+    font-weight: bold;
+    font-size: 1.2em;
   }
 
   /* Login page */
@@ -200,8 +224,8 @@ input[type=text], input[type=password], input[type=email], input[type=number] {
     background: none;
     border: 0;
     cursor: pointer;
-    font-size: 0.9em;
-    color: brown;
+    font-size: 1em;
+    color: white;margin-top: 5px;
 }
 
 /* Reset password */
@@ -215,8 +239,7 @@ input[type=text], input[type=password], input[type=email], input[type=number] {
     width: 100%; 
     height: 100%; 
     overflow: auto; 
-    background-color: rgba(110, 131, 114, 0.747); 
-    /* background-color: rgba(0,0,0,0.4);  */
+    background-color: rgba(110, 131, 114, 0.973); 
   }
   
   /* Modal Content */
@@ -224,10 +247,11 @@ input[type=text], input[type=password], input[type=email], input[type=number] {
     background-color: #fefefe;
     margin: auto;
     border-radius: 10px;
-    padding: 20px;
+    padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.16) 0 6px 25px;
     border: 1px solid #888;
-    width: 50%;
+    margin-top: 20px;
+    width: 40%;
   }
   
   /* The Close Button */
@@ -267,72 +291,40 @@ input[type=email] {
     text-decoration: none;
     cursor: pointer;
   }
-.signupbtn {
-    background-color: green;
-    color: white;
-    padding: 12px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    align-self: center;
-    text-align: center;
-    opacity: 0.9;
-    font-size: 1em;
-}
-
-/* Countdown */
-/* p {
-     */
-
-#home-displays {
- display: flex;
- justify-content: space-between;
- padding: 20px;
-
-}
-.ema-number {
-    color: rgb(0, 0, 0);
-    border-left: 1px dotted;
-    border-right: 1px dotted;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0 6px 25px;
-    padding: 5px;
-    text-align: center;
-    display: block;
-    width: 200px;
-    font-size: 1.8em;
-    margin-top: 0px;
-}
  .ema-number1 {
      font-size: 1em;
-     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-     font-weight: normal;
+     font-family: sans-serif;
+     font-weight: bolder;
      border-radius: 5px;
-     color: rgba(0, 0, 0, 0.637);
+     color: white;
+     margin-top: -10px;
+     text-align: center;
  }
   
 .demo {
-  color: rgb(0, 0, 0);
+  color: white;
   border-left: 1px dotted;
   border-right: 1px dotted;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 6px 25px;
-  padding: 4px;
+  border-radius: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-align: center;
-  display: block;
-  width: 200px;
-  font-size: 1.9em;
-  margin-top: 0px;
-  }
-  #countdown {
-  text-align: center;
-  border: 2px dot;
+  display: inline-block;
+  background: rgba(1, 51, 1, 0.671);
+
   width: fit-content;
-  border-radius: 20px;
-  padding: 5px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 6px 25px;
-}  
+  font-size: 1.9em;
+  }
+  .count-span {
+
+    display: block;
+    font-size: .5em;
+    border-top: 1px solid white;    
+  }
+  #countdown-div{
+    margin-top: 0px;
+  }
+
   
 /* Profile */
 #user-desc {
