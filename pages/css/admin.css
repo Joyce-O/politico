@@ -31,6 +31,19 @@
     z-index: 0;
     padding-bottom:80px;  /* Height of the footer */
 }
+
+.home-section-profile:before {
+  -webkit-filter: blur(15px);
+  -moz-filter: blur(15px);
+  -o-filter: blur(15px);
+  -ms-filter: blur(15px);
+  filter: blur(15px);
+}
+
+.home-section-profile {
+  margin-top: 80px;
+  padding-bottom:100px;  /* Height of the footer */
+}
 .togglenav {
     display: none;
 }
@@ -88,7 +101,7 @@
     bottom: 0;
   }
   #welcome-admin {
-    color: rgb(43, 41, 15);
+    color: brown;
     font-weight: bolder;
     border: none;
   }
