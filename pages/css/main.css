@@ -334,7 +334,64 @@ input[type=email] {
   box-shadow: rgba(0, 0, 0, 0.16) 0 6px 25px;
 }  
   
+/* Profile */
+#user-desc {
+    padding: 2px;
+    border-bottom: 1px solid rgba(112, 112, 112, 0.27);
+    border-right: none;
+}
+#main-content-page {
+    max-width: 900px;
+    margin: auto;
+}
+#user-cont {
+    border-radius: 6px;
+    width: 100%;
+  }
+  #user-img {
+    width: 140px;
+    height: auto;
+  }
+  #user-desc {
+    flex: 0 1 30%;
+    border-right: 1px solid rgba(112, 112, 112, 0.27);
+    padding: 20px;
+  }
+  #user-desc h4 {
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+  }
+  #user-desc > img {
+    margin: auto;
+    display: block;
+  }
+  #user-info {
+    flex: 0 1 70%;
+    padding: 20px 40px;
+  }
+  #user-info h4 {
+    margin: 0;
+  }
 
+  .d-flex {
+    display: flex;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .mb-6 {
+    margin-bottom: 6rem;
+  }
+  .content-between {
+    justify-content: space-between;
+  }
+  .btn {
+    display: inline-block;
+    outline: none;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+  
 
 /* Remove default formats */
 
