@@ -15,70 +15,71 @@
 <body>
     <div class="container">
         <header>
-            <ul>
-                <li id="head-text">
-                    <a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
-                </li>
-            </ul>
+            <div>
+                <ul>
+                    <li id="head-text">
+                        <a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="countdown-div">
+                <ul id="ul">
+                    <li class="ema-number1">
+                        <p>2019 election begins in: </p>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul class="head-login-ul">
+                    <li>
+                        <a id="signup-btn" href="index.html">Login</a>
+                    </li>
+                </ul>
+            </div>
         </header>
         <section class="home-section signup-div">
-            <form action="">
-                <p class="fill-up">Please fill in this form to create an account. Have an account?
-                    <span class="hr">
-                        <a href="login.html">Login</a>
-                    </span>
-                </p>
+            <div class="signup-form">
+                <form action="">
+                    <p class="fill-up">Please fill in this form to create an account.</p>
 
-                <div class="signup-form">
-                    <label for="firstname">
-                        <b>First name</b>
-                    </label>
-                    <input type="text" placeholder="Enter Firstname" name="firstname" required>
+                    <div class="signup-flex">
+                        <label for="firstname">
+                        </label>
+                        <input type="text" placeholder="First name" name="firstname" required>
 
-                    <label for="lastname">
-                        <b>Last name</b>
-                    </label>
-                    <input type="text" placeholder="Enter Lastname" name="lastname" required>
+                        <label for="lastname">
+                        </label>
+                        <input type="text" placeholder="Last name" name="lastname" required>
 
-                    <label for="othername">
-                        <b>Other names</b>
-                    </label>
-                    <input type="text" placeholder="Othername (optional)" name="othername">
+                    </div>
+                    <div class="signup-flex">
+                        <label for="othername">
+                        </label>
+                        <input type="text" placeholder="Other name (optional)" name="othername">
 
-                    <label for="email">
-                        <b>Email</b>
-                    </label>
-                    <input type="email" placeholder="Enter Email" name="email" required>
+                        <label for="email">
+                        </label>
+                        <input type="email" placeholder="Email" name="email" required>
 
-                    <label for="phone">
-                        <b>Phone</b>
-                    </label>
-                    <input type="number" placeholder="Enter Phone" name="phone" required>
-
-                    <div class="psw-img ">
-                        <div>
-                            <label for="password">
-                                <b>Password</b>
-                            </label>
-                            <input type="password" placeholder="Password" name="password" required>
-                        </div>
-                        <div>
-
-                            <label for="file">
-                                <b>Upload your photo</b>
-                            </label>
-                            <input type="file" id="photo" required>
-                        </div>
+                    </div>
+                    <div class="signup-flex">
+                        <label for="phone">
+                        </label>
+                        <input type="number" placeholder="Phone number" name="phone" required>
+                        <label for="password">
+                        </label>
+                        <input type="password" placeholder="Password" name="password" required>
                     </div>
 
-                    <div class="white-div">
-                        <p class="sp-red">By creating an account you agree to the
-                            <a class="hr" href="#">terms</a> guilding this election.</p>
-
+                    <div class="signup-flex-column">
+                        <label for="file">
+                            <b id="upload-label">Upload your photo</b>
+                        </label>
+                        <input type="file" id="photo" required>
                         <button type="submit" class="signupbtn">Signup</button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
 
         </section>
     </div>
