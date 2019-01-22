@@ -1,3 +1,4 @@
+// let ul = document.getElementById('ul');
 const createNode = (element) => {
   return document.createElement(element);
 };

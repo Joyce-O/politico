@@ -37,6 +37,7 @@ header #head-text a {
     color: white;
     font-size: 1.5em;
     font-weight: bolder;
+    cursor: pointer;
 
 }
 

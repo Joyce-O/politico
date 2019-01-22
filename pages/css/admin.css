@@ -5,6 +5,7 @@
 .home-section-admin:before {
     content: "";
     position: fixed;
+    margin-top: 100px;
     left: 0;
     right: 0;
     z-index: -1;
@@ -49,7 +50,7 @@
 }
 #flex-admin {
     display: flex;
-    width: 80%;
+    width: 100%;
     height: 100%;
     margin-right: 40px;
     justify-content: space-between;
@@ -81,9 +82,12 @@
 
 .main-admin {
     flex: 4;
-    box-shadow: 5px 10px #f8f6f6;
+    /* box-shadow: 5px 10px #f8f6f6; */
     border-radius: 100px / 5px; 
     margin-top: 80px;
+    /* border: 5px solid black; */
+    margin-right: 10px;
+    width: 100%;
 }
 
 /* Bo */
@@ -101,7 +105,7 @@
     bottom: 0;
   }
   #welcome-admin {
-    color: brown;
+    color: rgb(127, 136, 126);
     font-weight: bolder;
     border: none;
   }
@@ -115,7 +119,14 @@
   }
 
   .menu-ico-2{
-    color: rgb(6, 121, 82);
+    color: white;
+    font-weight: bolder;
+    background: rgba(1, 51, 1, 0.671);
+    padding: 5px;
+    border-radius: 2px;
+  }
+  .menu-ico-2:hover{
+    background: rgb(1, 51, 1);
   }
   .menu-ico-3{
     color: rgb(110, 47, 18);
@@ -214,16 +225,26 @@
 .dash-cont {
     width: auto;
     box-shadow: rgba(0, 0, 0, 0.16) 0 3px 25px;
-    border: 1px solid rgba(0, 0, 0, .1);
+    /* border: 3px solid rgba(235, 62, 62, 0.1); */
     border-radius: 6px;
+    color: white;
+    
   }
   #table-info {
     display: flex;
     border-bottom: 1px solid rgba(112, 112, 112, .5);
+    background: rgba(1, 51, 1, 0.671);
+    justify-content: center;
   }
   #table-info a {
     padding: 17px 30px;
+    background: white;
+    box-shadow: 5px 5px white, 10px 10px;
+    border-radius: 5px;
     margin: 0;
+    color: rgba(1, 51, 1, 0.671);
+    text-align: center;
+    font-weight: bolder;
   }
   table {
     width: 100%;
@@ -234,20 +255,44 @@
   }
   #table-head {
     height: 50px;
+    background: rgba(1, 51, 1, 0.671);
+    color: white;
+    
   }
+
   td, th {
     text-align: left;
   }
   td, th {
     padding: 10px;
   }
-  tr:nth-child(even) {
-    background-color: rgba(235, 239, 248, 1);
+  .left-pad {
+    padding-left: 20px;
+  }
+  tr {
+    background: white;
+   color: rgb(1, 51, 1); 
+   
+  }
+  td {
+    margin-bottom: 20px;
+  }
+  .logo-line {
+    border-right: 2px solid white; 
+  }
+  .logo-line-h {
+    border-right: 2px solid rgba(1, 51, 1, 0.671); 
+  }
+  .logo-line2 {
+    border-left: 2px solid white; 
+  }
+  .logo-line2-h {
+    border-left: 2px solid rgba(1, 51, 1, 0.671);
   }
 
-  tr:nth-child(odd) {
+  /* tr:nth-child(odd) {
     background-color: rgb(180, 178, 178);
-  }
+  } */
   .view {
     background-color: rgb(180, 178, 178);
   }
@@ -260,10 +305,6 @@
   #details > div:first-child {
     margin-right: 80px;
   }
-  #map {
-    width: 300px;
-    height: 400px;
-  }  
   
   .toggler {
     width: 20px;
@@ -282,7 +323,73 @@
     width: 255px;
   }
 
-  
+  /* Avarter */
+  #avatar {
+    margin-top: 10px;
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    background: white;
+    margin-left: 20px;
+}
+#avatarName {
+ display: inline;   
+ padding-bottom: 20px;
+ font-weight: bold;
+ text-align: center;
+
+}
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    /* cursor: pointer; */
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    margin-top: 18px;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: green;
+    font-size: 1em;
+    text-align: center;
+    padding: 5px 5px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: white; color: rgba(0, 128, 0, 0.87);}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.profile_tags{
+    padding: 20px;
+    background: lemonchiffon;
+}
+.section-order {
+    background: white;
+}
+#hand-pointer1, #hand-pointer2 {
+  color: green;
+  margin-right: 2px;
+}
 
 @media all and (max-width:1000px) {
     .admin-menu {
