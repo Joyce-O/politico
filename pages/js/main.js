@@ -1,30 +1,3 @@
-// // Inspiration ~ W3School
-// let slideIndex = 0;
-// showSlides();
-
-// function showSlides() {
-//   let i;
-//   let slides = document.getElementsByClassName("slides");
-//   let dots = document.getElementsByClassName("dot");
-//   for (i = 0; i < slides.length; i++) {
-//     slides[i].style.display = "none";  
-//   }
-//   slideIndex++;
-//   if (slideIndex > slides.length) {slideIndex = 1}    
-//   for (i = 0; i < dots.length; i++) {
-//     dots[i].className = dots[i].className.replace(" active", "");
-//   }
-//   slides[slideIndex-1].style.display = "block";  
-//   dots[slideIndex-1].className += " active";
-//   setTimeout(showSlides, 7000); 
-// }
-
-
-// Countdown to elections
-// let day = document.getElementById("day");
-// let hour = document.getElementById("hour");
-// let min = document.getElementById("min");
-// let sec = document.getElementById("sec");
 const createNode = (element) => {
   return document.createElement(element);
 };
