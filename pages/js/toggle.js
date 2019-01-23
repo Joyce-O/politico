@@ -1,7 +1,6 @@
 // Hide and show toggle menu
-// const resize = () => {
 let menuSpan = document.getElementById('menu-span');
-console.log("YESS");
+
 window.onclick = function (event) {
     if (event.target == menuSpan) {
         let deviceWidth = window.innerWidth;

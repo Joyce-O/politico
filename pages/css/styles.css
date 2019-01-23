@@ -10,7 +10,6 @@ p{vertical-align: middle;}
   padding: 10px;
   border-radius: 5px;
   height: 100px;
-  /* box-shadow: rgba(0, 0, 0, 0.16) 0 6px 25px; */
   background: rgba(1, 51, 1, 0.671);
 }
 
@@ -26,12 +25,9 @@ p{vertical-align: middle;}
   font-size: 1em;
 }
 .slides p {
-  /* color: rgb(10, 0, 14); */
   color: white;
   font-size: 1.2em;
   letter-spacing: .1em;
-  /* line-height: 1.1; */
-  /* font-weight: bold; */
 }
 
 /* The dot */
