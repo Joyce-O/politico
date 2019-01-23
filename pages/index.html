@@ -15,75 +15,67 @@
 <body>
     <div class="container">
         <header>
-            <ul>
-                <li id="head-text">
-                    <a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
-                </li>
-            </ul>
-            <ul class="head-login-ul">
-                <li>
-                    <a id="signup-btn" href="signup.html">Signup</a>
-                    <a id="login-btn" href="login.html">Login</a>
-                </li>
-            </ul>
+            <div id="head-text-div">
+                <ul>
+                    <li id="head-text">
+                        <a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="countdown-div">
+                <ul id="ul">
+                    <li class="ema-number1">
+                        <p>2019 elections begin in: </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="head-login-div">
+                <ul class="head-login-ul">
+                    <li>
+                        <a id="signup-btn" href="signup.html">Signup</a>
+                    </li>
+                </ul>
+            </div>
         </header>
-        <section class="home-section">
-            <div class="slideshow-container">
+        <section class="home-section home-section-home">
 
-                <div class="slides fade">
-                    <div class="slide-text"></div>
-                    <!-- <p>Your Vote is your right exercise it!</p> -->
-                    <p>&quot;Voting is the foundational act that breathes life into the principle of the consent of the governed.&quot;
-                        <a href="https://www.brainyquote.com/topics/voting">DeForest Soaries</a></p>
-                </div>
-
-                <div class="slides fade">
-                    <div class="slide-text"></div>
-                    <!-- <p>Nigeria is ours, vote to make it better.</p> -->
-                    <p>&quot;Voting is the expression of our commitment to ourselves, one another, this country and this world.&quot;
-                        <a href="https://www.brainyquote.com/topics/voting">Sharon Salzberg</a>
-                    </p>
-                </div>
-
-                <div class="slides fade">
-                    <div class="slide-text"></div>
-                    <p>&quot;Voting is the only way to make change in a democracy.&quot;
-                        <a href=" https://www.brainyquote.com/topics/voting">Christine Todd Whitman</a>
-                    </p>
-                </div>
-
-                <div class="slides fade">
-                    <div class="slide-text"></div>
-                    <p> &quot;The act of voting, to put it in computing terms, is a question of user interface.&quot;
-                        <a href="  https://www.brainyquote.com/topics/voting">Ellen Ullman</a>
-                    </p>
-                </div>
+            <div id="action-word">
+                <h2>
+                    Welcome to <span>Politico,</span> vote at the click of a button!
+                </h2>
             </div>
-            <br>
+            <div class="signup-form">
+                <form action="">
 
-            <div id="dot-div">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+                    <label for="email">
+                        <b>Email</b>
+                    </label>
+                    <input type="email" placeholder="Enter Email" name="email" required>
+                    <label for="password">
+                        <b>Password</b>
+                    </label>
+                    <input type="password" placeholder="Password" name="password" required>
+                    <!-- <div class="white-div2"> -->
+                    <center>
+                        <button type="submit" class="signupbtn signupbtn1">Login</button>
+                        <!-- </div> -->
+                        <div>
+                            <span>Forgot password? </span><button type="button" id="forgot-btn">Reset</button>
+                        </div>
+
+                </form>
             </div>
-            <div id="home-displays">
-                <div>
-                    <p class="ema-number ema-number1">Countdown to 2019 Elections</p>
-                    <p class="demo" id="day"></p>
-                    <p class="demo" id="hour"></p>
-                    <p class="demo" id="min"></p>
-                    <p class="demo" id="sec"></p>
-                </div>
+            <div id="myModal" class="modal">
 
-                <div>
-
-                    <!-- <h4 id="countdown" >Election Countdown</h4> -->
-                    <p class="ema-number ema-number1">Emergency Numbers</p>
-                    <p class="ema-number">+23400000009</p>
-                    <p class="ema-number">+23412345671</p>
-                    <p class="ema-number">+23409876542</p>
-                    <p class="ema-number">+23409875555</p>
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div id="reset-psw">
+                        <p class="fill-up">Please enter your email</p>
+                        <form>
+                            <input type="email" placeholder="Email" name="email" required>
+                            <button type="submit" class="signupbtn">Send me a link</button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -94,6 +86,7 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script src="js/modal.js"></script>
 </body>
 
 
