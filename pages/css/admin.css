@@ -39,6 +39,7 @@
   -moz-filter: blur(15px);
   -o-filter: blur(15px);
   -ms-filter: blur(15px);
+   background-image: transparent;
   filter: blur(15px);
 }
 
@@ -46,9 +47,7 @@
   margin-top: 80px;
   padding-bottom:100px;  /* Height of the footer */
 }
-/* .togglenav {
-    display: none;
-} */
+
 #flex-admin {
     display: flex;
     width: 100%;
@@ -61,19 +60,16 @@
 }
 .admin-menu {
     background: transparent;
-    /* border: 1px solid; */
-    /* padding: 10px; */
-    /* border-left: 2px solid green; */
-     /* box-shadow: 5px 10px #888888;  */
     box-shadow: 5px 10px #faf6f6;
     border-radius: 100px / 5px; 
     padding: 20px;
     margin-right: 40px;
     height: 100%;
-    flex: 1;
+    flex: 1;;
      color: white; 
     width: fit-content;
 }
+
 
 .admin-menu li a {
     font-size: 1em;
@@ -83,12 +79,17 @@
 
 .main-admin {
     flex: 4;
-    /* box-shadow: 5px 10px #f8f6f6; */
     border-radius: 100px / 5px; 
     margin-top: 80px;
-    /* border: 5px solid black; */
     margin-right: 10px;
     width: 100%;
+}
+.main-profile {
+  flex: 4;
+  border-radius: 100px / 5px; 
+  margin-top: 0px;
+  margin-right: 10px;
+  width: 100%;
 }
 
 /* Bo */
@@ -96,15 +97,7 @@
 .toggled-nav > #menu {
     width: 200px;
 }
-/* #menu {
-    padding: 30px 22px 30px 17px;
-    box-sizing: border-box;
-    height: auto;
-    position: fixed;
-    width: 258px;
-    /* top: 0; */
-    /* bottom: 0; 
-  } */
+
   #welcome-admin {
     color: rgb(127, 136, 126);
     font-weight: bolder;
@@ -166,8 +159,14 @@
     padding: 0;
   }
   .ul-list {
-      margin-top: 150px;
+      margin-top: 50px;
   }
+  .ul-list-profile {
+    margin-top: 5px;
+    margin-left: 40px;
+    text-align: center;
+  }
+
   #menu ul > li {
     display: block;
     padding-bottom: 10px;
@@ -290,10 +289,6 @@
   .logo-line2-h {
     border-left: 2px solid rgba(1, 51, 1, 0.671);
   }
-
-  /* tr:nth-child(odd) {
-    background-color: rgb(180, 178, 178);
-  } */
   .view {
     background-color: rgb(180, 178, 178);
   }
@@ -417,11 +412,7 @@
 } 
 
 @media (max-width: 767px) {
-  /* main {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 100vh;
-  } */
+
   aside {
     visibility: hidden;
     position: absolute;
@@ -479,13 +470,6 @@
    color: white;
    opacity: 1;
 }
-/* #menu {
-  visibility: visible;
-  background-color: green;
-  margin-top: 80px;
-  height: auto;
-  opacity: 1;
-} */
 .main-admin {
   opacity: .1;
 }

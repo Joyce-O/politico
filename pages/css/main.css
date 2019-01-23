@@ -123,6 +123,18 @@ flex-wrap: wrap;
 justify-content: center;
 
 }
+.signup-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.signup-flex {
+ display: flex;
+ justify-content: space-between;
+}
+.signup-flex #phone, .signup-flex #othername, .signup-flex #name {
+  margin-right: 5px;
+}
+
 .signup-form {
   padding: 20px;
   width: 40%;
@@ -370,6 +382,8 @@ font-size: 1.9em;
 }
 .text-center {
   text-align: center;
+  color: black;
+  font-size: 1em;
 }
 .mb-6 {
   margin-bottom: 6rem;
@@ -498,7 +512,6 @@ footer {
    #countdown-div li{
      font-size: 1.2em;
      margin-top: 2px;
-     /* margin-left: 10px; */
    }
    #ul {
     margin-left: 15px;
