@@ -17,13 +17,20 @@
         <header>
             <ul>
                 <li id="head-text">
-                    <a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
+                    <span id="menu-span" class="toggle-menu">&equiv;</span><a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
                 </li>
             </ul>
             <ul class="head-login-ul">
                 <li>
-                    <a id="signup-btn" href="signup.html">Signup</a>
-                    <a id="login-btn" href="login.html">Login</a>
+                    <div class="dropdown" style="float:right;">
+                        <span id="avatarName">
+                            <img id="avatar" src="images/download.svg" alt="profile name" width="20px">ˇ</span>
+
+                        <div class="dropdown-content">
+                            <a href="profile.html"><span id="hand-pointer1">&#9758;</span>profile</a>
+                            <a href="index.html"><span id="hand-pointer2">&#9758;</span>Logout</a>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </header>
@@ -32,7 +39,7 @@
                 <aside class="admin-menu">
                     <div class="bg-blue" id="menu">
                         <ul class="ul-list">
-                            <li id="welcome-admin">Admin <br>~ Juliet</li>
+                            <li id="welcome-admin">Admin</li>
                             <li>
                                 <!--  -->
                                 <a href="#">
@@ -67,76 +74,106 @@
                         <div id="table-cont">
                             <table>
                                 <tr id="table-head">
-                                    <th>ID</th>
                                     <th>Logo</th>
                                     <th>Name</th>
                                     <th>Headquarters</th>
                                     <th>Details</th>
                                 </tr>
                                 <tr>
-                                    <td>101</td>
-                                    <td>
+                                    <td class="logo-line left-pad">
                                         <span class="menu-ico menu-ico-1">&#9873;</span>
                                     </td>
-                                    <td>PDP</td>
+                                    <td>Peoples Lifting Party</td>
                                     <td>No. 30 Asokoro Street Ikeja Lagos</td>
-                                    <td>
-                                        <a href="party_details.html" class="">View</a>
+                                    <td class="logo-line2">
+                                        <a href="party_details.html" class="menu-ico-2">&vellip;</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>102</td>
-                                    <td>
-                                        <span class="menu-ico menu-ico-2">&#9873;</span>
+                                    <td class="logo-line left-pad">
+                                        <span class="menu-ico menu-ico-1">&#9873;</span>
                                     </td>
-                                    <td>PAP</td>
+                                    <td>Success for all Party</td>
+                                    <td>No. 30 Asokoro Street Ikeja Lagos</td>
+                                    <td class="logo-line2">
+                                        <a href="party_details.html" class="menu-ico-2">&vellip;</a>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td class="logo-line left-pad">
+                                        <span class="menu-ico menu-ico-6">&#9873;</span>
+                                    </td>
+                                    <td>People Alliance Party</td>
                                     <td>No. 4 Bimpe Road Benin</td>
-                                    <td>
-                                        <a href="party_details.html" class="">View</a>
+                                    <td class="logo-line2">
+                                        <a href="party_details.html" class="menu-ico-2">&vellip;</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>103</td>
-                                    <td>
+
+                                    <td class="logo-line left-pad">
                                         <span class="menu-ico menu-ico-3">&#9873;</span>
                                     </td>
-                                    <td>PDO</td>
+                                    <td>Progressive Party</td>
                                     <td>Office Suit GRA Ikeja Lagos</td>
-                                    <td>
-                                        <a href="party_details.html" class="">View</a>
+                                    <td class="logo-line2">
+                                        <a href="party_details.html" class="menu-ico-2">&vellip;</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>104</td>
-                                    <td>
+
+                                    <td class="logo-line left-pad">
                                         <span class="menu-ico menu-ico-4">&#9873;</span>
                                     </td>
-                                    <td>UDD</td>
+                                    <td>Unoin Deliver Party</td>
                                     <td>St. John Street V/Island Lagos</td>
-                                    <td>
-                                        <a href="party_details.html" class="">View</a>
+                                    <td class="logo-line2">
+                                        <a href="party_details.html" class="menu-ico-2">&vellip;</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>105</td>
-                                    <td>
+
+                                    <td class="logo-line left-pad">
                                         <span class="menu-ico menu-ico-5">&#9873;</span>
                                     </td>
-                                    <td>DPP</td>
+                                    <td>All Success Movement</td>
                                     <td>No. 1 Asa street, Abuja</td>
-                                    <td>
-                                        <a href="party_details.html" class="">View</a>
+                                    <td class="logo-line2">
+                                        <a href="party_details.html" class="menu-ico-2">&vellip;</a>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>106</td>
-                                    <td>
+
+                                    <td class="logo-line left-pad">
                                         <span class="menu-ico menu-ico-6">&#127937;</span>
                                     </td>
-                                    <td>PCP</td>
+                                    <td>Power for Development Party</td>
                                     <td>New Seceteraite New Benin</td>
-                                    <td>
-                                        <a href="party_details.html" class="">View</a>
+                                    <td class="logo-line2">
+                                        <a href="party_details.html" class="menu-ico-2">&vellip;</a>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td class="logo-line left-pad">
+                                        <span class="menu-ico menu-ico-5">&#9873;</span>
+                                    </td>
+                                    <td>Alliance Party Nigeria</td>
+                                    <td>No. 1 Asa street, Abuja</td>
+                                    <td class="logo-line2">
+                                        <a href="party_details.html" class="menu-ico-2">&vellip;</a>
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td class="logo-line left-pad">
+                                        <span class="menu-ico menu-ico-6">&#127937;</span>
+                                    </td>
+                                    <td>Peoples Central Party</td>
+                                    <td>New Seceteraite New Benin</td>
+                                    <td class="logo-line2">
+                                        <a href="party_details.html" class="menu-ico-2">&vellip;</a>
                                     </td>
                                 </tr>
                             </table>
@@ -144,12 +181,12 @@
                     </div>
                 </section>
             </div>
-
         </section>
         <footer>
             <p>&#169;Joyce-O Designs ~ 2019 General Elections</p>
         </footer>
         <script src="js/main.js"></script>
+        <script src="js/toggle.js"></script>
 </body>
 
 
