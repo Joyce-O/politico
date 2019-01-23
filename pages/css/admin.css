@@ -1,7 +1,8 @@
 @font-face {
-    font-family: rubikMedium;
-    src: url(../fonts/Rubik-Medium.ttf);
+  font-family: rubikMedium;
+  src: url(../fonts/Rubik-Medium.ttf);
 }
+
 .home-section-admin:before {
     content: "";
     position: fixed;
@@ -45,9 +46,9 @@
   margin-top: 80px;
   padding-bottom:100px;  /* Height of the footer */
 }
-.togglenav {
+/* .togglenav {
     display: none;
-}
+} */
 #flex-admin {
     display: flex;
     width: 100%;
@@ -63,14 +64,14 @@
     /* border: 1px solid; */
     /* padding: 10px; */
     /* border-left: 2px solid green; */
-    /* box-shadow: 5px 10px #888888; */
+     /* box-shadow: 5px 10px #888888;  */
     box-shadow: 5px 10px #faf6f6;
     border-radius: 100px / 5px; 
     padding: 20px;
     margin-right: 40px;
     height: 100%;
     flex: 1;
-    /* color: white; */
+     color: white; 
     width: fit-content;
 }
 
@@ -95,15 +96,15 @@
 .toggled-nav > #menu {
     width: 200px;
 }
-#menu {
+/* #menu {
     padding: 30px 22px 30px 17px;
     box-sizing: border-box;
     height: auto;
     position: fixed;
     width: 258px;
-    top: 0;
-    bottom: 0;
-  }
+    /* top: 0; */
+    /* bottom: 0; 
+  } */
   #welcome-admin {
     color: rgb(127, 136, 126);
     font-weight: bolder;
@@ -323,6 +324,15 @@
     width: 255px;
   }
 
+  /* Toggle Menu */
+  .toggle-menu {
+   margin-right: 20px;
+   font-size: 2em;
+   color: white;
+   font-weight: bolder;
+   display: none;
+  }
+
   /* Avarter */
   #avatar {
     margin-top: 10px;
@@ -405,3 +415,78 @@
     flex-basis: 100%;
     }
 } 
+
+@media (max-width: 767px) {
+  /* main {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100vh;
+  } */
+  aside {
+    visibility: hidden;
+    position: absolute;
+    transition: all .3s;
+    left: 0; top: 0;
+    opacity: 0;
+  }
+  
+  aside.fade-in {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .toggler {
+    display: block;
+  }
+  /* Toggle Menu */
+  .toggle-menu {
+      display: inline-block;
+  }
+  /* Main Admin table */
+  .main-admin {
+    margin-top: 40px;
+    width: 100%;
+    overflow: scroll;
+  }
+  ::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+    background: #fcf8f8;
+    -webkit-border-radius: 1ex;
+    border-radius: 1ex;
+     
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgb(253, 251, 251);
+    -webkit-border-radius: 1ex;
+    border-radius: 1ex;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+  }
+  
+  ::-webkit-scrollbar-corner {
+    background: rgb(252, 247, 247);
+  }
+
+  /* ASIDE */
+  .home-section-admin:before { 
+    background: none;
+  }
+  .admin-menu {
+   z-index: 1;
+   background-color: green;
+   color: white;
+   opacity: 1;
+}
+/* #menu {
+  visibility: visible;
+  background-color: green;
+  margin-top: 80px;
+  height: auto;
+  opacity: 1;
+} */
+.main-admin {
+  opacity: .1;
+}
+}
