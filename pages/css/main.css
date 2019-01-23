@@ -22,15 +22,14 @@ body {
 }
 /* Header section */
 header {
-   display: flex;
-   display: -webkit-flex;
-   flex-basis: content;
-   justify-content: space-between;
-   flex-wrap: wrap;
-   align-items: stretch;
-   width: 100%;
-   margin: 20px;
-   height: 100px;
+  display: flex;
+  display: -webkit-flex;
+  flex-basis: content;
+  justify-content: space-between;
+  align-content: space-between;
+  width: 100%;
+  margin: 20px;
+  height: 100px;
 }
 
 header #head-text a {
@@ -39,6 +38,10 @@ header #head-text a {
     font-weight: bolder;
     cursor: pointer;
 
+}
+#head-text-div {
+  order: 0;
+  margin-right: 400px;
 }
 
 .head-login-ul {
@@ -135,6 +138,15 @@ button:hover, .head-login-ul a:hover {
     font-family: Arial, Helvetica, sans-serif;
     border:1px solid #ccc;
     background: rgba(1, 51, 1, 0.671);
+}
+#head-login-div {
+  order: 2;
+}
+#countdown-div{
+  /* margin-top: 0px; */
+  /* align-self: center; */
+  order: 1;
+  /* border: 2px solid black; */
 }
 .signup-form {
   padding: 20px;
@@ -359,10 +371,6 @@ label {
     font-size: .5em;
     border-top: 1px solid white;    
   }
-  #countdown-div{
-    margin-top: 0px;
-  }
-
   
 /* Profile */
 #user-desc {
@@ -443,9 +451,133 @@ footer {
    height:40px;   /* Height of the footer */
 }
 
-/* Change styles for signup button on extra small screens */
+/* Handle ui elements on small screens */
 @media screen and (max-width: 300px) {
-    .signupbtn {
-      width: 100%;
-    }
+ header {
+   margin-top: 0px;
+   justify-content: flex-start;
+ }
+ #head-text-div {
+   margin-top: -4px;
+ }
+
+ #head-text a {
+   font-size: 1em;
+ }
+ #signup-btn {
+  padding: 5px;
+  font-size: 1em;
+}
+.head-login-div {
+  align-self: flex-end;
+  margin-top: 4px;
+}
+ #countdown-div{
+   order: 1;
+   width: 300px;
+ }
+ #countdown-div li{
+   font-size: 1.2em;
+   margin-top: 2px;
+   /* margin-left: 10px; */
+ }
+ #ul {
+  margin-left: 15px;
+ }
+ .ema-number1 p {
+  font-size: .8em;
+  font-weight: bolder;
+  text-align: start;
+  margin-top: 20px;
+}
+#action-word h2 {
+  font-size: .9em;
+  text-align: center;
+}
+.login-form {
+  padding: 20px;
+  width: 80%;
+  margin-top: 0px;
+  height: fit-content;
+}
+.signupbtn {
+  font-size: .9em;
+  padding: 7px;
+}
+#forgot-psw-small,#forgot-btn  {
+  font-size: .9em;
+}
+footer {
+  font-size: .8em;
+  margin-left: 0px;
+}
   }
+  @media all and (max-width:1000px) {
+
+}
+
+@media all and (max-width: 500px) {
+  header {
+    margin-top: 0px;
+    justify-content: flex-start;
+  }
+  #head-text-div {
+    margin-top: -4px;
+  }
+ 
+  #head-text a {
+    font-size: 1em;
+  }
+  #signup-btn {
+   padding: 5px;
+   font-size: 1em;
+ }
+ .head-login-div {
+   align-self: flex-end;
+   margin-top: 4px;
+ }
+  #countdown-div{
+    order: 1;
+    width: 300px;
+  }
+  #countdown-div li{
+    font-size: 1.2em;
+    margin-top: 2px;
+    /* margin-left: 10px; */
+  }
+  #ul {
+   margin-left: 15px;
+  }
+  .ema-number1 p {
+   font-size: .8em;
+   font-weight: bolder;
+   text-align: start;
+   margin-top: 20px;
+ }
+ #action-word h2 {
+   font-size: .9em;
+   text-align: center;
+ }
+ .login-form {
+   padding: 20px;
+   width: 80%;
+   margin-top: 0px;
+   height: fit-content;
+ }
+ .signupbtn {
+   font-size: .9em;
+   padding: 7px;
+ }
+ #forgot-psw-small,#forgot-btn  {
+   font-size: .9em;
+ }
+ footer {
+   font-size: .8em;
+   margin-left: 0px;
+ }
+
+} 
+
+@media (max-width: 767px) {
+
+}
