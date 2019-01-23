@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Politico | Signup</title>
+    <title>Politico | Add</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="images/favicon.ico" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
@@ -40,38 +40,24 @@
         <section class="home-section signup-div">
             <div class="signup-form">
                 <form action="">
+                    <p class="fill-up">Add a Political Office</p>
+                   
+                    <label for="file">
+                        <b>Name</b>
+                    </label>
+                    <input type="text" id="title" placeholder="Name of office" name="title" id="title" required>
+                    <label for="file">
+                        <b>Type</b>
+                    </label>
+                    <input type="text" id="type" placeholder="federal, legislative, state..." name="title" id="type" required>
+                    <label for="file">
+                        <b>Title</b>
+                    </label>
+                    <input type="text" id="type" placeholder="e.g Governor" name="title" id="type" required>
 
-                    <label for="email">
-                        <b>Email</b>
-                    </label>
-                    <input type="email" placeholder="Enter Email" name="email" required>
-                    <label for="password">
-                        <b>Password</b>
-                    </label>
-                    <input type="password" placeholder="Password" name="password" required>
-                    <!-- <div class="white-div2"> -->
-                    <center>
-                        <button type="submit" class="signupbtn signupbtn1">Login</button>
-                        <!-- </div> -->
-                        <div>
-                            <span>Forgot password? </span>
-                            <button type="button" id="forgot-btn">Reset</button>
-                        </div>
+                    <button type="submit" class="signupbtn">Signup</button>
 
                 </form>
-            </div>
-            <div id="myModal" class="modal">
-
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <div id="reset-psw">
-                        <p class="fill-up">Please enter your email</p>
-                        <form>
-                            <input type="email" placeholder="Email" name="email" required>
-                            <button type="submit" class="signupbtn">Send me a link</button>
-                        </form>
-                    </div>
-                </div>
             </div>
 
         </section>

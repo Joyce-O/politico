@@ -18,7 +18,7 @@ body {
   background-image: linear-gradient(green, white, white, white, green);
   width: 100vw;
   opacity: .8;
-  overflow: hidden;
+  overflow: auto;
 }
 /* Header section */
 header {
@@ -90,8 +90,8 @@ justify-content: center;
 flex-wrap: wrap;
 }
 #action-word {
-margin-top: -60px;
-margin-bottom: 40px;
+margin-top: -5px;
+margin-bottom: 20px;
 color: rgba(1, 51, 1, 0.808);
 
 }
@@ -127,6 +127,10 @@ justify-content: center;
   display: flex;
   flex-direction: column;
 }
+.signup-flex-row {
+  display: flex;
+  flex-direction: row;
+}
 .signup-flex {
  display: flex;
  justify-content: space-between;
@@ -146,6 +150,12 @@ justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
   border:1px solid #ccc;
   background: rgba(1, 51, 1, 0.671);
+}
+.signup-form p {
+  color: white;
+  text-align: center;
+  margin-top: -2px;
+  margin-bottom: 2px;
 }
 /* Full-width input fields */
 input[type=text], input[type=password], input[type=email], input[type=number] {
@@ -172,12 +182,19 @@ input[type=text]:focus, input[type=password]:focus, input[type=file]:focus {
   outline: none;
   cursor: text;
 }
-.signup-div .fill-up {
+.signup-div {
     text-align: center;
     padding-bottom: 5px;
     color: rgb(1, 27, 27);
     font-size: 1.2em;
     font-weight: bolder;
+} 
+.fill-up {
+  text-align: center;
+  padding-bottom: 5px;
+  color: rgb(244, 248, 248);
+  font-size: 1em;
+  font-weight: bold;
 } 
 .fill-up2 {
     color: black;
@@ -216,10 +233,16 @@ input[type=text]:focus, input[type=password]:focus, input[type=file]:focus {
   font-weight: bold;
   font-size: 1.2em;
 }
+.signupbtn1 {
+  font-size: 1em;
+}
 
 /* Login page */
 #login-fillup {
     color: black;
+}
+#forgot-psw {
+  font-size: .9em;
 }
 
 .white-div2 {
@@ -303,6 +326,13 @@ input[type=email] {
   text-decoration: none;
   cursor: pointer;
 }
+#send-link {
+  background: green;
+  color: white;
+  font-size: 1em;
+}
+
+/* Countdown */
 .ema-number1 {
    font-size: 1em;
    font-family: sans-serif;
@@ -334,7 +364,7 @@ font-size: 1.9em;
   border-top: 1px solid white;    
 }
 #countdown-div{
-  margin-top: 0px;
+  margin-top: 60px;
 }
 
 
