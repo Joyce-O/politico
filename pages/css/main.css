@@ -218,6 +218,9 @@ input[type=text]:focus, input[type=password]:focus, input[type=file]:focus {
     background: rgb(218, 218, 218);
     height: max-content;
 }
+#upload-label {
+  text-align: start;
+}
 
 .signupbtn {
   background-color: white;
@@ -390,11 +393,11 @@ font-size: 1.9em;
   width: 140px;
   height: auto;
 }
-#user-desc {
+/* #user-desc {
   flex: 0 1 30%;
   border-right: 1px solid rgba(112, 112, 112, 0.27);
   padding: 20px;
-}
+} */
 #user-desc h4 {
   margin-bottom: 1.5rem;
   margin-top: 2rem;
@@ -411,9 +414,7 @@ font-size: 1.9em;
   margin: 0;
 }
 
-.d-flex {
-  display: flex;
-}
+
 .text-center {
   text-align: center;
   color: black;
