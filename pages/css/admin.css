@@ -111,6 +111,13 @@
   margin-right: 10px;
   width: 100%;
 }
+.d-flex {
+  display: flex;
+  border: 2px solid black;
+}
+#profile-his {
+  background: blue;
+}
 
 /* Bo */
 
@@ -245,9 +252,10 @@
 .dash-cont {
     width: auto;
     box-shadow: rgba(0, 0, 0, 0.16) 0 3px 25px;
-    /* border: 3px solid rgba(235, 62, 62, 0.1); */
+    border: 3px solid red;
     border-radius: 6px;
     color: white;
+    padding: 5px;
     
   }
   #table-info {
@@ -483,19 +491,70 @@
   color: crimson;
   font-weight: bolder;
   margin-left: 20px;
-  /* font-size: 1.5em; */
+  font-size: 1em;
 }
 #edit-btn {
   color: green;
   font-weight: bolder;
   margin-left: 20px;
-  /* font-size: 1.5em; */
+  font-size: 1.2em;
 }
 .margin-bottom {
   margin-bottom: 10px;
 }
 .bold {
   font-weight: bolder;
+}
+/* User profile */
+
+#user-descs {
+/* border: 2px solid gray; */
+display: flex;
+justify-content: space-between;
+box-shadow: rgba(0, 0, 0, 0.16) 0 6px 25px;
+padding: 10px;
+border-radius: 5px; 
+}
+.dash-cont-user {
+  width: auto;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 25px;
+  /* border: 3px solid red; */
+  border-radius: 6px;
+  color: black;
+  padding: 5px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 6px 25px;
+  padding: 20px;
+  /* border-radius: 5px;  */
+  margin-left: 20px;
+}
+.user-details h4 {
+  text-align: justify;
+  font-weight: bolder;
+  color: rgb(2, 36, 2);
+}
+.status {
+  color: green;
+}
+#user-activity h4{
+ text-align: center;
+ font-weight: bolder;
+ color: rgb(2, 36, 2);
+}
+#table-head-user {
+  height: 50px;
+  /* background: rgba(1, 51, 1, 0.671); */
+  color: rgb(1, 20, 1);
+  
+}
+#user-table tr {
+  color: black;
+  
 }
 @media all and (max-width:1000px) {
     .admin-menu {
