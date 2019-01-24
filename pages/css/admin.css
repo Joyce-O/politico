@@ -152,6 +152,9 @@
     height: auto;
     vertical-align: middle;
   }
+  .black {
+    background: black;
+  }
   .menu-ico-1{
     color: blueviolet;
   }
@@ -662,6 +665,7 @@ border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
 }
+/* Result */
 
 @media all and (max-width:1000px) {
     .admin-menu {
