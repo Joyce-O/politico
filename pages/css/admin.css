@@ -67,6 +67,23 @@
     z-index: 0;
     padding-bottom:80px;  /* Height of the footer */
 }
+.home-section-cand:before {
+  -webkit-filter: blur(15px);
+  -moz-filter: blur(15px);
+  -o-filter: blur(15px);
+  -ms-filter: blur(15px);
+   background-image: transparent;
+  filter: blur(15px);
+}
+
+.home-section-cand {
+  margin-top: 40px;
+  padding-bottom:100px;  /* Height of the footer */
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
 
 #flex-admin {
     display: flex;
@@ -252,7 +269,7 @@
 .dash-cont {
     width: auto;
     box-shadow: rgba(0, 0, 0, 0.16) 0 3px 25px;
-    border: 3px solid red;
+    /* border: 3px solid red; */
     border-radius: 6px;
     color: white;
     padding: 5px;
@@ -556,6 +573,96 @@ border-radius: 5px;
   color: black;
   
 }
+/* Candidates */
+
+.candidate-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100;
+  flex-wrap: wrap;
+}
+.candidate-item {
+  display: flex;
+  justify-content: space-between;
+}
+/* Office Details */
+#flag-div-office {
+    width: 400px;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    height: 300px;
+}
+.mg-20 {
+  margin-top: 20px;
+}
+.underline {
+  border-bottom: 2px solid gray;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  font-size: 1.5em;
+}
+/* Delete Modal Content */
+.del-modal {
+  display: none; 
+  position: fixed;
+  z-index: 1; 
+  padding-top: 200px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(110, 131, 114, 0.973); 
+}
+.del-modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 6px 25px;
+  border: 1px solid #888;
+  margin-top: 20px;
+  width: 40%;
+}
+#del-send-link {
+  color: green;
+  font-size: 1em;
+}
+#cancel-link {
+  color: crimson;
+  font-size: 1em;
+}
+
+/* The Close Button */
+.del-close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+#del-reset-psw {
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  text-align: center;
+}
+#del-reset-psw p {
+ color: black;
+ display: block;
+}
+.del-close:hover,
+.del-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 @media all and (max-width:1000px) {
     .admin-menu {
         flex-wrap: wrap;
