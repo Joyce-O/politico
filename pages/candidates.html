@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Politico | Profile</title>
+    <title>Politico | Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="images/favicon.ico" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
@@ -17,6 +17,7 @@
         <header>
             <ul>
                 <li id="head-text">
+                    <span id="menu-span" class="toggle-menu">&equiv;</span>
                     <a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
                 </li>
             </ul>
@@ -27,31 +28,142 @@
                             <img id="avatar" src="images/download.svg" alt="profile name" width="20px">ˇ</span>
 
                         <div class="dropdown-content">
-
-                            <a href="index.html">Logout</a>
+                            <a href="profile.html">
+                                <span id="hand-pointer1">&#9758;</span>profile</a>
+                            <a href="index.html">
+                                <span id="hand-pointer2">&#9758;</span>Logout</a>
                         </div>
                     </div>
                 </li>
             </ul>
         </header>
-        <section class="home-section-cand">
-            <div class="candidate-div">
-                <div class="candidate-item">President
-                    <div class="item2">a</div>
-                    <div class="item3">c</div>
-                </div>
-                <div class="candidate-item">President
-                    <div class="item2">2</div>
-                    <div class="item3">3</div>
-                </div>
+        <section class="home-section-details">
+            <div id="flex-admin">
+                <aside class="admin-menu">
+                    <div class="bg-blue" id="menu">
+                        <ul class="ul-list ul-list-profile">
+                            <li id="welcome-admin">User Juliet</li>
+                            <li>
+                                <img src="images/download.svg" class="menu-ico">
+                                <a href="profile.html">
+                                    <span>Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="menu-ico menu-ico-d">&#x2302;</span>Political Office</a>
+                            </li>
+                            <li>
+                                <img src="images/vote_ico.png" class="menu-ico">
+                                <a href="vote.html">
+                                    <span>Vote</span>
+                                </a>
+                            </li>
+                            <li>
+                                <img src="images/result.png" class="menu-ico menu-ico-black">
+                                <a href="result.html">
+                                    <span>Results</span>
+                                </a>
+                            </li>
+                            <li>
+                                <img src="images/home.svg" class="menu-ico black">
+                                <a href="politician.html">
+                                    <span>Apply for Office</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="new_office.html">
+                                    <span class="menu-ico menu-ico-d">&#43;</span>Send a petition</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </aside>
+                <section class="main-admin">
+                    <div class="dash-cont">
+                        <div id="table-info">
+                            <a href="#">Office Details</a>
+                        </div>
+                        <div class="party-div">
+
+                            <div id="flag-div-office">
+                                <label class="party-initial mg-20 underline" for="president">
+                                    <b>Office</b>
+                                </label>
+                                <p id="president" class="party-initial">President
+                                    <span>Head of State</span>
+                                </p>
+
+                            </div>
+                            <div class="party-list">
+                                <div class="margin-divide">
+                                    <ul>
+                                        <li class="margin-bottom bold">
+                                            Candidate
+                                        </li>
+                                        <li class="margin-bottom">Juliana Gokan</li>
+                                        <li class="margin-bottom">Stephen Gilbert</li>
+                                        <li class="margin-bottom">Yusuf Omalide</li>
+                                        <li class="margin-bottom">Benjamin Sunday</li>
+                                        <li class="margin-bottom">Maria Hogiya</li>
+                                        <li class="margin-bottom">Keneth Duru</li>
+                                    </ul>
+                                </div>
+                                <div class="margin-divide">
+                                    <ul>
+                                        <li class="margin-bottom bold">
+                                            State
+                                        </li>
+                                        <li class="margin-bottom">Delta State</li>
+                                        <li class="margin-bottom">Edo State</li>
+                                        <li class="margin-bottom">Enugu State</li>
+                                        <li class="margin-bottom">
+                                            State
+                                        </li>
+                                        <li class="margin-bottom">Delta State</li>
+                                        <li class="margin-bottom">Edo State</li>
+                                    </ul>
+                                </div>
+
+                                <div class="margin-divide">
+                                    <ul>
+                                        <li class="margin-bottom bold">
+                                            Party
+                                        </li>
+                                        <li class="margin-bottom">APN</li>
+                                        <li class="margin-bottom">ASM</li>
+                                        <li class="margin-bottom">PAP</li>
+                                        <li class="margin-bottom">PLP</li>
+                                        <li class="margin-bottom">SPA</li>
+                                        <li class="margin-bottom">UDP</li>
+                                    </ul>
+                                </div>
+                                <div class="margin-divide">
+                                    <ul>
+                                        <li class="margin-bottom bold">
+                                            Remark
+                                        </li>
+                                        <li class="margin-bottom">Approved</li>
+                                        <li class="margin-bottom">Approved</li>
+                                        <li class="margin-bottom">Approved</li>
+                                        <li class="margin-bottom">Approved</li>
+                                        <li class="margin-bottom">Approved</li>
+                                        <li class="margin-bottom">Approved</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
             </div>
-
-
-        </section>
-        <footer>
-            <p>&#169;Joyce-O Designs ~ 2019 General Elections</p>
-        </footer>
-        <script src="js/main.js"></script>
+            </section>
+    </div>
+    </section>
+    <footer>
+        <p>&#169;Joyce-O Designs ~ 2019 General Elections</p>
+    </footer>
+    <script src="js/main.js"></script>
+    <script src="js/toggle.js"></script>
 </body>
 
 
