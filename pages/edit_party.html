@@ -17,7 +17,8 @@
         <header>
             <ul>
                 <li id="head-text">
-                    <span id="menu-span" class="toggle-menu">&equiv;</span><a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
+                    <span id="menu-span" class="toggle-menu">&equiv;</span>
+                    <a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
                 </li>
             </ul>
             <ul class="head-login-ul">
@@ -27,9 +28,12 @@
                             <img id="avatar" src="images/download.svg" alt="profile name" width="20px">ˇ</span>
 
                         <div class="dropdown-content">
-                            <a href="admin_dashboard.html"><span id="hand-pointer1">&#9758;</span>dashboard</a>
-                            <a href="profile.html"><span id="hand-pointer1">&#9758;</span>profile</a>
-                            <a href="index.html"><span id="hand-pointer2">&#9758;</span>Logout</a>
+                            <a href="admin_dashboard.html">
+                                <span id="hand-pointer1">&#9758;</span>dashboard</a>
+                            <a href="profile.html">
+                                <span id="hand-pointer1">&#9758;</span>profile</a>
+                            <a href="index.html">
+                                <span id="hand-pointer2">&#9758;</span>Logout</a>
                         </div>
                     </div>
                 </li>
@@ -37,32 +41,28 @@
         </header>
         <section class="home-section signup-div">
             <div class="signup-form">
-                <form action="">
-                    <p class="fill-up">Edit Party Details</p>
-                        <label for="name">
-                        </label>
-                        <input id="name" type="text" placeholder="Party name" name="name">
+                <form id="partyForm" action="">
+                    <p class="fill-up">&#9997; Edit Party Details</p>
+                    <label for="name">
+                    </label>
+                    <input id="name" type="text" placeholder="Party name" name="Peoples Lifting Party" value="Peoples Lifting Party">
 
-                        <label for="lastname">
-                        </label>
-                        <input type="text" placeholder="Headquarters Address" name="lastname">
+                    <label for="lastname">
+                    </label>
+                    <input type="text" placeholder="Headquarters Address" name="No. 30 Asokoro Street Ikeja Lagos" value="No. 30 Asokoro Street Ikeja Lagos">
 
-                   
-                        <label for="email">
-                        </label>
-                        <input type="email" placeholder="Email" name="email">
 
-                        <label for="phone">
-                        </label>
-                        <input id="phone"type="number" placeholder="Phone number" name="phone" required>
+                    <label for="email">
+                    </label>
+                    <input type="email" placeholder="Email" name="plp.gov@hotmail.com" value="plp.gov@hotmail.com">
 
-                    <div class="signup-flex-column">
-                        <label for="file">
-                            <!-- <b id="upload-label">Upload logo</b> -->
-                        </label>
-                        <input type="file" id="photo" required>
+                    <label for="phone">
+                    </label>
+                    <input id="phone" type="number" value="080903415678">
+
+                    <!-- <div class="signup-flex-column"> -->
                         <button type="submit" class="signupbtn signupbtn-center">Submit</button>
-                    </div>
+                    <!-- </div> -->
                 </form>
             </div>
 
@@ -70,6 +70,7 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script src="js/formHandler.js"></script>
 </body>
 
 
