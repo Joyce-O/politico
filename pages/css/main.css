@@ -69,7 +69,7 @@ header #head-text a {
 }
 
 .home-section {
-margin-top: 80px;
+margin-top: -5px;
 width: 100%;
 height: 400px;
 background-position: center;
@@ -86,11 +86,11 @@ display: flex;
 flex-direction: column;
 flex: 1 1 100%;
 margin-top: 0px;
-justify-content: center;
+/* justify-content: center; */
 flex-wrap: wrap;
 }
 #action-word {
-margin-top: -5px;
+/* margin-top: -2px; */
 margin-bottom: 20px;
 color: rgba(1, 51, 1, 0.808);
 
@@ -126,6 +126,8 @@ justify-content: center;
 .signup-flex-column {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .signup-flex-row {
   display: flex;
@@ -223,7 +225,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=file]:focus {
 }
 
 .signupbtn {
-  background-color: white;
+  background-color: rgb(12, 241, 12);
   color: rgb(75, 73, 73);
   padding: 10px;
   margin: 8px 0;
@@ -345,7 +347,7 @@ input[type=email] {
    font-family: sans-serif;
    font-weight: bolder;
    border-radius: 5px;
-   color: white;
+   color: green;
    margin-top: -10px;
    text-align: center;
 }
@@ -360,20 +362,28 @@ padding-right: 10px;
 text-align: center;
 display: inline-block;
 background: rgba(1, 51, 1, 0.671);
-
+font-size: 1.3em;
 width: fit-content;
-font-size: 1.9em;
+
+}
+.ul-login li {
+  font-size: 1em; 
 }
 .count-span {
 
-  display: block;
+  display: inline-block;
   font-size: .5em;
-  border-top: 1px solid white;    
+  padding-left: 2px;
+  /* border-top: 1px solid white;     */
 }
-#countdown-div{
-  margin-top: 60px;
+.countdown-div{
+  /* margin-top: 120px; */
+  align-self: baseline;
+  /* font-size: 1em; */
 }
-
+.countdown-di-login {
+ margin-top: 0px;
+}
 
 /* Profile */
 #user-desc {
