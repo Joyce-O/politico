@@ -18,7 +18,7 @@ body {
   background-image: linear-gradient(green, white, white, white, green);
   width: 100vw;
   opacity: .8;
-  overflow: hidden;
+  overflow: auto;
 }
 /* Header section */
 header {
@@ -69,7 +69,7 @@ header #head-text a {
 }
 
 .home-section {
-margin-top: 80px;
+margin-top: -5px;
 width: 100%;
 height: 400px;
 background-position: center;
@@ -86,12 +86,12 @@ display: flex;
 flex-direction: column;
 flex: 1 1 100%;
 margin-top: 0px;
-justify-content: center;
+/* justify-content: center; */
 flex-wrap: wrap;
 }
 #action-word {
-margin-top: -60px;
-margin-bottom: 40px;
+/* margin-top: -2px; */
+margin-bottom: 20px;
 color: rgba(1, 51, 1, 0.808);
 
 }
@@ -126,6 +126,12 @@ justify-content: center;
 .signup-flex-column {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.signup-flex-row {
+  display: flex;
+  flex-direction: row;
 }
 .signup-flex {
  display: flex;
@@ -146,6 +152,15 @@ justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
   border:1px solid #ccc;
   background: rgba(1, 51, 1, 0.671);
+}
+.signup-form-candidate {
+ margin-top: 60px;
+}
+.signup-form p {
+  color: white;
+  text-align: center;
+  margin-top: -2px;
+  margin-bottom: 2px;
 }
 /* Full-width input fields */
 input[type=text], input[type=password], input[type=email], input[type=number] {
@@ -172,12 +187,19 @@ input[type=text]:focus, input[type=password]:focus, input[type=file]:focus {
   outline: none;
   cursor: text;
 }
-.signup-div .fill-up {
+.signup-div {
     text-align: center;
     padding-bottom: 5px;
     color: rgb(1, 27, 27);
     font-size: 1.2em;
     font-weight: bolder;
+} 
+.fill-up {
+  text-align: center;
+  padding-bottom: 5px;
+  color: rgb(244, 248, 248);
+  font-size: 1em;
+  font-weight: bold;
 } 
 .fill-up2 {
     color: black;
@@ -201,9 +223,12 @@ input[type=text]:focus, input[type=password]:focus, input[type=file]:focus {
     background: rgb(218, 218, 218);
     height: max-content;
 }
+#upload-label {
+  text-align: start;
+}
 
 .signupbtn {
-  background-color: white;
+  background-color: rgb(12, 241, 12);
   color: rgb(75, 73, 73);
   padding: 10px;
   margin: 8px 0;
@@ -216,10 +241,20 @@ input[type=text]:focus, input[type=password]:focus, input[type=file]:focus {
   font-weight: bold;
   font-size: 1.2em;
 }
+.signupbtn1 {
+  font-size: 1em;
+}
+.signupbtn-center {
+  font-size: 1em;
+}
+
 
 /* Login page */
 #login-fillup {
     color: black;
+}
+#forgot-psw {
+  font-size: .9em;
 }
 
 .white-div2 {
@@ -303,12 +338,19 @@ input[type=email] {
   text-decoration: none;
   cursor: pointer;
 }
+#send-link {
+  background: green;
+  color: white;
+  font-size: 1em;
+}
+
+/* Countdown */
 .ema-number1 {
    font-size: 1em;
    font-family: sans-serif;
    font-weight: bolder;
    border-radius: 5px;
-   color: white;
+   color: green;
    margin-top: -10px;
    text-align: center;
 }
@@ -323,20 +365,28 @@ padding-right: 10px;
 text-align: center;
 display: inline-block;
 background: rgba(1, 51, 1, 0.671);
-
+font-size: 1.3em;
 width: fit-content;
-font-size: 1.9em;
+
+}
+.ul-login li {
+  font-size: 1em; 
 }
 .count-span {
 
-  display: block;
+  display: inline-block;
   font-size: .5em;
-  border-top: 1px solid white;    
+  padding-left: 2px;
+  /* border-top: 1px solid white;     */
 }
-#countdown-div{
-  margin-top: 0px;
+.countdown-div{
+  /* margin-top: 120px; */
+  align-self: baseline;
+  /* font-size: 1em; */
 }
-
+.countdown-di-login {
+ margin-top: 0px;
+}
 
 /* Profile */
 #user-desc {
@@ -356,11 +406,11 @@ font-size: 1.9em;
   width: 140px;
   height: auto;
 }
-#user-desc {
+/* #user-desc {
   flex: 0 1 30%;
   border-right: 1px solid rgba(112, 112, 112, 0.27);
   padding: 20px;
-}
+} */
 #user-desc h4 {
   margin-bottom: 1.5rem;
   margin-top: 2rem;
@@ -377,9 +427,7 @@ font-size: 1.9em;
   margin: 0;
 }
 
-.d-flex {
-  display: flex;
-}
+
 .text-center {
   text-align: center;
   color: black;

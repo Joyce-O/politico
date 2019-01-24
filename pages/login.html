@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Politico | Login</title>
+    <title>Politico | Signup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="images/favicon.ico" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
@@ -15,39 +15,45 @@
 <body>
     <div class="container">
         <header>
-            <ul>
-                <li id="head-text">
-                    <a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
-                </li>
-            </ul>
+            <div>
+                <ul>
+                    <li id="head-text">
+                        <a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul class="head-login-ul">
+                    <li>
+                        <a id="signup-btn" href="index.html">Signup</a>
+                    </li>
+                </ul>
+            </div>
         </header>
         <section class="home-section signup-div">
+            <div class="signup-form">
+                <form action="">
+                    <p class="fill-up">Please fill in this form to login.</p>
 
-            <form action="">
-                <p id="login-fillup" class="fill-up">Please fill in this form to login. Don't have an account?
-                    <span class="hr">
-                        <a href="signup.html">Signup</a>
-                    </span>
-                </p>
-                <div class="signup-form">
                     <label for="email">
-                        <b>Email</b>
+                        <!-- <b>Email</b> -->
                     </label>
                     <input type="email" placeholder="Enter Email" name="email" required>
                     <label for="password">
-                        <b>Password</b>
+                        <!-- <b>Password</b> -->
                     </label>
                     <input type="password" placeholder="Password" name="password" required>
-                    <div>
-                        <button type="button" id="forgot-btn">Forgot Password?</button>
-                    </div>
+                    <!-- <div class="white-div2"> -->
+                    <center>
+                        <button type="submit" class="signupbtn signupbtn1">Login</button>
+                        <!-- </div> -->
+                        <div>
+                            <span id="forgot-psw">Forgot password? </span>
+                            <button type="button" id="forgot-btn">Reset</button>
+                        </div>
 
-                    <div class="white-div2">
-                        <button type="submit" class="signupbtn">Login</button>
-                    </div>
-                </div>
-            </form>
-
+                </form>
+            </div>
             <div id="myModal" class="modal">
 
                 <div class="modal-content">
@@ -56,17 +62,20 @@
                         <p class="fill-up">Please enter your email</p>
                         <form>
                             <input type="email" placeholder="Email" name="email" required>
-                            <button type="submit" class="signupbtn">Send me a link</button>
+                            <button type="submit" id="send-link" class="signupbtn">Send me a link</button>
                         </form>
                     </div>
                 </div>
-
             </div>
 
         </section>
+        <footer>
+            <p>&#169;Joyce-O Designs ~ 2019 General Elections</p>
+        </footer>
     </div>
 
-    
+    <script src="js/main.js"></script>
+    <script src="js/modal.js"></script>
 </body>
 
 

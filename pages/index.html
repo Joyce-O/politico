@@ -22,62 +22,79 @@
                     </li>
                 </ul>
             </div>
-            <div id="countdown-div">
+            <!-- <div id="countdown-div">
+                <ul id="ul">
+                    <li class="ema-number1">
+                        <p>2019 elections begin in: </p>
+                    </li>
+                </ul>
+            </div> -->
+            <div class="head-login-div">
+                <ul class="head-login-ul">
+                    <li>
+                        <a id="signup-btn" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="home-section home-section-home">
+              <div class="countdown-div countdown-di-login">
                 <ul id="ul">
                     <li class="ema-number1">
                         <p>2019 elections begin in: </p>
                     </li>
                 </ul>
             </div>
-            <div class="head-login-div">
-                <ul class="head-login-ul">
-                    <li>
-                        <a id="signup-btn" href="signup.html">Signup</a>
-                    </li>
-                </ul>
-            </div>
-        </header>
-        <section class="home-section home-section-home">
-
             <div id="action-word">
                 <h2>
-                    Welcome to <span>Politico,</span> vote at the click of a button!
+                    Welcome to
+                    <span>Politico,</span> vote at the click of a button!
                 </h2>
             </div>
             <div class="signup-form">
                 <form action="">
+                    <p class="fill-up">Please fill in this form to create an account.</p>
 
-                    <label for="email">
-                        <b>Email</b>
-                    </label>
-                    <input type="email" placeholder="Enter Email" name="email" required>
-                    <label for="password">
-                        <b>Password</b>
-                    </label>
-                    <input type="password" placeholder="Password" name="password" required>
-                    <!-- <div class="white-div2"> -->
-                    <center>
-                        <button type="submit" class="signupbtn signupbtn1">Login</button>
-                        <!-- </div> -->
-                        <div>
-                            <span>Forgot password? </span><button type="button" id="forgot-btn">Reset</button>
-                        </div>
+                    <div class="signup-flex">
+                        <label for="firstname">
+                        </label>
+                        <input id="name" type="text" placeholder="First name" name="firstname" required>
 
+                        <label for="lastname">
+                        </label>
+                        <input type="text" placeholder="Last name" name="lastname" required>
+
+                    </div>
+                    <div class="signup-flex">
+                        <label for="othername">
+                        </label>
+                        <input id="othername" type="text" placeholder="Other name (optional)" name="othername">
+
+                        <label for="email">
+                        </label>
+                        <input type="email" placeholder="Email" name="email" required>
+
+                    </div>
+                    <div class="signup-flex">
+                        <label for="phone">
+                        </label>
+                        <input id="phone" type="number" placeholder="Phone number" name="phone" required>
+                        <label for="password">
+                        </label>
+                        <input type="password" placeholder="Password" name="password" required>
+                    </div>
+
+                    <div class="signup-flex-column">
+                        <center><label for="file">
+                            <!-- <b id="upload-label">Upload your photo</b> -->
+                        </label>
+                        <input type="file" id="photo" required>
+                    </center>
+                        <button type="submit" class="signupbtn signupbtn-center">Signup</button>
+                    </div>
                 </form>
             </div>
-            <div id="myModal" class="modal">
 
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <div id="reset-psw">
-                        <p class="fill-up">Please enter your email</p>
-                        <form>
-                            <input type="email" placeholder="Email" name="email" required>
-                            <button type="submit" class="signupbtn">Send me a link</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
 
         </section>
         <footer>
@@ -86,7 +103,6 @@
     </div>
 
     <script src="js/main.js"></script>
-    <script src="js/modal.js"></script>
 </body>
 
 
