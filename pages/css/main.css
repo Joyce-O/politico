@@ -153,6 +153,9 @@ justify-content: center;
   border:1px solid #ccc;
   background: rgba(1, 51, 1, 0.671);
 }
+.signup-form-candidate {
+ margin-top: 60px;
+}
 .signup-form p {
   color: white;
   text-align: center;
