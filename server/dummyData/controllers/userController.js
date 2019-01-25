@@ -21,7 +21,16 @@ class userControl {
         newUser
       });
   }
+
+  static loginHandler(request, response) {
+    const { firstname } = request.body;
+    return response.status(201)
+      .json({
+        success: true,
+        message: `Welcome back ${firstname}!`,
+      });
+  }
 }
 
-const { userHandler } = userControl;
-export default userHandler;
+const { userHandler, loginHandler } = userControl;
+export { userHandler, loginHandler };
