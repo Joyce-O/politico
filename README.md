@@ -14,7 +14,7 @@ Politico enables citizens give their mandate to politicians running for differen
 <br/>
 
 ## API Infomormation
-https://politicong.herokuapp.com/api/v1/
+https://ng-politico.herokuapp.com/api/v1/
 
 <table>
 
