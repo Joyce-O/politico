@@ -1,5 +1,6 @@
 import express from 'express';
 import baseRoute from './server/dummyData/routes/baseRoute';
+import authRoutes from './server/dummyData/routes/authRoute';
 
 const app = express();
 
@@ -7,6 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/', authRoutes);
 app.use('/', baseRoute);
 
 const port = process.env.PORT || 5700;
