@@ -86,7 +86,7 @@ https://politicong.herokuapp.com/api/v1/
 <tr>
 <td>GET</td> <td>api/v1/offices/:officeId</td>  <td>Fetch a specific political office record</td>
 <td>officeId: "Number"</td>
-<td>{<br>message: "string",<br>allOrders: {object}}</td>
+<td>{<br>message: "string",<br>office: {object}}</td>
 </tr>
 
 <tr>
