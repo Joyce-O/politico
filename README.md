@@ -81,7 +81,7 @@ https://ng-politico.herokuapp.com/api/v1/
 </tr>
 
 <tr>
-<td>GET</td> <td>api/v1/offices</td>  <td>Fetch all ​ political parties​ records</td>
+<td>GET</td> <td>api/v1/offices</td>  <td>Fetch all ​ political offices​ records</td>
 <td>{<br>message: "string"<br>allOffices: {object}<br>}</td>
 </tr>
 
