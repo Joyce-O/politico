@@ -2,7 +2,7 @@ import express from 'express';
 
 const baseRoute = express.Router();
 
-baseRoute.get('/', (request, response) => {
+baseRoute.get('/api/v1', (request, response) => {
   response.status(200)
     .json({
       success: true,

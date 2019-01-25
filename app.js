@@ -1,5 +1,5 @@
 import express from 'express';
-import baseRoute from './dummyData/routes/baseRoute';
+import baseRoute from './server/dummyData/routes/baseRoute';
 
 const app = express();
 
@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/v1', baseRoute);
+app.use('/', baseRoute);
 
 const port = process.env.PORT || 5700;
 
