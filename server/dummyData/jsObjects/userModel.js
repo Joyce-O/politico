@@ -1,8 +1,8 @@
 export default [
   {
     id: 1,
-    firstName: 'Julie',
-    lastName: 'John',
+    firstname: 'Julie',
+    lastname: 'John',
     email: 'jujo@hotmail.com',
     phone: '2348000008',
     passportUrl: '219b1e64-afe5-5e71-ac0b-8b6a4c605a01',
@@ -10,8 +10,8 @@ export default [
   },
   {
     id: 2,
-    firstName: 'Benjamin',
-    lastName: 'John',
+    firstname: 'Benjamin',
+    lastname: 'John',
     email: 'ben@gmail.com',
     phone: '2348000008',
     passportUrl: '219b1e64-afe5-5e71-ac0b-8b6a4c605a01',
@@ -19,8 +19,8 @@ export default [
   },
   {
     id: 3,
-    firstName: 'mike',
-    lastName: 'John',
+    firstname: 'mike',
+    lastname: 'John',
     email: 'mike@gmail.com',
     phone: '2348000008',
     passportUrl: '219b1e64-afe5-5e71-ac0b-8b6a4c605a01',
