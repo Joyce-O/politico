@@ -27,6 +27,17 @@ const loginSchema = {
     .label('A valid password')
 };
 
+const newPartySchema = Joi.object().keys({
+  name: Joi.string().min(3).max(100).regex(/^[a-zA-Z]*$/)
+    .required()
+    .label('A valid name '),
+  hqAddress: Joi.string().required().label('A valid address'),
+  logoUrl: Joi.string().label('A valid logo image'),
+  email: Joi.string().email({ minDomainAtoms: 2 }).lowercase().label('A valid email'),
+  phone: Joi.number().integer().required().label('Avalid phone number')
+});
+
+
 export {
-  newUserSchema, loginSchema
+  newUserSchema, loginSchema, newPartySchema
 };

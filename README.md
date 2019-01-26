@@ -25,7 +25,7 @@ https://ng-politico.herokuapp.com/api/v1/
 <tr>
 <td>POST</td> <td>api/v1/signup</td>  <td>Signup user</td>
 <td>
-{<br> firstname: "string",<br> lastname: "string",<br> othername: "string",<br>email: "string",<br>phoneNumber: "string",<br> passportUrl: "string",<br>password: "string"<br>}
+{<br> firstname: "string",<br> lastname: "string",<br> othername: "string",<br>email: "string",<br>phone: "string",<br> passportUrl: "string",<br>password: "string"<br>}
 </td>
 <td>
 {<br> message: "string"}
@@ -45,7 +45,7 @@ https://ng-politico.herokuapp.com/api/v1/
 <tr>
 <td>POST</td> <td>/api/v1/parties</td>  <td>Create a political party</td>
 <td>
-{<br> name: "string",<br>hqAddress: "string",<br>logoUrl: "string",<br>email: "string",<br>phoneNumber: "string"<br>}
+{<br> name: "string",<br>hqAddress: "string",<br>logoUrl: "string",<br>email: "string",<br>phone: "string"<br>}
 </td>
 <td>{<br>message: "string"<br>party: {object}<br>}</td>
 </tr>

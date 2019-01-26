@@ -5,7 +5,7 @@ export default [
     lastname: 'John',
     email: 'jujo@hotmail.com',
     phone: '2348000008',
-    passportUrl: '219b1e64-afe5-5e71-ac0b-8b6a4c605a01',
+    passportUrl: 'https://res.cloudinary.com/duk5ix8wp/image/upload/v1539063817/mfj9epgqaqbtpqdocet4.jpg',
     password: '12345'
   },
   {
@@ -14,7 +14,7 @@ export default [
     lastname: 'John',
     email: 'ben@gmail.com',
     phone: '2348000008',
-    passportUrl: '219b1e64-afe5-5e71-ac0b-8b6a4c605a01',
+    passportUrl: 'https://res.cloudinary.com/duk5ix8wp/image/upload/v1539063817/mfj9epgqaqbtpqdocet4.jpg',
     password: '12345'
   },
   {
@@ -23,7 +23,7 @@ export default [
     lastname: 'John',
     email: 'mike@gmail.com',
     phone: '2348000008',
-    passportUrl: '219b1e64-afe5-5e71-ac0b-8b6a4c605a01',
+    passportUrl: 'https://res.cloudinary.com/duk5ix8wp/image/upload/v1539063817/mfj9epgqaqbtpqdocet4.jpg',
     password: '12345'
   }
 ];
