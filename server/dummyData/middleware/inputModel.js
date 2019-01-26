@@ -8,7 +8,6 @@ const newUserSchema = Joi.object().keys({
     .required()
     .label('A valid last name'),
   othername: Joi.string().min(3).max(100).regex(/^[a-zA-Z]*$/)
-    .required()
     .label('A valid other name'),
   email: Joi.string().email({ minDomainAtoms: 2 }).lowercase().max(50)
     .label('A valid email'),
