@@ -55,15 +55,25 @@ class mainValidator {
   static editPartyHelper(request, response, next) {
     const { partyId } = request.params;
     const { name } = request.body;
+    const errors = {};
+
+    if (!name || name.length < 10) {
+      errors.name = 'Please enter valid name of min. 10 characters';
+    }
     const { error } = Joi.validate(request.params, idSchema, { abortEarly: false });
     if (error !== null) {
+      errors.partyId = error.details.map(d => d.message);
+      return false;
+    }
+    if (JSON.stringify(errors) !== '{}') {
       response.status(400)
         .json({
           success: false,
-          message: error.details.map(d => d.message)
+          message: errors,
         });
       return false;
     }
+
     const partyExist = partyModel.find(party => party.id === Number(partyId));
     const dupName = partyModel.find(party => party.name === name);
 
@@ -75,7 +85,7 @@ class mainValidator {
         });
       return false;
     }
-    if (dupName === undefined) {
+    if (dupName !== undefined) {
       response.status(409)
         .json({
           success: false,
@@ -83,6 +93,7 @@ class mainValidator {
         });
       return false;
     }
+    partyExist.name = request.body.name;
     request.body = partyExist;
     next();
   }

@@ -63,7 +63,21 @@ class PartyControl {
         details
       });
   }
+
+  static editParty(request, response) {
+    const party = request.body;
+    response.status(200)
+      .json({
+        success: true,
+        message: 'name updated!',
+        party
+      });
+  }
 }
 
-const { newPartyHandler, allParties, aPartyHandler } = PartyControl;
-export { newPartyHandler, allParties, aPartyHandler };
+const {
+  newPartyHandler, allParties, aPartyHandler, editParty
+} = PartyControl;
+export {
+  newPartyHandler, allParties, aPartyHandler, editParty
+};

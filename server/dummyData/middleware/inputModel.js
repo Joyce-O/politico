@@ -39,8 +39,12 @@ const newPartySchema = Joi.object().keys({
 const idSchema = {
   partyId: Joi.number().integer().required().label('valid party Id')
 };
+const editNameSchema = {
+  name: Joi.string().min(3).max(100).required()
+    .label('A valid name ')
+};
 
 
 export {
-  newUserSchema, loginSchema, newPartySchema, idSchema
+  newUserSchema, loginSchema, newPartySchema, idSchema, editNameSchema
 };
