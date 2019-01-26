@@ -147,3 +147,34 @@ describe('Test for get all parties endpoint', () => {
       });
   });
 });
+
+describe('Test for get specific party endpoint', () => {
+  it('Should return status code 201 for success', done => {
+    chai.request(app)
+      .get('/api/v1/parties/1')
+      .end((error, response) => {
+        expect(response).to.have.status(201);
+        expect(response.body.message).to.equal('Party found');
+        done();
+      });
+  });
+  it('should return 400 for invalid inputs', done => {
+    chai.request(app)
+      .get('/api/v1/parties/a')
+      .end((error, response) => {
+        expect(response).to.have.status(400);
+        expect(response.body.success).to.equal(false);
+        done();
+      });
+  });
+  it('should return 404 for party not exist', done => {
+    chai.request(app)
+      .get('/api/v1/parties/100000')
+      .end((error, response) => {
+        expect(response).to.have.status(404);
+        expect(response.body.success).to.equal(false);
+        expect(response.body.message).to.equal('party does not exist');
+        done();
+      });
+  });
+});
