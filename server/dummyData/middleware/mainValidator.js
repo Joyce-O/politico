@@ -81,7 +81,7 @@ class mainValidator {
       response.status(404)
         .json({
           success: false,
-          message: 'party does not exist',
+          message: 'Party does not exist',
         });
       return false;
     }

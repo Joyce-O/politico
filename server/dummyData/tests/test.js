@@ -178,3 +178,37 @@ describe('Test for get specific party endpoint', () => {
       });
   });
 });
+describe('Test for edit party endpoint', () => {
+  it('Should return status code 201 for success', done => {
+    chai.request(app)
+      .patch('/api/v1/parties/2/name')
+      .send({ name: 'Peoples Living Party' })
+      .end((error, response) => {
+        expect(response).to.have.status(200);
+        expect(response.body.message).to.equal('name updated!');
+        done();
+      });
+  });
+  it('should return 404 for party not exist', done => {
+    chai.request(app)
+      .patch('/api/v1/parties/10000/name')
+      .send({ name: 'APeople Progress Partys' })
+      .end((error, response) => {
+        expect(response).to.have.status(404);
+        expect(response.body.success).to.equal(false);
+        expect(response.body.message).to.equal('Party does not exist');
+        done();
+      });
+  });
+  it('should return 409 for party name exist', done => {
+    chai.request(app)
+      .patch('/api/v1/parties/1/name')
+      .send({ name: 'Peoples Living Party' })
+      .end((error, response) => {
+        expect(response).to.have.status(409);
+        expect(response.body.success).to.equal(false);
+        expect(response.body.message).to.equal('Name already exist');
+        done();
+      });
+  });
+});
