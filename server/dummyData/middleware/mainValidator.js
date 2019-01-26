@@ -51,9 +51,44 @@ class mainValidator {
     request.body = partyExist;
     next();
   }
+
+  static editPartyHelper(request, response, next) {
+    const { partyId } = request.params;
+    const { name } = request.body;
+    const { error } = Joi.validate(request.params, idSchema, { abortEarly: false });
+    if (error !== null) {
+      response.status(400)
+        .json({
+          success: false,
+          message: error.details.map(d => d.message)
+        });
+      return false;
+    }
+    const partyExist = partyModel.find(party => party.id === Number(partyId));
+    const dupName = partyModel.find(party => party.name === name);
+
+    if (partyExist === undefined) {
+      response.status(404)
+        .json({
+          success: false,
+          message: 'party does not exist',
+        });
+      return false;
+    }
+    if (dupName === undefined) {
+      response.status(409)
+        .json({
+          success: false,
+          message: 'Name already exist',
+        });
+      return false;
+    }
+    request.body = partyExist;
+    next();
+  }
 }
 
 const {
-  newPartyHelper, getPartyHelper
+  newPartyHelper, getPartyHelper, editPartyHelper
 } = mainValidator;
-export { newPartyHelper, getPartyHelper };
+export { newPartyHelper, getPartyHelper, editPartyHelper };
