@@ -20,7 +20,40 @@ class userControl {
         newParty
       });
   }
+
+  static allParties(request, response) {
+    if (partyModel.length < 1 || partyModel === undefined) {
+      response.status(404)
+        .json({
+          success: false,
+          message: 'No registered party yet.'
+        });
+    } else {
+      const sortArr = item => {
+        let sortOrder = 1;
+
+        if (item[0] === '-') {
+          sortOrder = -1;
+          item = item.substr(1);
+        }
+        return (a, b) => {
+          if (sortOrder === -1) {
+            return b[item].localeCompare(a[item]);
+          }
+          return a[item].localeCompare(b[item]);
+        };
+      };
+
+      const parties = partyModel.sort(sortArr('name'));
+      return response.status(201)
+        .json({
+          success: true,
+          message: 'All parties',
+          parties
+        });
+    }
+  }
 }
 
-const { newPartyHandler } = userControl;
-export default newPartyHandler;
+const { newPartyHandler, allParties } = userControl;
+export { newPartyHandler, allParties };
