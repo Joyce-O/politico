@@ -1,6 +1,6 @@
 import partyModel from '../jsObjects/partyModel';
 
-class userControl {
+class PartyControl {
   static newPartyHandler(request, response) {
     request.body = JSON.parse(JSON.stringify(request.body));
     const newParty = {
@@ -53,7 +53,17 @@ class userControl {
         });
     }
   }
+
+  static aPartyHandler(request, response) {
+    const details = request.body;
+    return response.status(201)
+      .json({
+        success: true,
+        message: 'Party found',
+        details
+      });
+  }
 }
 
-const { newPartyHandler, allParties } = userControl;
-export { newPartyHandler, allParties };
+const { newPartyHandler, allParties, aPartyHandler } = PartyControl;
+export { newPartyHandler, allParties, aPartyHandler };

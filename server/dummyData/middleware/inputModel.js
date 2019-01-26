@@ -37,7 +37,7 @@ const newPartySchema = Joi.object().keys({
 });
 
 const idSchema = {
-  id: Joi.number().integer().required().label('valid Id')
+  partyId: Joi.number().integer().required().label('valid party Id')
 };
 
 
