@@ -2,7 +2,8 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../app';
 import {
-  correctSignup, incorrectSignup, emailExist, correctLogin, incorrectLogin, emailNotExist
+  correctSignup, incorrectSignup, emailExist, correctLogin, incorrectLogin, emailNotExist,
+  correctParty, incorrectParty, dupPartyEmail
 } from './mockInputes';
 
 const { expect } = chai;
@@ -99,5 +100,38 @@ describe('Tests for user endpoints', () => {
           done();
         });
     });
+  });
+});
+
+describe('Tests for create party endpoint', () => {
+  it('should return 201 for success', done => {
+    chai.request(app)
+      .post('/api/v1/parties')
+      .send(correctParty)
+      .end((error, response) => {
+        expect(response).to.have.status(201);
+        expect(response.body.message).to.equal('Party created successfully');
+        done();
+      });
+  });
+  it('should return 400 for invalid inputs', done => {
+    chai.request(app)
+      .post('/api/v1/parties')
+      .send(incorrectParty)
+      .end((error, response) => {
+        expect(response).to.have.status(400);
+        expect(response.body.success).to.equal(false);
+        done();
+      });
+  });
+  it('should return 409 for already existing data', done => {
+    chai.request(app)
+      .post('/api/v1/parties')
+      .send(dupPartyEmail)
+      .end((error, response) => {
+        expect(response).to.have.status(409);
+        expect(response.body.message).to.equal('Email or name already exist');
+        done();
+      });
   });
 });

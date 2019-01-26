@@ -28,8 +28,7 @@ const loginSchema = {
 };
 
 const newPartySchema = Joi.object().keys({
-  name: Joi.string().min(3).max(100).regex(/^[a-zA-Z]*$/)
-    .required()
+  name: Joi.string().min(3).max(100).required()
     .label('A valid name '),
   hqAddress: Joi.string().required().label('A valid address'),
   logoUrl: Joi.string().label('A valid logo image'),

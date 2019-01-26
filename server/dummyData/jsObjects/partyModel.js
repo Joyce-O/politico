@@ -1,7 +1,7 @@
 export default [
   {
     id: 1,
-    name: 'Julie John',
+    name: 'People Progress Party',
     hqAddress: '40 Johnson Street, Lagos',
     logoUrl: 'https://res.cloudinary.com/duk5ix8wp/image/upload/v1539063817/mfj9epgqaqbtpqdocet4.jpg',
     email: 'jujo@hotmail.com',
@@ -9,7 +9,7 @@ export default [
   },
   {
     id: 2,
-    name: 'Mike John',
+    name: 'Progress Party',
     hqAddress: '10 Parks Road Benin City',
     logoUrl: 'https://res.cloudinary.com/duk5ix8wp/image/upload/v1539063817/mfj9epgqaqbtpqdocet4.jpg',
     email: 'mike@gmail.com',
@@ -17,7 +17,7 @@ export default [
   },
   {
     id: 3,
-    name: 'Ben John',
+    name: 'Moving Train Party',
     hqAddress: '12 Owerri Street, Jos',
     logoUrl: 'https://res.cloudinary.com/duk5ix8wp/image/upload/v1539063817/mfj9epgqaqbtpqdocet4.jpg',
     email: 'ben@gmail.com',

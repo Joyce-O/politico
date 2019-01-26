@@ -4,7 +4,7 @@ import { newPartySchema } from './inputModel';
 
 class mainValidator {
   static newPartyHelper(request, response, next) {
-    const { email } = request.body;
+    const { email, name } = request.body;
     const { error } = Joi.validate(request.body, newPartySchema, { abortEarly: false });
     if (error !== null) {
       response.status(400)
@@ -15,11 +15,13 @@ class mainValidator {
       return false;
     }
     const dupEmail = partyModel.find(party => party.email === email);
-    if (dupEmail !== undefined) {
+    const dupName = partyModel.find(party => party.name === name);
+
+    if (dupEmail !== undefined || dupName !== undefined) {
       response.status(409)
         .json({
           success: false,
-          message: 'Email already exist, please enter another email.'
+          message: 'Email or name already exist'
         });
       return false;
     }
