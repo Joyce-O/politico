@@ -135,3 +135,15 @@ describe('Tests for create party endpoint', () => {
       });
   });
 });
+
+describe('Test for get all parties endpoint', () => {
+  it('Should return status code 201 for success', done => {
+    chai.request(app)
+      .get('/api/v1/parties')
+      .end((error, response) => {
+        expect(response).to.have.status(201);
+        expect(response.body.message).to.equal('All parties');
+        done();
+      });
+  });
+});
