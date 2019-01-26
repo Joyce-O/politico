@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import partyModel from '../jsObjects/partyModel';
-import { newPartySchema } from './inputModel';
+import { newPartySchema, idSchema } from './inputModel';
 
 class mainValidator {
   static newPartyHelper(request, response, next) {
@@ -27,9 +27,33 @@ class mainValidator {
     }
     next();
   }
+
+  static getPartyHelper(request, response, next) {
+    const { partyId } = request.params;
+    const { error } = Joi.validate(request.params, idSchema, { abortEarly: false });
+    if (error !== null) {
+      response.status(400)
+        .json({
+          success: false,
+          message: error.details.map(d => d.message)
+        });
+      return false;
+    }
+    const partyExist = partyModel.find(party => party.id === Number(partyId));
+    if (partyExist === undefined) {
+      response.status(404)
+        .json({
+          success: false,
+          message: 'party does not exist',
+        });
+      return false;
+    }
+    request.body = partyExist;
+    next();
+  }
 }
 
 const {
-  newPartyHelper
+  newPartyHelper, getPartyHelper
 } = mainValidator;
-export default newPartyHelper;
+export { newPartyHelper, getPartyHelper };

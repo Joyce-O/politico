@@ -33,10 +33,14 @@ const newPartySchema = Joi.object().keys({
   hqAddress: Joi.string().required().label('A valid address'),
   logoUrl: Joi.string().label('A valid logo image'),
   email: Joi.string().email({ minDomainAtoms: 2 }).lowercase().label('A valid email'),
-  phone: Joi.number().integer().required().label('Avalid phone number')
+  phone: Joi.number().integer().required().label('A valid phone number')
 });
+
+const idSchema = {
+  id: Joi.number().integer().required().label('valid Id')
+};
 
 
 export {
-  newUserSchema, loginSchema, newPartySchema
+  newUserSchema, loginSchema, newPartySchema, idSchema
 };

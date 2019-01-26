@@ -8,5 +8,6 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 router.post('/api/v1/parties', upload.single('logoUrl'), newPartyHelper, newPartyHandler);
 router.get('/api/v1/parties', allParties);
+router.get('/api/v1/parties/:partyId');
 
 export default router;
