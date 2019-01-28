@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../../../app';
+import app from '../app';
 import {
   correctSignup, incorrectSignup, emailExist, correctLogin, incorrectLogin, emailNotExist
 } from './mockInputes';
@@ -69,12 +69,12 @@ describe('Tests for user endpoints', () => {
     });
   });
   describe('Test for Login', () => {
-    it('should return 201 for success', done => {
+    it('should return 200 for success', done => {
       chai.request(app)
         .post('/api/v1/login')
         .send(correctLogin)
         .end((error, response) => {
-          expect(response).to.have.status(201);
+          expect(response).to.have.status(200);
           expect(response.body.message).to.equal(`Welcome back ${correctSignup.firstname}!`);
           done();
         });
@@ -89,7 +89,7 @@ describe('Tests for user endpoints', () => {
           done();
         });
     });
-    it('should return 404 for email not exist', done => {
+    it('should return 404 if the email does not exist', done => {
       chai.request(app)
         .post('/api/v1/login')
         .send(emailNotExist)

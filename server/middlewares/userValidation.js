@@ -1,6 +1,6 @@
 import Joi from 'joi';
-import users from '../jsObjects/userModel';
-import { newUserSchema, loginSchema } from './inputModel';
+import users from '../dummyData/userModel';
+import { newUserSchema, loginSchema } from './inputSchema';
 
 class UserValidator {
   static signupHelper(request, response, next) {
