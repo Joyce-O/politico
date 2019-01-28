@@ -1,7 +1,7 @@
-import users from '../jsObjects/userModel';
+import users from '../dummyData/userModel';
 
-class userControl {
-  static userHandler(request, response) {
+class userController {
+  static handleSignup(request, response) {
     request.body = JSON.parse(JSON.stringify(request.body));
     const newUser = {
       id: users.length,
@@ -22,9 +22,9 @@ class userControl {
       });
   }
 
-  static loginHandler(request, response) {
+  static handleLogin(request, response) {
     const { firstname } = request.body;
-    return response.status(201)
+    return response.status(200)
       .json({
         success: true,
         message: `Welcome back ${firstname}!`,
@@ -32,5 +32,5 @@ class userControl {
   }
 }
 
-const { userHandler, loginHandler } = userControl;
-export { userHandler, loginHandler };
+
+export default userController;
