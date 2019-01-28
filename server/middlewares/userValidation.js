@@ -1,6 +1,6 @@
 import Joi from 'joi';
-import users from '../dummyData/userModel';
-import { newUserSchema, loginSchema } from './inputSchema';
+import users from '../dummyData/userObj';
+import { newUserSchema, loginSchema } from '../inputSchema';
 
 class UserValidator {
   static signupHelper(request, response, next) {
@@ -51,8 +51,4 @@ class UserValidator {
   }
 }
 
-
-const {
-  signupHelper, loginHelper
-} = UserValidator;
-export { signupHelper, loginHelper };
+export default UserValidator;

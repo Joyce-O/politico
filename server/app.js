@@ -1,5 +1,5 @@
 import express from 'express';
-import authRoutes from './routes/authRoute';
+import { userRoute, mainRoute } from './routes';
 
 const app = express();
 
@@ -7,7 +7,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/v1/', authRoutes);
+app.use('/api/v1', userRoute);
+app.use('/api/v1', mainRoute);
 app.get('/api/v1', (request, response) => {
   response.status(200)
     .json({

@@ -2,7 +2,8 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
 import {
-  correctSignup, incorrectSignup, emailExist, correctLogin, incorrectLogin, emailNotExist
+  correctSignup, incorrectSignup, emailExist, correctLogin, incorrectLogin,
+  emailNotExist, correctParty, incorrectParty, dupPartyEmail
 } from './mockInputes';
 
 const { expect } = chai;
@@ -99,5 +100,220 @@ describe('Tests for user endpoints', () => {
           done();
         });
     });
+  });
+});
+describe('Tests for create party endpoint', () => {
+  it('should return 201 for success', done => {
+    chai.request(app)
+      .post('/api/v1/parties')
+      .send(correctParty)
+      .end((error, response) => {
+        expect(response).to.have.status(201);
+        expect(response.body.message).to.equal('Party created successfully');
+        done();
+      });
+  });
+  it('should return 400 for invalid inputs', done => {
+    chai.request(app)
+      .post('/api/v1/parties')
+      .send(incorrectParty)
+      .end((error, response) => {
+        expect(response).to.have.status(400);
+        expect(response.body.success).to.equal(false);
+        done();
+      });
+  });
+  it('should return 409 for already existing data', done => {
+    chai.request(app)
+      .post('/api/v1/parties')
+      .send(dupPartyEmail)
+      .end((error, response) => {
+        expect(response).to.have.status(409);
+        expect(response.body.message).to.equal('Email or name already exist');
+        done();
+      });
+  });
+});
+
+describe('Test for get all parties endpoint', () => {
+  it('Should return status code 200 for success', done => {
+    chai.request(app)
+      .get('/api/v1/parties')
+      .end((error, response) => {
+        expect(response).to.have.status(200);
+        expect(response.body.message).to.equal('All parties');
+        done();
+      });
+  });
+});
+
+describe('Test for get specific party endpoint', () => {
+  it('Should return status code 200 for success', done => {
+    chai.request(app)
+      .get('/api/v1/parties/1')
+      .end((error, response) => {
+        expect(response).to.have.status(200);
+        expect(response.body.message).to.equal('Party found');
+        done();
+      });
+  });
+  it('should return 400 for invalid inputs', done => {
+    chai.request(app)
+      .get('/api/v1/parties/a')
+      .end((error, response) => {
+        expect(response).to.have.status(400);
+        expect(response.body.success).to.equal(false);
+        done();
+      });
+  });
+  it('should return 404 for party not exist', done => {
+    chai.request(app)
+      .get('/api/v1/parties/100000')
+      .end((error, response) => {
+        expect(response).to.have.status(404);
+        expect(response.body.success).to.equal(false);
+        expect(response.body.message).to.equal('party does not exist');
+        done();
+      });
+  });
+});
+describe('Test for edit party endpoint', () => {
+  it('Should return status code 200 for success', done => {
+    chai.request(app)
+      .patch('/api/v1/parties/2/name')
+      .send({ name: 'Peoples Living Party' })
+      .end((error, response) => {
+        expect(response).to.have.status(200);
+        expect(response.body.message).to.equal('name updated!');
+        done();
+      });
+  });
+  it('should return 404 for party not exist', done => {
+    chai.request(app)
+      .patch('/api/v1/parties/10000/name')
+      .send({ name: 'APeople Progress Partys' })
+      .end((error, response) => {
+        expect(response).to.have.status(404);
+        expect(response.body.success).to.equal(false);
+        expect(response.body.message).to.equal('Party does not exist');
+        done();
+      });
+  });
+  it('should return 409 for party name exist', done => {
+    chai.request(app)
+      .patch('/api/v1/parties/1/name')
+      .send({ name: 'Peoples Living Party' })
+      .end((error, response) => {
+        expect(response).to.have.status(409);
+        expect(response.body.success).to.equal(false);
+        expect(response.body.message).to.equal('Name already exist');
+        done();
+      });
+  });
+});
+describe('Test for delete specific party endpoint', () => {
+  it('Should return status code 200 for success', done => {
+    chai.request(app)
+      .delete('/api/v1/parties/1')
+      .end((error, response) => {
+        expect(response).to.have.status(200);
+        expect(response.body.message).to.equal('party is deleted!');
+        done();
+      });
+  });
+  it('should return 400 for invalid inputs', done => {
+    chai.request(app)
+      .delete('/api/v1/parties/a')
+      .end((error, response) => {
+        expect(response).to.have.status(400);
+        expect(response.body.success).to.equal(false);
+        done();
+      });
+  });
+  it('should return 404 for party not exist', done => {
+    chai.request(app)
+      .delete('/api/v1/parties/1000')
+      .end((error, response) => {
+        expect(response).to.have.status(404);
+        expect(response.body.success).to.equal(false);
+        expect(response.body.message).to.equal('party does not exist');
+        done();
+      });
+  });
+});
+
+describe('Tests for create office endpoint', () => {
+  it('should return 201 for success', done => {
+    chai.request(app)
+      .post('/api/v1/offices')
+      .send({ name: 'House Member', type: 'Legislative' })
+      .end((error, response) => {
+        expect(response).to.have.status(201);
+        expect(response.body.message).to.equal('office created successfully');
+        done();
+      });
+  });
+  it('should return 400 for invalid inputs', done => {
+    chai.request(app)
+      .post('/api/v1/offices')
+      .send({ name: 'incorrectParty' })
+      .end((error, response) => {
+        expect(response).to.have.status(400);
+        expect(response.body.success).to.equal(false);
+        done();
+      });
+  });
+  it('should return 409 for already existing data', done => {
+    chai.request(app)
+      .post('/api/v1/offices')
+      .send({ name: 'Senate', type: 'legislative' })
+      .end((error, response) => {
+        expect(response).to.have.status(409);
+        expect(response.body.message).to.equal('name already exist');
+        done();
+      });
+  });
+});
+
+describe('Test for get all offices endpoint', () => {
+  it('Should return status code 20 for success', done => {
+    chai.request(app)
+      .get('/api/v1/offices')
+      .end((error, response) => {
+        expect(response).to.have.status(200);
+        expect(response.body.message).to.equal('All offices');
+        done();
+      });
+  });
+});
+
+describe('Test for get specific office endpoint', () => {
+  it('Should return status code 200 for success', done => {
+    chai.request(app)
+      .get('/api/v1/offices/1')
+      .end((error, response) => {
+        expect(response).to.have.status(200);
+        expect(response.body.message).to.equal('office found');
+        done();
+      });
+  });
+  it('should return 400 for invalid inputs', done => {
+    chai.request(app)
+      .get('/api/v1/offices/a')
+      .end((error, response) => {
+        expect(response).to.have.status(400);
+        expect(response.body.success).to.equal(false);
+        done();
+      });
+  });
+  it('should return 404 for office not exist', done => {
+    chai.request(app)
+      .get('/api/v1/offices/100000')
+      .end((error, response) => {
+        expect(response).to.have.status(404);
+        expect(response.body.success).to.equal(false);
+        expect(response.body.message).to.equal('office does not exist');
+        done();
+      });
   });
 });

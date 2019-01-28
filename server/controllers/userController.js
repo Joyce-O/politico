@@ -1,10 +1,10 @@
-import users from '../dummyData/userModel';
+import userObj from '../dummyData/userObj';
 
 class userController {
   static handleSignup(request, response) {
     request.body = JSON.parse(JSON.stringify(request.body));
     const newUser = {
-      id: users.length,
+      id: userObj.length,
       firstname: request.body.firstname,
       lastname: request.body.lastname,
       email: request.body.email,
@@ -14,7 +14,7 @@ class userController {
     };
 
 
-    users.push(newUser);
+    userObj.push(newUser);
     return response.status(201)
       .json({
         message: `Welcome ${newUser.firstname}`,
