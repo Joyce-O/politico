@@ -2,6 +2,7 @@ import express from 'express';
 
 const baseRoute = express.Router();
 
+
 baseRoute.get('/api/v1', (request, response) => {
   response.status(200)
     .json({
@@ -9,7 +10,6 @@ baseRoute.get('/api/v1', (request, response) => {
       message: 'Welcome to Politico, vote on the go!'
     });
 });
-
 baseRoute.all('*', (request, response) => {
   response.status(404)
     .json({

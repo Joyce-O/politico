@@ -14,6 +14,7 @@
     "no-param-reassign": 0,
     "comma-dangle": 0,
     "no-console": 0,
+    "no-prototype-builtins": "off",
     "arrow-body-style": ["error", "as-needed"],
     "arrow-parens": ["error", "as-needed"],
     "curly": ["error", "multi-line"],
