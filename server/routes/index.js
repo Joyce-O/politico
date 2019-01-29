@@ -1,16 +1,13 @@
 import express from 'express';
-import userRoute from './userRoute';
+import users from './users';
 import parties from './parties';
 import offices from './offices';
 
 const router = express.Router();
 
-router.use('/', userRoute);
+router.use('/', users);
 router.use('/parties', parties);
 router.use('/offices', offices);
-
-
-
 
 router.get('/api/v1', (request, response) => {
   response.status(200)

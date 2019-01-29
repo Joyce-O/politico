@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const newUserSchema = Joi.object().keys({
+export const newUserSchema = Joi.object().keys({
   firstname: Joi.string().min(3).max(100).regex(/^[a-zA-Z]*$/)
     .required()
     .label('A valid first name '),
@@ -18,7 +18,7 @@ const newUserSchema = Joi.object().keys({
     .label('A valid password')
 });
 
-const loginSchema = {
+export const loginSchema = {
   email: Joi.string().email({ minDomainAtoms: 2 }).lowercase().max(50)
     .required()
     .label('A valid email'),
@@ -27,36 +27,26 @@ const loginSchema = {
     .label('A valid password')
 };
 
-const newPartySchema = Joi.object().keys({
+export const newPartySchema = Joi.object().keys({
   name: Joi.string().min(3).max(100).required()
-    .label('A valid name '),
+    .label('A valid name'),
+  acronym: Joi.string().max(10).required()
+  .label('A valid name'),
   hqAddress: Joi.string().required().label('A valid address'),
   logoUrl: Joi.string().label('A valid logo image'),
   email: Joi.string().email({ minDomainAtoms: 2 }).lowercase().label('A valid email'),
   phone: Joi.number().integer().required().label('A valid phone number')
 });
 
-const idSchema = {
-  partyId: Joi.number().integer().required().label('valid party Id')
-};
-const officeIdSchema = {
-  officeId: Joi.number().integer().required().label('valid party Id')
-};
 
-const editNameSchema = {
+export const editNameSchema = {
   name: Joi.string().min(3).max(100).required()
     .label('A valid name ')
 };
 
-const newOfficeSchema = Joi.object().keys({
+export const newOfficeSchema = Joi.object().keys({
   name: Joi.string().min(5).max(100).required()
     .label('A valid name '),
   type: Joi.string().min(5).max(100).required()
     .label('A valid office type')
 });
-
-
-export {
-  newUserSchema, loginSchema, newPartySchema, idSchema, editNameSchema,
-  newOfficeSchema, officeIdSchema
-};
