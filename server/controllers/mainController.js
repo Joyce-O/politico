@@ -17,8 +17,9 @@ class mainController {
     partyObj.push(newParty);
     return response.status(201)
       .json({
-        message: 'Party created successfully',
-        newParty
+        status: 201,
+        data: 'Party created successfully',
+
       });
   }
 
