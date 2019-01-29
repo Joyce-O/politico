@@ -7,7 +7,7 @@ let dbUrl;
 
 if (process.env.NODE_ENV === 'test:dev') {
   dbUrl = {
-    connectionString: process.env.TESTDB_URL
+    connectionString: process.env.TEST_DB_URL
   };
 } else {
   dbUrl = ({
