@@ -2,16 +2,15 @@ import pool from './dbConnection';
 import { hashPassword } from '../middlewares/authentication';
 
 
-const createUserTable = `DROP TABLE IF EXISTS userTable CASCADE;
+const createUserTable = `DROP TABLE IF EXISTS users CASCADE;
   CREATE TABLE userTable (
-    id SERIAL ,
-    userId INTEGER NOT NULL PRIMARY KEY,
+    id SERIAL INTEGER NOT NULL PRIMARY KEY,
     firstname VARCHAR (128) NOT NULL,
-    lastname VARCHAR (128) NOT NULL,i
+    lastname VARCHAR (128) NOT NULL,
     othername VARCHAR (128),
     email VARCHAR (355) UNIQUE NOT NULL,
     phone VARCHAR(20) NOT NULL,
-    passpootUrl TEXT NOT NULL,
+    passportUrl TEXT NOT NULL,
     registered TIMESTAMP NOT NULL DEFAULT (NOW()),
     isAdmin BOOLEAN NOT NULL DEFAULT (false),
     password VARCHAR (128) NOT NULL
