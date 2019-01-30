@@ -1,6 +1,6 @@
 import pool from '../database/dbConnection';
 import { insertUser, queryUsersByEmail } from '../database/queries';
-import { getToken } from '../utilities.js/authorization';
+import { getToken } from '../middlewares.js/authorization';
 import { hashPassword, verifyPassword } from '../utilities.js/hashPassword';
 
 export default class UserController {
@@ -31,50 +31,48 @@ export default class UserController {
 
     pool.query(insertUser, values)
       .then((data) => {
-        const user = data.rows[0];
-        const token = getToken(user);
-        const { name, registered } = user;
-        const Details = { name, email, registered };
+        const token = getToken(data.rows[0]);
+        const { name, registered } = data.rows[0];
+        const user = { name, email, registered };
 
         response.status(201)
           .json({
             status: 201,
-            data: ['Sign up is successful', token,
-              Details],
+            data: [{ token, user }],
 
           });
       })
       .catch(error => response.status(500)
         .json({
           status: 500,
-          data: [error.message],
+          error: error.message,
         }));
   }
 
   static loginUser(request, response) {
     const email = [request.body.email];
     pool.query(queryUsersByEmail, email)
-      .then((result) => {
-        if (result.rowCount !== 0) {
-          // const isPassword = bcrypt.compareSync(request.body.password, result.rows[0].password);
-          const isPassword = verifyPassword(request.body.password, result.rows[0].password);
+      .then((data) => {
+        if (data.rowCount !== 0) {
+          const isPassword = verifyPassword(request.body.password, data.rows[0].password);
           if (isPassword) {
-            const user = result.rows[0];
-            const token = getToken(user);
+            const token = getToken(data.rows[0]);
+            const { name, registered } = data.rows[0];
+            const user = { name, email, registered };
             response.status(200)
               .json({
                 status: 200,
-                data: [`Welcome back ${user.firstname}`, token],
+                data: [{ user, token }],
               });
           } else {
             response.status(400)
               .json({
-                error: 400,
-                data: ['Make sure your password is correct'],
+                status: 400,
+                error: ['Make sure your password is correct'],
               });
           }
         }
-        if (result.rowCount === 0) {
+        if (data.rowCount === 0) {
           response.status(400)
             .json({
               status: 400,
