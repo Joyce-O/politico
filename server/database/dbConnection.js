@@ -5,9 +5,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 let dbUrl;
 
-if (process.env.NODE_ENV === 'test:dev') {
+if (process.env.NODE_ENV === 'test') {
   dbUrl = {
-    connectionString: process.env.TEST_DB_URL
+    connectionString: process.env.TEST_DB_URL,
   };
 } else {
   dbUrl = ({

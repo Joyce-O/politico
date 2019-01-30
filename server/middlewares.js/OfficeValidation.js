@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { newOfficeSchema } from '../utilities/inputSchema';
+import { newOfficeSchema } from '../utilities.js/inputSchema';
 
 export default class OfficeValidation {
   static handleNewOffice(request, response, next) {
@@ -8,11 +8,11 @@ export default class OfficeValidation {
       response.status(400)
         .json({
           status: 400,
-          error: error.details.map(d => d.context)
+          error: error.details.map(d => d.context),
         });
       return false;
     }
 
-    next();
+    return next();
   }
 }

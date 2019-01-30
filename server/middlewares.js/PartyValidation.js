@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { newPartySchema } from '../utilities/inputSchema';
+import { newPartySchema } from '../utilities.js/inputSchema';
 
 export default class PartyValidation {
   static handleCreateParty(request, response, next) {
@@ -8,11 +8,11 @@ export default class PartyValidation {
       response.status(400)
         .json({
           status: 400,
-          error: error.details.map(d => d.context)
+          error: error.details.map(d => d.context),
         });
       return false;
     }
-    next();
+    return next();
   }
 
   static handleEditParty(request, response, next) {
@@ -21,10 +21,10 @@ export default class PartyValidation {
       response.status(400)
         .json({
           status: 400,
-          error: 'Please enter valid name of min. 10 characters'
+          error: 'Please enter valid name of min. 10 characters',
         });
       return false;
     }
-    next();
+    return next();
   }
 }

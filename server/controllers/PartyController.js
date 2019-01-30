@@ -1,5 +1,5 @@
 import parties from '../dummyData/parties';
-import sortItems from '../utilities/sortItems';
+import sortItems from '../utilities.js/sortItems';
 
 export default class PartyController {
   static createParty(request, response) {
@@ -50,7 +50,7 @@ export default class PartyController {
       response
         .json({
           status: 404,
-          error: 'No registered party yet'
+          error: 'No registered party yet',
         });
     } else {
       const party = parties.sort(sortItems('name'));
@@ -68,7 +68,7 @@ export default class PartyController {
       return response
         .json({
           status: 400,
-          error: 'Invalid partyId'
+          error: 'Invalid partyId',
         });
     }
     const party = parties.find(obj => obj.id === Number(partyId));
@@ -84,7 +84,7 @@ export default class PartyController {
     return response.status(200)
       .json({
         status: 200,
-        data: party
+        data: party,
       });
   }
 
@@ -95,7 +95,7 @@ export default class PartyController {
       response.status(400)
         .json({
           status: 400,
-          error: 'Invalid partyId'
+          error: 'Invalid partyId',
         });
       return false;
     }
@@ -122,7 +122,7 @@ export default class PartyController {
     return response.status(200)
       .json({
         status: 200,
-        data: party
+        data: party,
       });
   }
 
@@ -132,7 +132,7 @@ export default class PartyController {
       return response
         .json({
           status: 400,
-          error: 'Invalid partyId'
+          error: 'Invalid partyId',
         });
     }
     const index = parties.findIndex(obj => obj.id === Number(partyId));
@@ -141,13 +141,13 @@ export default class PartyController {
       response.status(404)
         .json({
           status: 404,
-          error: 'party does not exist'
+          error: 'party does not exist',
         });
     } else {
       response.status(200)
         .json({
           status: 200,
-          data: parties
+          data: parties,
         });
     }
   }

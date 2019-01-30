@@ -1,5 +1,5 @@
 import express from 'express';
-import PartyValidation from '../middlewares/PartyValidation';
+import PartyValidation from '../middlewares.js/PartyValidation';
 import PartyController from '../controllers/PartyController';
 
 const parties = express.Router();
