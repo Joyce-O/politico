@@ -1,8 +1,6 @@
 import pool from '../database/dbConnection';
 import parties from '../dummyData/parties';
-import {
-  queryPartiesByName, insertParty,
-} from '../database/queries';
+import { queryPartiesByName, insertParty, selectAllParties } from '../database/queries';
 import sortItems from '../utilities.js/sortItems';
 
 export default class PartyController {
@@ -45,6 +43,14 @@ export default class PartyController {
         const party = {
           name, acronym, hqAddress, email, phone, registered,
         };
+        if (data.rowCount !== 0) {
+          response.status(201)
+            .json({
+              status: 201,
+              data: [{ message: 'Party is successful', party }],
+
+            });
+        }
 
         response.status(201)
           .json({
@@ -61,20 +67,28 @@ export default class PartyController {
   }
 
   static getAllParties(request, response) {
-    if (parties.length < 1 || parties === undefined) {
-      response
+    pool.query(selectAllParties)
+      .then((data) => {
+        if (data.rowCount === 0) {
+          return response.status(200)
+            .json({
+              status: 200,
+              data: ['No registered party yet'],
+
+            });
+        }
+        const partyList = data.rows;
+        return response.status(200)
+          .json({
+            status: 200,
+            data: [{ partyList }],
+          });
+      })
+      .catch(error => response.status(500)
         .json({
-          status: 404,
-          error: 'No registered party yet',
-        });
-    } else {
-      const party = parties.sort(sortItems('name'));
-      return response
-        .json({
-          status: 200,
-          data: party,
-        });
-    }
+          status: 500,
+          error: error.message,
+        }));
   }
 
   static getOneParty(request, response) {
