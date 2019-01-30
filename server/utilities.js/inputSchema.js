@@ -16,7 +16,7 @@ export const newUserSchema = Joi.object().keys({
   passportUrl: Joi.string().label('A valid passport is required'),
   password: Joi.string().alphanum().min(3).max(1000)
     .required()
-    .label('A valid password is required')
+    .label('A valid password is required'),
 });
 
 export const loginSchema = {
@@ -25,7 +25,7 @@ export const loginSchema = {
     .label('A valid email is required'),
   password: Joi.string().alphanum().min(3).max(1000)
     .required()
-    .label('A valid password is required')
+    .label('A valid password is required'),
 };
 
 export const newPartySchema = Joi.object().keys({
@@ -36,18 +36,18 @@ export const newPartySchema = Joi.object().keys({
   hqAddress: Joi.string().required().label('A valid address is required'),
   logoUrl: Joi.string().label('A valid logo image is required'),
   email: Joi.string().email({ minDomainAtoms: 2 }).lowercase().label('A valid email is required'),
-  phone: Joi.number().integer().required().label('A valid phone number is required')
+  phone: Joi.number().integer().required().label('A valid phone number is required'),
 });
 
 
 export const editNameSchema = {
   name: Joi.string().min(3).max(100).required()
-    .label('A valid name ')
+    .label('A valid name '),
 };
 
 export const newOfficeSchema = Joi.object().keys({
   name: Joi.string().min(5).max(100).required()
     .label('A valid name '),
   type: Joi.string().min(5).max(100).required()
-    .label('A valid office type')
+    .label('A valid office type'),
 });

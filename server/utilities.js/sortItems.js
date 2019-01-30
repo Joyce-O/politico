@@ -1,16 +1,15 @@
-const sortItems = item => {
-    let sortOrder = 1;
-  
-    if (item[0] === '-') {
-      sortOrder = -1;
-      item = item.substr(1);
+export default function sortItems(item) {
+  let sortOrder = 1;
+  let currItem;
+
+  if (item[0] === '-') {
+    sortOrder = -1;
+    currItem = item.substr(1);
+  }
+  return (a, b) => {
+    if (sortOrder === -1) {
+      return b[item].localeCompare(a[currItem]);
     }
-    return (a, b) => {
-      if (sortOrder === -1) {
-        return b[item].localeCompare(a[item]);
-      }
-      return a[item].localeCompare(b[item]);
-    };
+    return a[item].localeCompare(b[currItem]);
   };
-  export default sortItems;
-  
+}

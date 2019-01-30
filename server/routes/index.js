@@ -13,7 +13,7 @@ router.get('/', (request, response) => {
   response.status(200)
     .json({
       status: true,
-      data: 'Welcome to Politico, vote on the go!'
+      data: 'Welcome to Politico, vote on the go!',
     });
 });
 

@@ -1,4 +1,4 @@
-import offices from '../dummyData/offices';
+import offices from '../dummyData/office';
 
 export default class OfficeController {
   static createOffice(request, response) {
@@ -8,7 +8,7 @@ export default class OfficeController {
       response.status(409)
         .json({
           status: 409,
-          error: 'name already exist'
+          error: 'name already exist',
         });
       return false;
     }
@@ -16,7 +16,7 @@ export default class OfficeController {
     const newOffice = {
       id: offices.length,
       name: request.body.name,
-      type: request.body.type
+      type: request.body.type,
     };
 
     offices.push(newOffice);
@@ -32,13 +32,13 @@ export default class OfficeController {
       response.status(404)
         .json({
           status: 404,
-          error: 'No registered office yet.'
+          error: 'No registered office yet.',
         });
     } else {
       return response.status(200)
         .json({
           status: 200,
-          data: offices
+          data: offices,
         });
     }
   }
@@ -49,7 +49,7 @@ export default class OfficeController {
       return response.status(400)
         .json({
           status: 400,
-          error: 'Invalid officeId'
+          error: 'Invalid officeId',
         });
     }
     const office = offices.find(obj => obj.id === Number(officeId));
@@ -64,7 +64,7 @@ export default class OfficeController {
     return response.status(200)
       .json({
         status: 200,
-        data: office
+        data: office,
       });
   }
 }

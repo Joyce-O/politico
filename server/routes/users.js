@@ -1,11 +1,11 @@
 import express from 'express';
-import UserValidation from '../middlewares.js/UserValidation.js';
-import UserController from '../controllers/UserController';
+import UserValidation from '../middlewares.js/UserValidation';
+import UserController from '../controllers/userController';
 
 
 const users = express.Router();
 
-users.post('/signup', UserValidation.handleSignup, UserController.registerUser);
+users.post('/auth/signup', UserValidation.handleSignup, UserController.registerUser);
 users.post('/login', UserValidation.handleLogin, UserController.LoginUser);
 
 

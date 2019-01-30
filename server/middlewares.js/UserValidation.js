@@ -1,5 +1,6 @@
 import Joi from 'joi';
-import { newUserSchema, loginSchema } from '../utilities/inputSchema';
+import { newUserSchema, loginSchema } from '../utilities.js/inputSchema';
+
 
 export default class UserValidation {
   static handleSignup(request, response, next) {
@@ -8,11 +9,11 @@ export default class UserValidation {
       response.status(400)
         .json({
           status: 400,
-          error: error.details.map(d => d.context)
+          error: error.details.map(d => d.context),
         });
       return false;
     }
-    next();
+    return next();
   }
 
   static handleLogin(request, response, next) {
@@ -21,10 +22,10 @@ export default class UserValidation {
       response.status(400)
         .json({
           status: 400,
-          error: error.details.map(d => d.context)
+          error: error.details.map(d => d.context),
         });
       return false;
     }
-    next();
+    return next();
   }
 }

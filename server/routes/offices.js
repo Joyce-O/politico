@@ -1,5 +1,5 @@
 import express from 'express';
-import OfficeValidation from '../middlewares/OfficeValidation';
+import OfficeValidation from '../middlewares.js/OfficeValidation';
 import OfficeController from '../controllers/OfficeController';
 
 const offices = express.Router();
