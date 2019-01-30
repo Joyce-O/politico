@@ -12,8 +12,8 @@ app.use('/api/v1', routes);
 app.all('*', (request, response) => {
   response.status(404)
     .json({
-      success: false,
-      message: 'Oops! This page does not exist.'
+      status: 404,
+      error: 'Oops! This page does not exist.'
     });
 });
 

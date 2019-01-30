@@ -1,14 +1,37 @@
 import parties from '../dummyData/parties';
 import sortItems from '../utilities/sortItems';
 
-export class partyController {
-  static handleCreateParty(request, response) {
+export default class partyController {
+  static createParty(request, response) {
+    const { email, name, acronym } = request.body;
+    const duplicate = {};
+    const dupEmail = parties.find(party => party.email === email);
+    const dupName = parties.find(party => party.name === name);
+    const dupAcronym = parties.find(party => party.acronym === acronym);
+
+    if (dupEmail !== undefined) {
+      duplicate.dupEmail = 'Email already exist';
+    }
+    if (dupName !== undefined) {
+      duplicate.dupName = 'Name already exist';
+    }
+    if (dupAcronym !== undefined) {
+      duplicate.dupAcronym = 'Acronym; already exist';
+    }
+    if (JSON.stringify(duplicate) !== '{}') {
+      response.status(409)
+        .json({
+          status: 409,
+          error: duplicate,
+        });
+      return false;
+    }
     const newParty = {
       id: parties.length,
       name: request.body.name,
       acronym: request.body.acronym,
       hqAddress: request.body.hqAddress,
-      logoUrl: request.file,
+      logoUrl: request.body,
       email: request.body.email,
       phone: request.body.phone,
     };
@@ -30,26 +53,26 @@ export class partyController {
           error: 'No registered party yet'
         });
     } else {
-      const parties = parties.sort(sortItems('name'));
+      const party = parties.sort(sortItems('name'));
       return response
         .json({
           status: 200,
-          data: parties,
+          data: party,
         });
     }
   }
 
   static getOneParty(request, response) {
     const { partyId } = request.params;
-    if (!Number(partyId) || !/^[0-9]+$/.test(partyId)) {
+    if (!/[0-9]+$/.test(partyId)) {
       return response
-      .json({
-        status: 400,
-        error: 'Invalid partyId'
-      })
+        .json({
+          status: 400,
+          error: 'Invalid partyId'
+        });
     }
-    const party = parties.find(party => party.id === Number(partyId));
-    if (partyExist === undefined) {
+    const party = parties.find(obj => obj.id === Number(partyId));
+    if (party === undefined) {
       response.status(404)
         .json({
           status: 404,
@@ -67,17 +90,19 @@ export class partyController {
 
   static editParty(request, response) {
     const { partyId } = request.params;
+    const { name } = request.body;
     if (!Number(partyId) || !/^[0-9]+$/.test(partyId)) {
-      return response
-      .json({
-        status: 400,
-        error: 'Invalid partyId'
-      })
+      response.status(400)
+        .json({
+          status: 400,
+          error: 'Invalid partyId'
+        });
+      return false;
     }
-    const partyExist = parties.find(party => party.id === Number(partyId));
-    const dupName = parties.find(party => party.name === name);
+    const party = parties.find(obj => obj.id === Number(partyId));
+    const dupName = parties.find(obj => obj.name === name);
 
-    if (partyExist === undefined) {
+    if (party === undefined) {
       response.status(404)
         .json({
           status: 404,
@@ -93,8 +118,8 @@ export class partyController {
         });
       return false;
     }
-
-    response.status(200)
+    party.name = name;
+    return response.status(200)
       .json({
         status: 200,
         data: party
@@ -103,26 +128,26 @@ export class partyController {
 
   static deleteParty(request, response) {
     const { partyId } = request.params;
-    if (!Number(partyId) || !/^[0-9]+$/.test(partyId)) {
+    if (!/[0-9]+$/.test(partyId)) {
       return response
-      .json({
-        status: 400,
-        error: 'Invalid partyId'
-      })
+        .json({
+          status: 400,
+          error: 'Invalid partyId'
+        });
     }
-    const index = parties.findIndex(parties => parties.id === Number(partyId));
+    const index = parties.findIndex(obj => obj.id === Number(partyId));
     if (index === -1) {
       parties.splice(index, 1);
       response.status(404)
         .json({
-          success: false,
-          message: 'party does not exist'
+          status: 404,
+          error: 'party does not exist'
         });
     } else {
       response.status(200)
         .json({
           status: 200,
-          data: index,
+          data: parties
         });
     }
   }
