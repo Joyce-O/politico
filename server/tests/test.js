@@ -17,7 +17,7 @@ describe('Tests for Homepage and invalid url endpoints', () => {
         .get('/api/v1')
         .end((error, response) => {
           expect(response).to.have.status(200);
-          expect(response.body.message).to.equal('Welcome to Politico, vote on the go!');
+          expect(response.body.data).to.equal('Welcome to Politico, vote on the go!');
           done();
         });
     });
@@ -29,7 +29,7 @@ describe('Tests for Homepage and invalid url endpoints', () => {
         .get('/notexist')
         .end((error, response) => {
           expect(response).to.have.status(404);
-          expect(response.body.message).to.equal('Oops! This page does not exist.');
+          expect(response.body.error).to.equal('Oops! This page does not exist.');
           done();
         });
     });
@@ -44,7 +44,6 @@ describe('Tests for user endpoints', () => {
         .send(correctSignup)
         .end((error, response) => {
           expect(response).to.have.status(201);
-          expect(response.body.message).to.equal(`Welcome ${correctSignup.firstname}`);
           done();
         });
     });
@@ -54,7 +53,6 @@ describe('Tests for user endpoints', () => {
         .send(incorrectSignup)
         .end((error, response) => {
           expect(response).to.have.status(400);
-          expect(response.body.success).to.equal(false);
           done();
         });
     });
@@ -64,7 +62,7 @@ describe('Tests for user endpoints', () => {
         .send(emailExist)
         .end((error, response) => {
           expect(response).to.have.status(409);
-          expect(response.body.message).to.equal('Email already exist, please use another email or login.');
+          expect(response.body.error).to.equal('Email already exist, please use another email or login.');
           done();
         });
     });
@@ -76,7 +74,7 @@ describe('Tests for user endpoints', () => {
         .send(correctLogin)
         .end((error, response) => {
           expect(response).to.have.status(200);
-          expect(response.body.message).to.equal(`Welcome back ${correctSignup.firstname}!`);
+          expect(response.body.data).to.equal(`Welcome back ${correctSignup.firstname}!`);
           done();
         });
     });
@@ -86,7 +84,6 @@ describe('Tests for user endpoints', () => {
         .send(incorrectLogin)
         .end((error, response) => {
           expect(response).to.have.status(400);
-          expect(response.body.success).to.equal(false);
           done();
         });
     });
@@ -96,7 +93,7 @@ describe('Tests for user endpoints', () => {
         .send(emailNotExist)
         .end((error, response) => {
           expect(response).to.have.status(404);
-          expect(response.body.message).to.equal('email or password does not exist');
+          expect(response.body.error).to.equal('email or password does not exist');
           done();
         });
     });
@@ -109,7 +106,6 @@ describe('Tests for create party endpoint', () => {
       .send(correctParty)
       .end((error, response) => {
         expect(response).to.have.status(201);
-        expect(response.body.message).to.equal('Party created successfully');
         done();
       });
   });
@@ -119,7 +115,6 @@ describe('Tests for create party endpoint', () => {
       .send(incorrectParty)
       .end((error, response) => {
         expect(response).to.have.status(400);
-        expect(response.body.success).to.equal(false);
         done();
       });
   });
@@ -129,7 +124,6 @@ describe('Tests for create party endpoint', () => {
       .send(dupPartyEmail)
       .end((error, response) => {
         expect(response).to.have.status(409);
-        expect(response.body.message).to.equal('Email or name already exist');
         done();
       });
   });
@@ -141,7 +135,6 @@ describe('Test for get all parties endpoint', () => {
       .get('/api/v1/parties')
       .end((error, response) => {
         expect(response).to.have.status(200);
-        expect(response.body.message).to.equal('All parties');
         done();
       });
   });
@@ -153,26 +146,15 @@ describe('Test for get specific party endpoint', () => {
       .get('/api/v1/parties/1')
       .end((error, response) => {
         expect(response).to.have.status(200);
-        expect(response.body.message).to.equal('Party found');
         done();
       });
   });
-  it('should return 400 for invalid inputs', done => {
-    chai.request(app)
-      .get('/api/v1/parties/a')
-      .end((error, response) => {
-        expect(response).to.have.status(400);
-        expect(response.body.success).to.equal(false);
-        done();
-      });
-  });
+
   it('should return 404 for party not exist', done => {
     chai.request(app)
       .get('/api/v1/parties/100000')
       .end((error, response) => {
         expect(response).to.have.status(404);
-        expect(response.body.success).to.equal(false);
-        expect(response.body.message).to.equal('party does not exist');
         done();
       });
   });
@@ -184,7 +166,6 @@ describe('Test for edit party endpoint', () => {
       .send({ name: 'Peoples Living Party' })
       .end((error, response) => {
         expect(response).to.have.status(200);
-        expect(response.body.message).to.equal('name updated!');
         done();
       });
   });
@@ -194,8 +175,7 @@ describe('Test for edit party endpoint', () => {
       .send({ name: 'APeople Progress Partys' })
       .end((error, response) => {
         expect(response).to.have.status(404);
-        expect(response.body.success).to.equal(false);
-        expect(response.body.message).to.equal('Party does not exist');
+        expect(response.body.error).to.equal('Party does not exist');
         done();
       });
   });
@@ -205,8 +185,7 @@ describe('Test for edit party endpoint', () => {
       .send({ name: 'Peoples Living Party' })
       .end((error, response) => {
         expect(response).to.have.status(409);
-        expect(response.body.success).to.equal(false);
-        expect(response.body.message).to.equal('Name already exist');
+        expect(response.body.error).to.equal('Name already exist');
         done();
       });
   });
@@ -217,16 +196,6 @@ describe('Test for delete specific party endpoint', () => {
       .delete('/api/v1/parties/1')
       .end((error, response) => {
         expect(response).to.have.status(200);
-        expect(response.body.message).to.equal('party is deleted!');
-        done();
-      });
-  });
-  it('should return 400 for invalid inputs', done => {
-    chai.request(app)
-      .delete('/api/v1/parties/a')
-      .end((error, response) => {
-        expect(response).to.have.status(400);
-        expect(response.body.success).to.equal(false);
         done();
       });
   });
@@ -235,8 +204,7 @@ describe('Test for delete specific party endpoint', () => {
       .delete('/api/v1/parties/1000')
       .end((error, response) => {
         expect(response).to.have.status(404);
-        expect(response.body.success).to.equal(false);
-        expect(response.body.message).to.equal('party does not exist');
+        expect(response.body.error).to.equal('party does not exist');
         done();
       });
   });
@@ -246,10 +214,9 @@ describe('Tests for create office endpoint', () => {
   it('should return 201 for success', done => {
     chai.request(app)
       .post('/api/v1/offices')
-      .send({ name: 'House Member', type: 'Legislative' })
+      .send({ name: 'House Memberv', type: 'Legislativee' })
       .end((error, response) => {
         expect(response).to.have.status(201);
-        expect(response.body.message).to.equal('office created successfully');
         done();
       });
   });
@@ -259,7 +226,6 @@ describe('Tests for create office endpoint', () => {
       .send({ name: 'incorrectParty' })
       .end((error, response) => {
         expect(response).to.have.status(400);
-        expect(response.body.success).to.equal(false);
         done();
       });
   });
@@ -269,7 +235,6 @@ describe('Tests for create office endpoint', () => {
       .send({ name: 'Senate', type: 'legislative' })
       .end((error, response) => {
         expect(response).to.have.status(409);
-        expect(response.body.message).to.equal('name already exist');
         done();
       });
   });
@@ -281,7 +246,6 @@ describe('Test for get all offices endpoint', () => {
       .get('/api/v1/offices')
       .end((error, response) => {
         expect(response).to.have.status(200);
-        expect(response.body.message).to.equal('All offices');
         done();
       });
   });
@@ -293,7 +257,6 @@ describe('Test for get specific office endpoint', () => {
       .get('/api/v1/offices/1')
       .end((error, response) => {
         expect(response).to.have.status(200);
-        expect(response.body.message).to.equal('office found');
         done();
       });
   });
@@ -302,7 +265,6 @@ describe('Test for get specific office endpoint', () => {
       .get('/api/v1/offices/a')
       .end((error, response) => {
         expect(response).to.have.status(400);
-        expect(response.body.success).to.equal(false);
         done();
       });
   });
@@ -311,8 +273,7 @@ describe('Test for get specific office endpoint', () => {
       .get('/api/v1/offices/100000')
       .end((error, response) => {
         expect(response).to.have.status(404);
-        expect(response.body.success).to.equal(false);
-        expect(response.body.message).to.equal('office does not exist');
+        expect(response.body.error).to.equal('office does not exist');
         done();
       });
   });
