@@ -1,6 +1,5 @@
 import express from 'express';
-import baseRoute from './routes/baseRoute';
-import authRoutes from './routes/authRoute';
+import routes from './routes';
 
 const app = express();
 
@@ -8,8 +7,15 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/v1/', authRoutes);
-app.use('/', baseRoute);
+app.use('/api/v1', routes);
+
+app.all('*', (request, response) => {
+  response.status(404)
+    .json({
+      status: 404,
+      error: 'Oops! This page does not exist.'
+    });
+});
 
 const port = process.env.PORT || 5700;
 
