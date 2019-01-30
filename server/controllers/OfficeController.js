@@ -46,11 +46,12 @@ export default class OfficeController {
   static getAnOffice(request, response) {
     const { officeId } = request.params;
     if (!Number(officeId) || !/^[0-9]+$/.test(officeId)) {
-      return response.status(400)
+      response.status(400)
         .json({
           status: 400,
           error: 'Invalid officeId',
         });
+      return false;
     }
     const office = offices.find(obj => obj.id === Number(officeId));
     if (!office) {

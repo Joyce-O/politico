@@ -1,7 +1,7 @@
+// import bcrypt from 'bcrypt';
 import pool from './dbConnection';
 import 'dotenv/config';
 import { hashPassword } from '../utilities.js/hashPassword';
-
 
 const createUserTable = `DROP TABLE IF EXISTS users CASCADE;
   CREATE TABLE users (

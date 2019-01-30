@@ -1,7 +1,7 @@
 import pool from '../database/dbConnection';
 import { insertUser, queryUsersByEmail } from '../database/queries';
-import { hashPassword } from '../utilities.js/hashPassword';
 import { getToken } from '../utilities.js/authorization';
+import { hashPassword, verifyPassword } from '../utilities.js/hashPassword';
 
 export default class UserController {
   static registerUser(request, response) {
@@ -14,7 +14,7 @@ export default class UserController {
       email,
       phone,
       passportUrl,
-      hashPassword(password, 10),
+      hashPassword(password),
     ];
 
     pool.query(queryUsersByEmail, [email])
@@ -36,7 +36,7 @@ export default class UserController {
         const { name, registered } = user;
         const Details = { name, email, registered };
 
-        return response.status(201)
+        response.status(201)
           .json({
             status: 201,
             data: ['Sign up is successful', token,
@@ -49,5 +49,44 @@ export default class UserController {
           status: 500,
           data: [error.message],
         }));
+  }
+
+  static loginUser(request, response) {
+    const email = [request.body.email];
+    pool.query(queryUsersByEmail, email)
+      .then((result) => {
+        if (result.rowCount !== 0) {
+          // const isPassword = bcrypt.compareSync(request.body.password, result.rows[0].password);
+          const isPassword = verifyPassword(request.body.password, result.rows[0].password);
+          if (isPassword) {
+            const user = result.rows[0];
+            const token = getToken(user);
+            response.status(200)
+              .json({
+                status: 200,
+                data: [`Welcome back ${user.firstname}`, token],
+              });
+          } else {
+            response.status(400)
+              .json({
+                error: 400,
+                data: ['Make sure your password is correct'],
+              });
+          }
+        }
+        if (result.rowCount === 0) {
+          response.status(400)
+            .json({
+              status: 400,
+              error: 'Email is not found, please enter correct email and password',
+            });
+        }
+      })
+      .catch((error) => {
+        response.json({
+          status: 500,
+          error: error.message,
+        });
+      });
   }
 }
