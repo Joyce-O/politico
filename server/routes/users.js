@@ -6,7 +6,7 @@ import UserController from '../controllers/userController';
 const users = express.Router();
 
 users.post('/auth/signup', UserValidation.handleSignup, UserController.registerUser);
-users.post('/login', UserValidation.handleLogin, UserController.LoginUser);
+users.post('/auth/login', UserValidation.handleLogin, UserController.loginUser);
 
 
 export default users;
