@@ -9,11 +9,11 @@ router.use('/', users);
 router.use('/parties', parties);
 router.use('/offices', offices);
 
-router.get('/api/v1', (request, response) => {
+router.get('/', (request, response) => {
   response.status(200)
     .json({
-      success: true,
-      message: 'Welcome to Politico, vote on the go!'
+      status: true,
+      data: 'Welcome to Politico, vote on the go!'
     });
 });
 

@@ -1,8 +1,18 @@
 import offices from '../dummyData/offices';
-import sortItems from '../utilities/sortItems';
 
-export class officeController {
+export default class officeController {
   static createOffice(request, response) {
+    const dupName = offices.find(office => office.name === request.body.name);
+
+    if (dupName) {
+      response.status(409)
+        .json({
+          status: 409,
+          error: 'name already exist'
+        });
+      return false;
+    }
+
     const newOffice = {
       id: offices.length,
       name: request.body.name,
@@ -37,12 +47,12 @@ export class officeController {
     const { officeId } = request.params;
     if (!Number(officeId) || !/^[0-9]+$/.test(officeId)) {
       return response.status(400)
-      .json({
-        status: 400,
-        error: 'Invalid officeId'
-      })
+        .json({
+          status: 400,
+          error: 'Invalid officeId'
+        });
     }
-    const office = offices.find(office => office.id === Number(officeId));
+    const office = offices.find(obj => obj.id === Number(officeId));
     if (!office) {
       response.status(404)
         .json({
@@ -58,4 +68,3 @@ export class officeController {
       });
   }
 }
-

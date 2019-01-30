@@ -1,15 +1,13 @@
 import express from 'express';
-import multer from 'multer';
-import mainValidation from '../middlewares/mainValidation';
-import mainController from '../controllers/mainController';
+import partyValidation from '../middlewares/partyValidation';
+import partyController from '../controllers/partyController';
 
 const parties = express.Router();
-const upload = multer({ storage: multer.memoryStorage() });
 
-parties.post('/', upload.single('logoUrl'), mainValidation.newPartyHelper, mainController.handleCreateParty);
-parties.get('/', mainController.allParties);
-parties.get('/:partyId', mainValidation.getPartyHelper, mainController.handleGetAParty);
-parties.patch('/:partyId/name', mainValidation.editPartyHelper, mainController.editParty);
-parties.delete('/:partyId', mainValidation.getPartyHelper, mainController.deleteParty);
+parties.post('/', partyValidation.handleCreateParty, partyController.createParty);
+parties.get('/', partyController.getAllParties);
+parties.get('/:partyId', partyController.getOneParty);
+parties.patch('/:partyId/name', partyValidation.handleEditParty, partyController.editParty);
+parties.delete('/:partyId', partyController.deleteParty);
 
 export default parties;

@@ -1,36 +1,50 @@
-import userObj from '../dummyData/userObj';
+import users from '../dummyData/users';
 
-class userController {
-  static handleSignup(request, response) {
-    request.body = JSON.parse(JSON.stringify(request.body));
+
+export default class userController {
+  static registerUser(request, response) {
+    const dupEmail = users.find(user => user.email === request.body.email);
+    if (dupEmail !== undefined) {
+      response.status(409)
+        .json({
+          status: 409,
+          error: 'Email already exist, please use another email or login.'
+        });
+      return false;
+    }
     const newUser = {
-      id: userObj.length,
+      id: users.length,
       firstname: request.body.firstname,
       lastname: request.body.lastname,
       email: request.body.email,
       phone: request.body.phone,
-      passportUrl: request.body.hasOwnProperty('passportUrl') ? request.body.passportUrl : request.file.originalname,
       password: request.body.password,
     };
 
 
-    userObj.push(newUser);
+    users.push(newUser);
     return response.status(201)
       .json({
-        message: `Welcome ${newUser.firstname}`,
-        newUser
+        status: 201,
+        data: newUser
       });
   }
 
-  static handleLogin(request, response) {
-    const { firstname } = request.body;
+  static LoginUser(request, response) {
+    const { email, password } = request.body;
+    const user = users.find(obj => obj.email === email);
+    if (user === undefined || (user.password !== password)) {
+      response.status(404)
+        .json({
+          status: 404,
+          error: 'email or password does not exist',
+        });
+      return false;
+    }
     return response.status(200)
       .json({
-        success: true,
-        message: `Welcome back ${firstname}!`,
+        status: 200,
+        data: `Welcome back ${user.firstname}!`,
       });
   }
 }
-
-
-export default userController;
