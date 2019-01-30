@@ -37,6 +37,7 @@ export const newPartySchema = Joi.object().keys({
   logoUrl: Joi.string().label('A valid logo image is required'),
   email: Joi.string().email({ minDomainAtoms: 2 }).lowercase().label('A valid email is required'),
   phone: Joi.number().integer().required().label('A valid phone number is required'),
+  token: Joi.string(),
 });
 
 

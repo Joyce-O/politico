@@ -10,7 +10,7 @@ export const getToken = (payload) => {
 };
 
 export const verifyToken = (request, response, next) => {
-  const token = request.headers.authorization || request.body.token || request.query.token;
+  const token = (request.body.token || request.headers.authorization || request.query.token);
   if (!token) {
     return response.status(403)
       .json({
@@ -20,7 +20,7 @@ export const verifyToken = (request, response, next) => {
   }
   jwt.verify(token, process.env.JWT_SECRET, (error, authData) => {
     if (error) {
-      if (error.message.includes('signature')) {
+      if (error.message === 'invalid token') {
         return response.status(403)
           .json({
             status: 403,

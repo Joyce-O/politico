@@ -1,48 +1,63 @@
+import pool from '../database/dbConnection';
 import parties from '../dummyData/parties';
+import {
+  queryPartiesByName, insertParty,
+} from '../database/queries';
 import sortItems from '../utilities.js/sortItems';
 
 export default class PartyController {
   static createParty(request, response) {
-    const { email, name, acronym } = request.body;
+    const {
+      name, acronym, hqAddress, logoUrl, email, phone,
+    } = request.body;
     const duplicate = {};
-    const dupEmail = parties.find(party => party.email === email);
-    const dupName = parties.find(party => party.name === name);
-    const dupAcronym = parties.find(party => party.acronym === acronym);
-
-    if (dupEmail !== undefined) {
-      duplicate.dupEmail = 'Email already exist';
-    }
-    if (dupName !== undefined) {
-      duplicate.dupName = 'Name already exist';
-    }
-    if (dupAcronym !== undefined) {
-      duplicate.dupAcronym = 'Acronym; already exist';
-    }
-    if (JSON.stringify(duplicate) !== '{}') {
-      response.status(409)
-        .json({
-          status: 409,
-          error: duplicate,
-        });
-      return false;
-    }
-    const newParty = {
-      id: parties.length,
-      name: request.body.name,
-      acronym: request.body.acronym,
-      hqAddress: request.body.hqAddress,
-      logoUrl: request.body,
-      email: request.body.email,
-      phone: request.body.phone,
-    };
-
-    parties.push(newParty);
-    return response.status(201)
-      .json({
-        status: 201,
-        data: newParty,
-
+    pool.query(queryPartiesByName, [name])
+      .then((data) => {
+        if (data.rowCount !== 0) {
+          duplicate.dupName = 'Name already exist';
+        }
+        if (data.rows[0].acronym === acronym) {
+          duplicate.dupAcronym = 'Acronym already exist';
+        }
+        if (data.rows[0].email === email) {
+          duplicate.dupEmail = 'Email already exist';
+        }
+        if (JSON.stringify(duplicate) !== '{}') {
+          return response.status(409)
+            .json({
+              status: 409,
+              error: duplicate,
+            });
+        }
       });
+
+    const values = [
+      name,
+      acronym,
+      hqAddress,
+      logoUrl,
+      email,
+      phone,
+    ];
+    pool.query(insertParty, values)
+      .then((data) => {
+        const { registered } = data.rows[0].registered;
+        const party = {
+          name, acronym, hqAddress, email, phone, registered,
+        };
+
+        response.status(201)
+          .json({
+            status: 201,
+            data: [{ message: 'Party is successful', party }],
+
+          });
+      })
+      .catch(error => response.status(500)
+        .json({
+          status: 500,
+          data: [error.message],
+        }));
   }
 
   static getAllParties(request, response) {
