@@ -1,50 +1,90 @@
-import users from '../dummyData/users';
+import pool from '../database/dbConnection';
+import { insertUser, queryUsersByEmail } from '../database/queries';
+import { getToken } from '../middlewares.js/authorization';
+import { hashPassword, verifyPassword } from '../utilities.js/hashPassword';
 
-
-export default class userController {
+export default class UserController {
   static registerUser(request, response) {
-    const dupEmail = users.find(user => user.email === request.body.email);
-    if (dupEmail !== undefined) {
-      response.status(409)
-        .json({
-          status: 409,
-          error: 'Email already exist, please use another email or login.'
-        });
-      return false;
-    }
-    const newUser = {
-      id: users.length,
-      firstname: request.body.firstname,
-      lastname: request.body.lastname,
-      email: request.body.email,
-      phone: request.body.phone,
-      password: request.body.password,
-    };
+    const {
+      firstname, lastname, email, phone, passportUrl, password,
+    } = request.body;
+    const values = [
+      firstname,
+      lastname,
+      email,
+      phone,
+      passportUrl,
+      hashPassword(password),
+    ];
 
-
-    users.push(newUser);
-    return response.status(201)
-      .json({
-        status: 201,
-        data: newUser
+    pool.query(queryUsersByEmail, [email])
+      .then((data) => {
+        if (data.rowCount !== 0) {
+          response.status(409)
+            .json({
+              status: 409,
+              error: 'Email already exist, please use another email or login.',
+            });
+          return false;
+        }
       });
+
+    pool.query(insertUser, values)
+      .then((data) => {
+        const token = getToken(data.rows[0]);
+        const { name, registered } = data.rows[0];
+        const user = { name, email, registered };
+
+        response.status(201)
+          .json({
+            status: 201,
+            data: [{ token, user }],
+
+          });
+      })
+      .catch(error => response.status(500)
+        .json({
+          status: 500,
+          error: error.message,
+        }));
   }
 
-  static LoginUser(request, response) {
-    const { email, password } = request.body;
-    const user = users.find(obj => obj.email === email);
-    if (user === undefined || (user.password !== password)) {
-      response.status(404)
-        .json({
-          status: 404,
-          error: 'email or password does not exist',
+  static loginUser(request, response) {
+    const email = [request.body.email];
+    pool.query(queryUsersByEmail, email)
+      .then((data) => {
+        if (data.rowCount !== 0) {
+          const isPassword = verifyPassword(request.body.password, data.rows[0].password);
+          if (isPassword) {
+            const token = getToken(data.rows[0]);
+            const { name, registered } = data.rows[0];
+            const user = { name, email, registered };
+            response.status(200)
+              .json({
+                status: 200,
+                data: [{ user, token }],
+              });
+          } else {
+            response.status(400)
+              .json({
+                status: 400,
+                error: ['Make sure your password is correct'],
+              });
+          }
+        }
+        if (data.rowCount === 0) {
+          response.status(400)
+            .json({
+              status: 400,
+              error: 'Email is not found, please enter correct email and password',
+            });
+        }
+      })
+      .catch((error) => {
+        response.json({
+          status: 500,
+          error: error.message,
         });
-      return false;
-    }
-    return response.status(200)
-      .json({
-        status: 200,
-        data: `Welcome back ${user.firstname}!`,
       });
   }
 }

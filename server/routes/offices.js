@@ -1,12 +1,13 @@
 import express from 'express';
-import officeValidation from '../middlewares/officeValidation';
-import officeController from '../controllers/officeController';
+import OfficeValidation from '../middlewares.js/OfficeValidation';
+import OfficeController from '../controllers/OfficeController';
+import { verifyToken } from '../middlewares.js/authorization';
 
 const offices = express.Router();
 
-offices.post('/', officeValidation.handleNewOffice, officeController.createOffice);
-offices.get('/', officeController.getAllOffices);
-offices.get('/:officeId', officeController.getAnOffice);
+offices.post('/', verifyToken, OfficeValidation.handleNewOffice, OfficeController.createOffice);
+offices.get('/', verifyToken, OfficeController.getAllOffices);
+offices.get('/:officeId', verifyToken, OfficeController.getAnOffice);
 
 
 export default offices;

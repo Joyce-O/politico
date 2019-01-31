@@ -13,12 +13,12 @@ app.all('*', (request, response) => {
   response.status(404)
     .json({
       status: 404,
-      error: 'Oops! This page does not exist.'
+      error: 'Oops! This page does not exist.',
     });
 });
 
 const port = process.env.PORT || 5700;
 
-app.listen(port, () => console.log(`Politico is live on port ${port}`));
+app.listen(port, () => `Politico is live on port ${port}`);
 
 export default app;
