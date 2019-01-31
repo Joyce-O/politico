@@ -52,3 +52,15 @@ export const newOfficeSchema = Joi.object().keys({
   type: Joi.string().min(5).max(100).required()
     .label('A valid office type'),
 });
+
+export const newCandSchema = Joi.object().keys({
+  office: Joi.number().integer().required().label('A valid officeId is required'),
+  user: Joi.number().integer().required().label('A valid userId is required'),
+});
+
+
+export const newVoteSchema = Joi.object().keys({
+  candidate: Joi.number().integer().required().label('A valid userId is required'),
+  office: Joi.number().integer().required().label('A valid officeId is required'),
+  party: Joi.number().integer().required().label('A valid partyId is required'),
+});

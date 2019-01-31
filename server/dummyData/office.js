@@ -2,16 +2,16 @@ export default [
   {
     id: 1,
     name: 'Governor',
-    type: 'state'
+    type: 'state',
   },
   {
     id: 2,
     name: 'President',
-    type: 'federal'
+    type: 'federal',
   },
   {
     id: 3,
     name: 'Senate',
-    type: 'legislative'
-  }
+    type: 'legislative',
+  },
 ];
