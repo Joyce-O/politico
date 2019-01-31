@@ -41,8 +41,8 @@ const createOfficeTable = `DROP TABLE IF EXISTS offices CASCADE;
 const createCandidateTable = `DROP TABLE IF EXISTS candidates CASCADE;
     CREATE TABLE candidates (
     id SERIAL NOT NULL PRIMARY KEY,
-    candidate INTEGER NOT NULL,
-    FOREIGN KEY (candidate) references users(id) on delete cascade,
+    user INTEGER NOT NULL,
+    FOREIGN KEY (user) references users(id) on delete cascade,
     office INTEGER NOT NULL,
     FOREIGN KEY (office) references offices(id) on delete cascade,
     party INTEGER NOT NULL,

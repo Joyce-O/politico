@@ -6,5 +6,7 @@ import OtherController from '../controllers/otherController';
 
 const otherRoute = express.Router();
 
-otherRoute.post('/office/:user-id/register', verifyToken, adminPass, OtherValidation.handleCreateCandidate, OtherController.createCandidate);
-otherRoute.post('/votes/', verifyToken, adminPass, OtherValidation.handleVote);
+otherRoute.post('/office/:userId/register', verifyToken, adminPass, OtherValidation.handleCreateCandidate, OtherController.createCandidate);
+otherRoute.post('/votes/', verifyToken, adminPass, OtherValidation.handleVote, OtherController.castVote);
+
+export default otherRoute;
