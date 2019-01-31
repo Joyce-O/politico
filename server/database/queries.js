@@ -10,3 +10,5 @@ export const queryOfficesByName = 'select * from offices where name = $1';
 export const insertOffice = 'insert into offices (name, type) values ($1, $2) returning *';
 export const selectAllOffices = 'select * from offices';
 export const selectAnOffice = 'select * from offices where id = $1';
+export const insertCandidate = 'insert into candidates (user office, party) values ($1, $2, $3) returning *';
+export const selectUsersById = 'select * from users where id = $1';
