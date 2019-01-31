@@ -6,10 +6,10 @@ import {
 export default class OtherController {
   static createCandidate(request, response) {
     const {
-      office, user, party,
+      office, user_id, party,
     } = request.body;
     const duplicate = {};
-    pool.query(selectUsersById, [user])
+    pool.query(selectUsersById, [user_id])
       .then((data) => {
         if (data.rowCount === 0) {
           duplicate.userNotExist = 'userId does not exist';
@@ -36,7 +36,7 @@ export default class OtherController {
         }
       });
 
-    const values = [office, user, party];
+    const values = [office, user_id, party];
     pool.query(insertCandidate, values)
       .then((data) => {
         if (data.rowCount !== 0) {
@@ -90,10 +90,11 @@ export default class OtherController {
     pool.query(insertCandidate, values)
       .then((data) => {
         if (data.rowCount !== 0) {
+          const voter = data.rows;
           response.status(201)
             .json({
               status: 201,
-              data: [{ message: 'Candidate is registered', data }],
+              data: [{ message: 'Candidate is registered', voter }],
             });
         }
       })

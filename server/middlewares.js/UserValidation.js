@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { newSchema, loginSchema } from '../utilities.js/inputSchema';
+import { newUserSchema, loginSchema } from '../utilities.js/inputSchema';
 
 
 export default class UserValidation {
