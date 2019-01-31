@@ -1,7 +1,6 @@
 import pool from '../database/dbConnection';
-import parties from '../dummyData/parties';
 import {
-  queryPartiesByName, insertParty, selectAllParties, selectAParty,
+  queryPartiesByName, insertParty, selectAllParties, selectAParty, updatePartyName, deleteParty,
 } from '../database/queries';
 
 
@@ -128,39 +127,49 @@ export default class PartyController {
 
   static editParty(request, response) {
     const { partyId } = request.params;
-    const { name } = request.body;
-    if (!Number(partyId) || !/^[0-9]+$/.test(partyId)) {
-      response.status(400)
+    const { name } = request.body.name;
+    if (!/[0-9]+$/.test(partyId)) {
+      return response
         .json({
           status: 400,
           error: 'Invalid partyId',
         });
-      return false;
     }
-    const party = parties.find(obj => obj.id === Number(partyId));
-    const dupName = parties.find(obj => obj.name === name);
-
-    if (party === undefined) {
-      response.status(404)
-        .json({
-          status: 404,
-          error: 'Party does not exist',
-        });
-      return false;
-    }
-    if (dupName !== undefined) {
-      response.status(409)
-        .json({
-          status: 409,
-          error: 'Name already exist',
-        });
-      return false;
-    }
-    party.name = name;
-    return response.status(200)
-      .json({
-        status: 200,
-        data: party,
+    pool.query(selectAParty, [partyId])
+      .then((data) => {
+        if (data.rowCount === 0) {
+          response.status(404)
+            .json({
+              status: 404,
+              error: 'Party does not exist',
+            });
+          return false;
+        }
+      });
+    pool.query(queryPartiesByName, [name])
+      .then((data) => {
+        if (data.rowCount !== 0) {
+          response.status(400)
+            .json({
+              status: 400,
+              error: 'Name already exist',
+            });
+          return false;
+        }
+      });
+    pool.query(updatePartyName, [name, partyId])
+      .then((result) => {
+        const party = result.rows;
+        return response.status(200)
+          .json({
+            status: 200,
+            data: [{ message: 'Party name updated', party }],
+          })
+          .catch(error => response.status(500)
+            .json({
+              status: 500,
+              error: error.message,
+            }));
       });
   }
 
@@ -173,20 +182,27 @@ export default class PartyController {
           error: 'Invalid partyId',
         });
     }
-    const index = parties.findIndex(obj => obj.id === Number(partyId));
-    if (index === -1) {
-      parties.splice(index, 1);
-      response.status(404)
-        .json({
-          status: 404,
-          error: 'party does not exist',
-        });
-    } else {
-      response.status(200)
+    pool.query(selectAParty, [partyId])
+      .then((data) => {
+        if (data.rowCount === 0) {
+          response.status(404)
+            .json({
+              status: 404,
+              error: 'Party does not exist',
+            });
+          return false;
+        }
+      });
+    pool.query(deleteParty, [partyId])
+      .then(data => response.status(200)
         .json({
           status: 200,
-          data: parties,
-        });
-    }
+          data: ['This order is deleted', data],
+        })
+        .catch(error => response.status(500)
+          .json({
+            status: 500,
+            error: error.message,
+          })));
   }
 }
