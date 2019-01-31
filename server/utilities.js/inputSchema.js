@@ -44,6 +44,7 @@ export const newPartySchema = Joi.object().keys({
 export const editNameSchema = {
   name: Joi.string().min(3).max(100).required()
     .label('A valid name '),
+  token: Joi.string(),
 };
 
 export const newOfficeSchema = Joi.object().keys({
@@ -51,16 +52,20 @@ export const newOfficeSchema = Joi.object().keys({
     .label('A valid name '),
   type: Joi.string().min(5).max(100).required()
     .label('A valid office type'),
+  token: Joi.string(),
 });
 
 export const newCandSchema = Joi.object().keys({
   office: Joi.number().integer().required().label('A valid officeId is required'),
   user: Joi.number().integer().required().label('A valid userId is required'),
+  party: Joi.number().integer().required().label('A valid partyId is required'),
+  token: Joi.string(),
 });
 
 
 export const newVoteSchema = Joi.object().keys({
-  candidate: Joi.number().integer().required().label('A valid userId is required'),
+  createBy: Joi.number().integer().required().label('A valid userId is required'),
   office: Joi.number().integer().required().label('A valid officeId is required'),
-  party: Joi.number().integer().required().label('A valid partyId is required'),
+  candidate: Joi.number().integer().required().label('A valid candidate is required'),
+  token: Joi.string(),
 });
