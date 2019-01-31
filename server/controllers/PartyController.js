@@ -1,7 +1,9 @@
 import pool from '../database/dbConnection';
 import parties from '../dummyData/parties';
-import { queryPartiesByName, insertParty, selectAllParties } from '../database/queries';
-import sortItems from '../utilities.js/sortItems';
+import {
+  queryPartiesByName, insertParty, selectAllParties, selectAParty,
+} from '../database/queries';
+
 
 export default class PartyController {
   static createParty(request, response) {
@@ -100,21 +102,28 @@ export default class PartyController {
           error: 'Invalid partyId',
         });
     }
-    const party = parties.find(obj => obj.id === Number(partyId));
-    if (party === undefined) {
-      response.status(404)
+    pool.query(selectAParty, [partyId])
+      .then((data) => {
+        if (data.rowCount === 0) {
+          response.status(404)
+            .json({
+              status: 404,
+              error: 'party does not exist',
+            });
+          return false;
+        }
+        const party = data.rows;
+        return response.status(200)
+          .json({
+            status: 200,
+            data: [{ party }],
+          });
+      })
+      .catch(error => response.status(500)
         .json({
-          status: 404,
-          error: 'party does not exist',
-        });
-      return false;
-    }
-
-    return response.status(200)
-      .json({
-        status: 200,
-        data: party,
-      });
+          status: 500,
+          error: error.message,
+        }));
   }
 
   static editParty(request, response) {
