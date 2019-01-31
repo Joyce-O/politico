@@ -39,22 +39,23 @@ const createOfficeTable = `DROP TABLE IF EXISTS offices CASCADE;
 )`;
 
 const createCandidateTable = `DROP TABLE IF EXISTS candidates CASCADE;
-    CREATE TABLE candidates (
-    id SERIAL NOT NULL PRIMARY KEY,
-    user INTEGER NOT NULL,
-    FOREIGN KEY (user) references users(id) on delete cascade,
-    office INTEGER NOT NULL,
-    FOREIGN KEY (office) references offices(id) on delete cascade,
-    party INTEGER NOT NULL,
-    FOREIGN KEY (party) references parties(id) on delete cascade,
-    registered TIMESTAMP NOT NULL DEFAULT (NOW())
+CREATE TABLE candidates (
+  id SERIAL  PRIMARY KEY,
+  user_id INTEGER  NOT NULL,
+  FOREIGN KEY (user_id) references users(id) on delete cascade,
+  office INTEGER NOT NULL,
+  FOREIGN KEY (office) references offices(id) on delete cascade,
+  party INTEGER NOT NULL,
+  FOREIGN KEY (party) references parties(id) on delete cascade,
+  registered TIMESTAMP NOT NULL DEFAULT (NOW())
+
 )`;
 
 const createVoteTable = `DROP TABLE IF EXISTS votes CASCADE;
     CREATE TABLE votes (
     id SERIAL PRIMARY KEY,
     createdOn TIMESTAMP NOT NULL DEFAULT (NOW()),
-    createdBy INTEGER NOT NULL,
+    createdBy INTEGER  NOT NULL,
     FOREIGN KEY (createdBy) references users(id) on delete cascade,
     office INTEGER NOT NULL,
     FOREIGN KEY (office) references offices(id) on delete cascade,
@@ -67,7 +68,7 @@ const createPetitionTable = `DROP TABLE IF EXISTS petitions CASCADE;
     CREATE TABLE petitions (
     id SERIAL PRIMARY KEY,
     createdOn TIMESTAMP NOT NULL DEFAULT (NOW()),
-    createdBy INTEGER NOT NULL,
+    createdBy INTEGER UNIQUE NOT NULL,
     FOREIGN KEY (createdBy) references users(id) on delete cascade,
     office INTEGER NOT NULL,
     FOREIGN KEY (office) references offices(id) on delete cascade,
