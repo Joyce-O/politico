@@ -33,7 +33,6 @@ const createPartyTable = `DROP TABLE IF EXISTS parties CASCADE;
 const createOfficeTable = `DROP TABLE IF EXISTS offices CASCADE;
     CREATE TABLE offices (
     id SERIAL NOT NULL PRIMARY KEY,
-    officeId INTEGER NOT NULL,
     name VARCHAR (128) UNIQUE NOT NULL,
     type VARCHAR (128) NOT NULL,
     registered TIMESTAMP NOT NULL DEFAULT (NOW())
