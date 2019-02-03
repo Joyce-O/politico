@@ -1,6 +1,6 @@
 import pool from '../database/dbConnection';
 import { insertUser, queryUsersByEmail } from '../database/queries';
-import { getToken } from '../middlewares.js/authorization';
+import { generateToken } from '../middlewares.js/authorization';
 import { hashPassword, verifyPassword } from '../utilities.js/hashPassword';
 
 export default class UserController {
@@ -31,14 +31,16 @@ export default class UserController {
 
     pool.query(insertUser, values)
       .then((data) => {
-        const token = getToken(data.rows[0]);
-        const { name, registered } = data.rows[0];
-        const user = { name, email, registered };
+        const { isAdmin } = data.rows[0];
+        const token = generateToken(email, firstname, isAdmin);
+        const user = [firstname, lastname, email, phone,
+          passportUrl];
 
         response.status(201)
           .json({
             status: 201,
-            data: [{ token, user }],
+            token,
+            data: user,
 
           });
       })
@@ -50,25 +52,30 @@ export default class UserController {
   }
 
   static loginUser(request, response) {
-    const email = [request.body.email];
-    pool.query(queryUsersByEmail, email)
+    const isEmail = [request.body.email];
+    pool.query(queryUsersByEmail, isEmail)
       .then((data) => {
         if (data.rowCount !== 0) {
           const isPassword = verifyPassword(request.body.password, data.rows[0].password);
           if (isPassword) {
-            const token = getToken(data.rows[0]);
-            const { name, registered } = data.rows[0];
-            const user = { name, email, registered };
+            const {
+              firstname, isAdmin, lastname, phone, email,
+            } = data.rows[0];
+            const token = generateToken(firstname, email, isAdmin);
+            const user = [
+              firstname, lastname, email, phone,
+            ];
             response.status(200)
               .json({
                 status: 200,
-                data: [{ user, token }],
+                token,
+                data: user,
               });
           } else {
             response.status(400)
               .json({
                 status: 400,
-                error: ['Make sure your password is correct'],
+                error: 'Sorry, the credentials you provided is incorrect.',
               });
           }
         }
@@ -76,7 +83,7 @@ export default class UserController {
           response.status(400)
             .json({
               status: 400,
-              error: 'Email is not found, please enter correct email and password',
+              error: 'Sorry, the credentials you provided is incorrect.',
             });
         }
       })

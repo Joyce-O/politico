@@ -1,6 +1,7 @@
 import pool from '../database/dbConnection';
 import {
-  queryPartiesByName, insertParty, selectAllParties, selectAParty, updatePartyName, deleteParty,
+  queryPartiesByName, insertParty, selectAllParties, selectAParty,
+  queryPartiesByEmail, updatePartyName, deleteParty, queryPartiesByAcronym,
 } from '../database/queries';
 
 
@@ -9,27 +10,6 @@ export default class PartyController {
     const {
       name, acronym, hqAddress, logoUrl, email, phone,
     } = request.body;
-    const duplicate = {};
-    pool.query(queryPartiesByName, [name])
-      .then((data) => {
-        if (data.rowCount !== 0) {
-          duplicate.dupName = 'Name already exist';
-        }
-        if (data.rows[0].acronym === acronym) {
-          duplicate.dupAcronym = 'Acronym already exist';
-        }
-        if (data.rows[0].email === email) {
-          duplicate.dupEmail = 'Email already exist';
-        }
-        if (JSON.stringify(duplicate) !== '{}') {
-          return response.status(409)
-            .json({
-              status: 409,
-              error: duplicate,
-            });
-        }
-      });
-
     const values = [
       name,
       acronym,
@@ -40,25 +20,51 @@ export default class PartyController {
     ];
     pool.query(insertParty, values)
       .then((data) => {
-        const { registered } = data.rows[0].registered;
-        const party = {
-          name, acronym, hqAddress, email, phone, registered,
-        };
         if (data.rowCount !== 0) {
-          response.status(201)
+          const { createdOn } = data.rows[0];
+          const party = {
+            name, acronym, hqAddress, email, phone, createdOn,
+          };
+
+          return response.status(201)
             .json({
               status: 201,
-              data: [{ message: 'Party is successful', party }],
+              message: 'Party is successfully created',
+              data: party,
 
             });
         }
+      });
+    pool.query(queryPartiesByName, [request.body.name])
+      .then((result) => {
+        if (result.rowCount !== 0) {
+          return response.status(409)
+            .json({
+              status: 409,
+              message: 'Sorry the name aready exist, register with another name.',
+            });
+        }
+      });
+    pool.query(queryPartiesByAcronym, [request.body.acronym])
+      .then((result) => {
+        if (result.rowCount !== 0) {
+          return response.status(409)
+            .json({
+              status: 409,
+              message: 'Sorry the acronym aready exist, register with another acronym.',
+            });
+        }
+      });
 
-        response.status(201)
-          .json({
-            status: 201,
-            data: [{ message: 'Party is successful', party }],
-
-          });
+    pool.query(queryPartiesByEmail, [request.body.email])
+      .then((result) => {
+        if (result.rowCount !== 0) {
+          return response.status(409)
+            .json({
+              status: 409,
+              message: 'Sorry the email aready exist, register with another email.',
+            });
+        }
       })
       .catch(error => response.status(500)
         .json({
@@ -71,10 +77,10 @@ export default class PartyController {
     pool.query(selectAllParties)
       .then((data) => {
         if (data.rowCount === 0) {
-          return response.status(200)
+          return response.status(404)
             .json({
-              status: 200,
-              data: ['No registered party yet'],
+              status: 404,
+              error: 'No registered party yet',
 
             });
         }
@@ -82,7 +88,7 @@ export default class PartyController {
         return response.status(200)
           .json({
             status: 200,
-            data: [{ partyList }],
+            data: partyList,
           });
       })
       .catch(error => response.status(500)
@@ -115,7 +121,7 @@ export default class PartyController {
         return response.status(200)
           .json({
             status: 200,
-            data: [{ party }],
+            data: party,
           });
       })
       .catch(error => response.status(500)
@@ -127,7 +133,7 @@ export default class PartyController {
 
   static editParty(request, response) {
     const { partyId } = request.params;
-    const { name } = request.body.name;
+    const { name } = request.body;
     if (!/[0-9]+$/.test(partyId)) {
       return response
         .json({
@@ -163,7 +169,8 @@ export default class PartyController {
         return response.status(200)
           .json({
             status: 200,
-            data: [{ message: 'Party name updated', party }],
+            message: 'Party name has been updated',
+            data: party,
           })
           .catch(error => response.status(500)
             .json({
@@ -176,11 +183,12 @@ export default class PartyController {
   static deleteParty(request, response) {
     const { partyId } = request.params;
     if (!/[0-9]+$/.test(partyId)) {
-      return response
+      response
         .json({
           status: 400,
           error: 'Invalid partyId',
         });
+      return false;
     }
     pool.query(selectAParty, [partyId])
       .then((data) => {
@@ -197,12 +205,12 @@ export default class PartyController {
       .then(data => response.status(200)
         .json({
           status: 200,
-          data: ['This order is deleted', data],
-        })
-        .catch(error => response.status(500)
-          .json({
-            status: 500,
-            error: error.message,
-          })));
+          message: 'This order is deleted',
+        }))
+      .catch(error => response.status(500)
+        .json({
+          status: 500,
+          error: error.message,
+        }));
   }
 }
