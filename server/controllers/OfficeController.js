@@ -7,7 +7,7 @@ import {
 export default class OfficeController {
   static createOffice(request, response) {
     const {
-      name, type,
+      name, type, ageLimit, basicQual
     } = request.body;
     pool.query(queryOfficesByName, [name])
       .then((data) => {
@@ -15,33 +15,35 @@ export default class OfficeController {
           return response.status(409)
             .json({
               status: 409,
-              error: 'Name already exist',
+              error: 'Name already exist, please register with another name.',
             });
         }
+        return false;
       });
 
     const values = [
       name,
-      type,
+      type.trim(),
+      ageLimit,
+      basicQual,
     ];
     pool.query(insertOffice, values)
       .then((data) => {
-        const office = {
-          name, type,
-        };
-        if (data.rowCount !== 0) {
+        // const office = {
+        //   name, type,
+        // };
           response.status(201)
             .json({
               status: 201,
-              data: [{ message: 'Office is successful', office }],
+              message: 'Office is successfully registered',
+              data: values,
 
             });
-        }
       })
       .catch(error => response.status(500)
         .json({
           status: 500,
-          error: [error.message],
+          error: error.message,
         }));
   }
 
@@ -49,10 +51,10 @@ export default class OfficeController {
     pool.query(selectAllOffices)
       .then((data) => {
         if (data.rowCount === 0) {
-          return response.status(200)
+          return response.status(404)
             .json({
-              status: 200,
-              data: ['No registered office yet'],
+              status: 404,
+              error: 'No registered office yet',
 
             });
         }
@@ -60,7 +62,7 @@ export default class OfficeController {
         return response.status(200)
           .json({
             status: 200,
-            data: [{ officeList }],
+            data: officeList,
           });
       })
       .catch(error => response.status(500)
@@ -93,7 +95,7 @@ export default class OfficeController {
         return response.status(200)
           .json({
             status: 200,
-            data: [{ office }],
+            data: office,
           });
       })
       .catch(error => response.status(500)

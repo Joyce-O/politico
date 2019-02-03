@@ -12,7 +12,7 @@ const createUserTable = `DROP TABLE IF EXISTS users CASCADE;
     email VARCHAR (355) UNIQUE NOT NULL,
     phone VARCHAR(128) NOT NULL,
     passportUrl TEXT NOT NULL,
-    registered TIMESTAMP NOT NULL DEFAULT (NOW()),
+    createdOn TIMESTAMP NOT NULL DEFAULT (NOW()),
     isAdmin BOOLEAN NOT NULL DEFAULT (false),
     password VARCHAR (128) NOT NULL
 )`;
@@ -25,40 +25,51 @@ const createPartyTable = `DROP TABLE IF EXISTS parties CASCADE;
     acronym VARCHAR (10) UNIQUE NOT NULL,
     hqAddress VARCHAR (128) NOT NULL,
     logoUrl TEXT NOT NULL,
-    email VARCHAR (355) NOT NULL,
+    email VARCHAR (355) UNIQUE NOT NULL,
     phone VARCHAR(128) NOT NULL,
-    registered TIMESTAMP NOT NULL DEFAULT (NOW())
+    status VARCHAR(15) NOT NULL DEFAULT ('new'),
+    createdOn TIMESTAMP NOT NULL DEFAULT (NOW())
 )`;
+const createTypeTable = `DROP TYPE IF EXISTS office_type, certificate CASCADE;
+CREATE TYPE office_type AS ENUM('federal', 'legislative', 'state', 'local government');
+CREATE TYPE certificate AS ENUM('school certificate level', 'undergraduate level', 'postgraduate level');
+`;
 
 const createOfficeTable = `DROP TABLE IF EXISTS offices CASCADE;
     CREATE TABLE offices (
     id SERIAL NOT NULL PRIMARY KEY,
     name VARCHAR (128) UNIQUE NOT NULL,
-    type VARCHAR (128) NOT NULL,
-    registered TIMESTAMP NOT NULL DEFAULT (NOW())
+    type office_type NOT NULL,
+    ageLimit VARCHAR (128) NOT NULL,
+    basicQual certificate NOT NULL,
+    createdOn TIMESTAMP NOT NULL DEFAULT (NOW())
 )`;
 
 const createCandidateTable = `DROP TABLE IF EXISTS candidates CASCADE;
 CREATE TABLE candidates (
-  id SERIAL  PRIMARY KEY,
-  user_id INTEGER  NOT NULL,
-  FOREIGN KEY (user_id) references users(id) on delete cascade,
+  id SERIAL UNIQUE NOT NULL,
+  age INTEGER NOT NULL,
+  qualification TEXT NOT NULL,
+  userId INTEGER UNIQUE NOT NULL,
+  FOREIGN KEY (userId) references users(id) on delete cascade,
   office INTEGER NOT NULL,
   FOREIGN KEY (office) references offices(id) on delete cascade,
+  PRIMARY KEY (userId, office),
   party INTEGER NOT NULL,
   FOREIGN KEY (party) references parties(id) on delete cascade,
-  registered TIMESTAMP NOT NULL DEFAULT (NOW())
+  createdOn TIMESTAMP NOT NULL DEFAULT (NOW())
 
 )`;
 
 const createVoteTable = `DROP TABLE IF EXISTS votes CASCADE;
     CREATE TABLE votes (
-    id SERIAL PRIMARY KEY,
+    id SERIAL NOT NULL,
     createdOn TIMESTAMP NOT NULL DEFAULT (NOW()),
-    createdBy INTEGER  NOT NULL,
-    FOREIGN KEY (createdBy) references users(id) on delete cascade,
+    voter INTEGER  NOT NULL,
+    FOREIGN KEY (voter) references users(id) on delete cascade,
     office INTEGER NOT NULL,
     FOREIGN KEY (office) references offices(id) on delete cascade,
+    PRIMARY KEY (office, voter),
     candidate INTEGER NOT NULL,
     FOREIGN KEY (candidate) references candidates(id) on delete cascade
     
@@ -66,7 +77,7 @@ const createVoteTable = `DROP TABLE IF EXISTS votes CASCADE;
 
 const createPetitionTable = `DROP TABLE IF EXISTS petitions CASCADE;
     CREATE TABLE petitions (
-    id SERIAL PRIMARY KEY,
+    id SERIAL NOT NULL PRIMARY KEY,
     createdOn TIMESTAMP NOT NULL DEFAULT (NOW()),
     createdBy INTEGER UNIQUE NOT NULL,
     FOREIGN KEY (createdBy) references users(id) on delete cascade,
@@ -96,6 +107,11 @@ async function createTables() {
     await pool.query(createPartyTable);
   } catch (error) {
     throw new Error('party table creation failed');
+  }
+  try {
+    await pool.query(createTypeTable);
+  } catch (error) {
+    throw new Error('office_type table creation failed');
   }
   try {
     await pool.query(createOfficeTable);

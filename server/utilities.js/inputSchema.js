@@ -50,21 +50,28 @@ export const editNameSchema = {
 export const newOfficeSchema = Joi.object().keys({
   name: Joi.string().min(5).max(100).required()
     .label('A valid name '),
-  type: Joi.string().min(5).max(100).required()
-    .label('A valid office type'),
+  type: Joi.string().required()
+    .label('office type should be one of federal', 'legislative', 'state', 'local government'),
+  ageLimit: Joi.string().required().label('Candidate age should not be less than 35 and not more than 75'),
+  basicQual: Joi.string().required()
+    .label('Candidate qualification should be one of school certificate level', 'undergraduate level', 'postgraduate level'),
+
   token: Joi.string(),
 });
 
 export const newCandSchema = Joi.object().keys({
+  age: Joi.number().integer().required().label('Candidate age should not be less than 35 and not more than 75'),
+  qualification: Joi.string().required()
+    .label('Candidate qualification should be one of school certificate level', 'undergraduate level', 'postgraduate level'),
+  userId: Joi.number().integer().required().label('A valid userId is required'),
   office: Joi.number().integer().required().label('A valid officeId is required'),
-  user: Joi.number().integer().required().label('A valid userId is required'),
   party: Joi.number().integer().required().label('A valid partyId is required'),
   token: Joi.string(),
 });
 
 
 export const newVoteSchema = Joi.object().keys({
-  createBy: Joi.number().integer().required().label('A valid userId is required'),
+  voter: Joi.number().integer().required().label('A valid userId is required'),
   office: Joi.number().integer().required().label('A valid officeId is required'),
   candidate: Joi.number().integer().required().label('A valid candidate is required'),
   token: Joi.string(),
