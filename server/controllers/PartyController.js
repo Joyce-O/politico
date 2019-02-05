@@ -88,6 +88,7 @@ export default class PartyController {
         return response.status(200)
           .json({
             status: 200,
+            message: 'Parties fetched successfully',
             data: partyList,
           });
       })
@@ -121,6 +122,7 @@ export default class PartyController {
         return response.status(200)
           .json({
             status: 200,
+            message: 'Party fetched successfully',
             data: party,
           });
       })

@@ -49,11 +49,10 @@ export default class OtherController {
         return false;
       });
 
-    const values = [age, qualification.trim(),  userId, office, party];
+    const values = [age, qualification.trim(), userId, office, party];
     pool.query(insertCandidate, values)
       .then((data) => {
         if (data.rowCount !== 0) {
-          console.log(data.rows[0]);
           const candidate = data.rows[0];
           response.status(201)
             .json({
@@ -125,7 +124,7 @@ export default class OtherController {
         }));
   }
 
-  static result (request, response) {
+  static result(request, response) {
     const { officeId } = request.params;
     pool.query(selectAnOffice, [officeId])
       .then((data) => {
@@ -138,17 +137,17 @@ export default class OtherController {
         }
       });
 
-      pool.query( resultQuery, [officeId])
+    pool.query(resultQuery, [officeId])
       .then((data) => {
-      if (data.rowCount !== 0) {
-        const result = data.rows[0];
-        response.status(201)
-          .json({
-            status: 201,
-            message: 'Election results for office with id 1',
-            data: result,
-          });
-      }
-    })
+        if (data.rowCount !== 0) {
+          const result = data.rows[0];
+          response.status(200)
+            .json({
+              status: 200,
+              message: 'Election results for this office',
+              data: result,
+            });
+        }
+      });
   }
 }

@@ -38,6 +38,7 @@ export default class UserController {
 
         response.status(201)
           .json({
+            message: 'Your signup is successful!',
             status: 201,
             token,
             data: user,
