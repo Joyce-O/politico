@@ -29,14 +29,11 @@ export default class OfficeController {
     ];
     pool.query(insertOffice, values)
       .then((data) => {
-        // const office = {
-        //   name, type,
-        // };
         response.status(201)
           .json({
             status: 201,
             message: 'Office is successfully registered',
-            data: values,
+            data: data.rows[0],
 
           });
       })

@@ -12,7 +12,6 @@ if (process.env.NODE_ENV === 'test:dev') {
 } else {
   dbUrl = ({
     connectionString: process.env.DATABASE_URL || process.env.LOCALDB_URL,
-    ssl: true,
   });
 }
 
