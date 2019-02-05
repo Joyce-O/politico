@@ -31,8 +31,7 @@ export default class UserController {
 
     pool.query(insertUser, values)
       .then((data) => {
-        const { isAdmin } = data.rows[0];
-        const token = generateToken(email, firstname, isAdmin);
+        const token = generateToken(data.rows[0]);
         const user = [firstname, lastname, email, phone,
           passportUrl];
 
@@ -60,9 +59,9 @@ export default class UserController {
           const isPassword = verifyPassword(request.body.password, data.rows[0].password);
           if (isPassword) {
             const {
-              firstname, isAdmin, lastname, phone, email,
+              firstname, lastname, phone, email,
             } = data.rows[0];
-            const token = generateToken(firstname, email, isAdmin);
+            const token = generateToken(data.rows[0]);
             const user = [
               firstname, lastname, email, phone,
             ];
