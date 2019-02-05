@@ -2,11 +2,13 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
 import {
-  correctSignup, incorrectSignup, emailExist, correctLogin, incorrectLogin,
+  correctSignup, incorrectSignup, correctLogin, incorrectLogin,
   emailNotExist, correctParty, incorrectParty, dupPartyEmail,
 } from './mockInputes';
 
 const { expect } = chai;
+let userToken;
+let adminToken;
 
 chai.use(chaiHttp);
 
@@ -35,12 +37,37 @@ describe('Tests for Homepage and invalid url endpoints', () => {
     });
   });
 });
+describe('Generate Token for testing Endpoints', () => {
+  it('should return token for user successful login', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .send(correctLogin)
+      .end((error, response) => {
+        expect(response).to.have.status(200);
+        userToken = response.body.token;
+        done();
+      });
+  });
+  it('should return token for admin successful login', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'chief@gmail.com',
+        password: 'admin',
+      })
+      .end((error, response) => {
+        expect(response).to.have.status(200);
+        adminToken = response.body.token;
+        done();
+      });
+  });
+});
 
 describe('Tests for user endpoints', () => {
   describe('Test for Signup', () => {
     it('should return 201 for success', (done) => {
       chai.request(app)
-        .post('/api/v1/signup')
+        .post('/api/v1/auth/signup')
         .send(correctSignup)
         .end((error, response) => {
           expect(response).to.have.status(201);
@@ -49,38 +76,19 @@ describe('Tests for user endpoints', () => {
     });
     it('should return 400 for invalid inputs', (done) => {
       chai.request(app)
-        .post('/api/v1/signup')
+        .post('/api/v1/auth/signup')
         .send(incorrectSignup)
         .end((error, response) => {
           expect(response).to.have.status(400);
           done();
         });
     });
-    it('should return 409 for already existing email', (done) => {
-      chai.request(app)
-        .post('/api/v1/signup')
-        .send(emailExist)
-        .end((error, response) => {
-          expect(response).to.have.status(409);
-          expect(response.body.error).to.equal('Email already exist, please use another email or login.');
-          done();
-        });
-    });
   });
+
   describe('Test for Login', () => {
-    it('should return 200 for success', (done) => {
-      chai.request(app)
-        .post('/api/v1/login')
-        .send(correctLogin)
-        .end((error, response) => {
-          expect(response).to.have.status(200);
-          expect(response.body.data).to.equal(`Welcome back ${correctSignup.firstname}!`);
-          done();
-        });
-    });
     it('should return 400 for invalid inputs', (done) => {
       chai.request(app)
-        .post('/api/v1/login')
+        .post('/api/v1/auth/login')
         .send(incorrectLogin)
         .end((error, response) => {
           expect(response).to.have.status(400);
@@ -89,7 +97,7 @@ describe('Tests for user endpoints', () => {
     });
     it('should return 404 if the email does not exist', (done) => {
       chai.request(app)
-        .post('/api/v1/login')
+        .post('/api/v1/auth/login')
         .send(emailNotExist)
         .end((error, response) => {
           expect(response).to.have.status(404);
