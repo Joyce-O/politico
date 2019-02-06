@@ -35,7 +35,7 @@ export default class UserController {
         const user = [firstname, lastname, email, phone,
           passportUrl];
 
-        response.status(201)
+        return response.status(201)
           .json({
             message: 'Your signup is successful!',
             status: 201,

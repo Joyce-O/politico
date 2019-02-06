@@ -25,7 +25,7 @@ const emailExist = {
 };
 
 const correctLogin = {
-  email: 'verap@hotmail.com',
+  email: 'verapao@hotmail.com',
   password: '12345',
 };
 const incorrectLogin = {
@@ -34,7 +34,7 @@ const incorrectLogin = {
 };
 
 const emailNotExist = {
-  email: 'verass@hotmail.com',
+  email: 'joy@gmail.com',
   password: '12345',
 };
 
@@ -58,7 +58,7 @@ const dupPartyEmail = {
   acronym: 'PP',
   hqAddress: '10 Parks Road Benin City',
   logoUrl: 'https://res.cloudinary.com/duk5ix8wp/image/upload/v1539063817/mfj9epgqaqbtpqdocet4.jpg',
-  email: 'mike@gmail.com',
+  email: 'may@hotmail.com',
   phone: '2348000008',
 };
 
