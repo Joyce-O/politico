@@ -50,7 +50,7 @@ CREATE TABLE candidates (
   id SERIAL UNIQUE NOT NULL,
   age INTEGER NOT NULL,
   qualification TEXT NOT NULL,
-  userId INTEGER UNIQUE NOT NULL,
+  userId INTEGER NOT NULL,
   FOREIGN KEY (userId) references users(id) on delete cascade,
   office INTEGER NOT NULL,
   FOREIGN KEY (office) references offices(id) on delete cascade,

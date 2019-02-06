@@ -63,7 +63,6 @@ export const newCandSchema = Joi.object().keys({
   age: Joi.number().integer().required().label('Candidate age should not be less than 35 and not more than 75'),
   qualification: Joi.string().required()
     .label('Candidate qualification should be one of school certificate level', 'undergraduate level', 'postgraduate level'),
-  userId: Joi.number().integer().required().label('A valid userId is required'),
   office: Joi.number().integer().required().label('A valid officeId is required'),
   party: Joi.number().integer().required().label('A valid partyId is required'),
   token: Joi.string(),

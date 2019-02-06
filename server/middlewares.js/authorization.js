@@ -1,46 +1,49 @@
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import 'dotenv/config';
 
-dotenv.config();
-
-
-export const generateToken = (payload) => {
-  const token = jwt.sign({ payload }, process.env.JWT_SECRET, { expiresIn: '1d' });
+const generateToken = (payload) => {
+  const token = jwt.sign({ payload }, process.env.JWT_SECRET);
   return token;
 };
 
-export const verifyToken = (request, response, next) => {
-  const token = (request.body.token || request.headers.authorization || request.query.token);
+const verifyToken = (request, response, next) => {
+  const token = request.headers.authorization || request.body.token;
   if (!token) {
     return response.status(403)
       .json({
         status: 403,
-        error: 'No token provided',
+        error: 'No token supplied',
       });
   }
   jwt.verify(token, process.env.JWT_SECRET, (error, authData) => {
     if (error) {
-      if (error.message === 'invalid token') {
+      if (error.message.includes('signature')) {
         return response.status(403)
           .json({
             status: 403,
-            error: 'Unauthorized access, supply a valid token.',
+            error: 'Your input is not a valid token. Please input a correct one',
           });
       }
+      return response.status(403)
+        .json({
+          message: error,
+        });
     }
     request.authData = authData;
     return next();
   });
 };
 
-export const adminPass = (request, response, next) => {
+const adminPass = (request, response, next) => {
   const userInfo = request.authData.payload;
-  if (userInfo.isadmin === false) {
+  if (userInfo.isadmin !== true) {
     return response.status(401)
       .json({
-        status: 401,
-        error: 'Unauthorized access, admin privilege is needed.',
+        status: 403,
+        error: 'You need admin privilege to access this endpoint.',
       });
   }
   next();
 };
+
+export { generateToken, verifyToken, adminPass };

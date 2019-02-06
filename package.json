@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node -- server/app.js",
-    "test": "nyc --reporter=html --reporter=text mocha server/tests/test.js --exit --compilers js:babel-core/register",
+    "test": "npm run createTables && nyc --reporter=html --reporter=text mocha server/tests/*.js --exit --compilers js:babel-core/register",
+    "test:dev": "cross-env NODE_ENV=test npm run createTables && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha server/tests/*.js --exit --compilers js:babel-core/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "createTables": "babel-node -- ./server/database/createTables"

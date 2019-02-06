@@ -7,7 +7,7 @@ import {
 export default class OfficeController {
   static createOffice(request, response) {
     const {
-      name, type, ageLimit, basicQual
+      name, type, ageLimit, basicQual,
     } = request.body;
     pool.query(queryOfficesByName, [name])
       .then((data) => {
@@ -29,16 +29,13 @@ export default class OfficeController {
     ];
     pool.query(insertOffice, values)
       .then((data) => {
-        // const office = {
-        //   name, type,
-        // };
-          response.status(201)
-            .json({
-              status: 201,
-              message: 'Office is successfully registered',
-              data: values,
+        response.status(201)
+          .json({
+            status: 201,
+            message: 'Office is successfully registered',
+            data: data.rows[0],
 
-            });
+          });
       })
       .catch(error => response.status(500)
         .json({
@@ -62,6 +59,7 @@ export default class OfficeController {
         return response.status(200)
           .json({
             status: 200,
+            message: 'offices fetched successfully',
             data: officeList,
           });
       })
@@ -95,6 +93,7 @@ export default class OfficeController {
         return response.status(200)
           .json({
             status: 200,
+            message: 'Office fetched successfully',
             data: office,
           });
       })
