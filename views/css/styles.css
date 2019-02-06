@@ -1,0 +1,72 @@
+.slides {display: none;}
+p{vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  width: 500px;
+  position: relative;
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  height: 100px;
+  background: rgba(1, 51, 1, 0.671);
+}
+
+/* Slide text */
+.slide-text{
+  padding: 8px 12px;
+  position: absolute;
+  margin-top: 20px;
+}
+.slides a{
+  display: block;
+  font-style: italic;
+  font-size: 1em;
+}
+.slides p {
+  color: white;
+  font-size: 1.2em;
+  letter-spacing: .1em;
+}
+
+/* The dot */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+#dot-div {
+  text-align:center
+}  
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.2s;
+  animation-name: fade;
+  animation-duration: 1.2s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .2} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .2} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
