@@ -18,23 +18,6 @@ export default class PartyController {
       email,
       phone,
     ];
-    pool.query(insertParty, values)
-      .then((data) => {
-        if (data.rowCount !== 0) {
-          const { createdOn } = data.rows[0];
-          const party = {
-            name, acronym, hqAddress, email, phone, createdOn,
-          };
-
-          return response.status(201)
-            .json({
-              status: 201,
-              message: 'Party is successfully created',
-              data: party,
-
-            });
-        }
-      });
     pool.query(queryPartiesByName, [request.body.name])
       .then((result) => {
         if (result.rowCount !== 0) {
@@ -65,6 +48,23 @@ export default class PartyController {
               message: 'Sorry the email aready exist, register with another email.',
             });
         }
+      });
+    pool.query(insertParty, values)
+      .then((data) => {
+        if (data.rowCount !== 0) {
+          const { id, createdOn } = data.rows[0];
+          const party = {
+            id, name, acronym, hqAddress, email, phone, createdOn,
+          };
+
+          return response.status(201)
+            .json({
+              status: 201,
+              message: 'Party is successfully created',
+              data: party,
+
+            });
+        }
       })
       .catch(error => response.status(500)
         .json({
@@ -88,6 +88,7 @@ export default class PartyController {
         return response.status(200)
           .json({
             status: 200,
+            message: 'Parties fetched successfully',
             data: partyList,
           });
       })
@@ -121,6 +122,7 @@ export default class PartyController {
         return response.status(200)
           .json({
             status: 200,
+            message: 'Party fetched successfully',
             data: party,
           });
       })

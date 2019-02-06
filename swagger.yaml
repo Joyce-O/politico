@@ -1,0 +1,187 @@
+swagger: '2.0'
+info:
+    description: 'API documentation for Politico, a platform that enables citizens give their mandate to politicians running for different government offices.'
+    version: 1.0.0
+    title: Politico
+    termsOfService: 'http://swagger.io/terms/'
+    contact:
+        email: obijoyce@gmail.com
+    license:
+        name: 'Apache 2.0'
+        url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: 'https://ng-politico.herokuapp.com'
+basePath: /api/v1
+tags:
+    -
+        name: Users
+        description: 'User API Endpoint'
+    -
+        name: Parties
+        description: 'Party API Endpoint'
+    -
+        name: Offices
+        description: 'Office API Endpoint'
+    -
+        name: Vote
+        description: 'Vote API Endpoint'
+    -
+        name: Candidate
+        description: 'Candidate API Endpoint'
+    -
+        name: Result
+        description: 'Result API Endpoint'
+schemes:
+    - https
+    - http
+paths:
+    /auth/signup:
+        post:
+            tags: [Users]
+            summary: 'Create a new user'
+            description: 'Create a new user on Politico'
+            operationId: signupUser
+            consumes: [application/json]
+            produces: [application/json]
+            parameters: [{in: body, name: user, description: 'Create new user account', required: true, schema: {$ref: '#/definitions/SignupUser'}}]
+            responses: {'201': {description: 'Your signup is successful! succesfully'}, '409': {description: 'Email already exist, please use another email or login.'}}
+    /auth/login:
+        post:
+            tags: [Users]
+            summary: 'Login a user'
+            description: 'Login an existing user into Politico'
+            operationId: loginUser
+            consumes: [application/json]
+            produces: [application/json]
+            parameters: [{in: body, name: user, description: 'Login an existing user', required: true, schema: {$ref: '#/definitions/LoginUser'}}]
+            responses: {'200': {description: 'Login was successful'}, '400': {description: 'Sorry, the credentials you provided is incorrect.'}}
+    /parties:
+        post:
+            tags: [Parties]
+            summary: 'Post a party'
+            description: 'Creates an new party'
+            operationId: postParty
+            produces: [application/json]
+            parameters: [{in: body, name: party, description: 'Create a new party on Politico', required: true, schema: {$ref: '#/definitions/PostParty'}}, {in: query, name: token, description: 'Provide a token to access this endpoint', required: true, type: string}]
+            responses: {'201': {description: 'Party is successfully created'}, '403': {description: 'No token supplied'}, '409': {description: 'Sorry the name aready exist, register with another name.'}}
+        get:
+            tags: [Parties]
+            summary: 'Get all parties'
+            description: 'Get all parties in the database'
+            operationId: getAvailableParties
+            produces: [application/json]
+            responses: {'200': {description: 'Parties fetched successfully'}, '404': {description: 'No registered party yet'}}
+        patch:
+            tags: [Parties]
+            summary: 'Edit a party'
+            description: 'Edit a specific party in the database'
+            operationId: editSpecificParty
+            produces: [application/json]
+            responses: {'200': {description: 'Party name has been updated'}, '404': {description: 'party does not exist'}}
+        delete:
+            tags: [Parties]
+            summary: 'Delete a party'
+            description: 'Delete a specific party in the database'
+            operationId: deleteAParty
+            produces: [application/json]
+            responses: {'200': {description: 'This order is deleted'}, '404': {description: 'party does not exist'}}
+    /offices:
+        post:
+            tags: [Offices]
+            summary: 'Post an office'
+            description: 'Creates an new office'
+            operationId: postOffice
+            produces: [application/json]
+            parameters: [{in: body, name: party, description: 'Create a new office on Politico', required: true, schema: {$ref: '#/definitions/PostOffice'}}, {in: query, name: token, description: 'Provide a token to access this endpoint', required: true, type: string}]
+            responses: {'201': {description: 'Office is successfully registered'}, '403': {description: 'No token supplied'}, '409': {description: 'Name already exist, please register with another name.'}}
+        get:
+            tags: [Offices]
+            summary: 'Get all offices'
+            description: 'Get all offices in the database'
+            operationId: getAllOffices
+            produces: [application/json]
+            responses: {'200': {description: 'offices fetched successfully'}, '404': {description: 'No registered office yet'}}
+    '/office/:userId/register':
+        post:
+            tags: [candidates]
+            summary: 'Register a candidate'
+            description: 'Register a candidate for an office'
+            operationId: registerCandidate
+            produces: [application/json]
+            parameters: [{in: body, name: candidate, description: 'Register a candidate for an office', required: true, schema: {$ref: '#/definitions/registerCandidate'}}, {in: query, name: token, description: 'Provide to token to access this endpoint', required: true, type: string}]
+            responses: {'201': {description: 'Thank you! Application is successful.'}, '409': {description: 'candidate cannot apply twice'}}
+    /votes:
+        post:
+            tags: [Votes]
+            summary: 'post a specific user vote'
+            description: 'Post a user vote for an office'
+            operationId: VoteForAnOffice
+            produces: [application/json]
+            parameters: [{name: userId, in: path, description: 'Id of the specific user voting', required: true, type: integer}, {in: query, name: token, description: 'Provide to token to access this endpoint', required: true, type: string}]
+            responses: {'201': {description: 'Candidate is registered'}}
+    '/office/:officeId/result':
+        get:
+            tags: [Result]
+            summary: 'Get the result of votes cast for all offices'
+            description: 'Get the result of votes cast for all offices in Politico'
+            operationId: getVoteResult
+            produces: [application/json]
+            parameters: [{name: officeId, in: path, description: 'Id of the specific office', required: true, type: integer}, {in: query, name: token, description: 'Provide a token to access this endpoint', required: true, type: string}]
+            responses: {'200': {description: 'Election results for this office'}, '404': {description: 'office does not exist, please check your input and try again'}}
+    definitions:
+        SignupUser: null
+        type: object
+        required:
+            - firstname
+            - lastname
+            - othername
+            - email
+            - phone
+            - passportUrl
+            - password
+        properties:
+            firstname: {type: string, uniqueItems: false}
+            lastname: {type: string, uniqueItems: false}
+            othername: {type: string, uniqueItems: false}
+            email: {type: string, uniqueItems: true}
+            phone: {type: string, uniqueItems: true}
+            passportUrl: {type: string, uniqueItems: false}
+            password: {type: string, uniqueItems: false}
+    LoginUser:
+        type: object
+        required:
+            - email
+            - password
+        properties:
+            email: {type: string, uniqueItems: true}
+            password: {type: string, uniqueItems: true}
+    PostParty:
+        type: object
+        required:
+            - name
+            - acronym
+            - hqAddress
+            - logoUrl
+            - email
+            - phone
+        properties:
+            name: {type: string, uniqueItems: true}
+            acronym: {type: string, uniqueItems: true}
+            hqAddress: {type: string, uniqueItems: false}
+            logoUrl: {type: string, uniqueItems: false}
+            email: {type: string, uniqueItems: true}
+            phone: {type: integer, uniqueItems: false}
+    PostOffice:
+        type: object
+        required:
+            - name
+            - type
+            - ageLimit
+            - basicQual
+        properties:
+            name: {type: string, uniqueItems: true}
+            type: {type: string, uniqueItems: false}
+            ageLimit: {type: string, uniqueItems: false}
+            basicQual: {type: string, uniqueItems: false}
+externalDocs:
+    description: 'Find out more about Swagger'
+    url: 'http://swagger.io'

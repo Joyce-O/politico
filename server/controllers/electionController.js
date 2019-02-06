@@ -7,10 +7,10 @@ import {
 export default class OtherController {
   static createCandidate(request, response) {
     const {
-      age, qualification, office, userId, party,
+      age, qualification, office, party,
     } = request.body;
     const duplicate = {};
-    pool.query(selectUsersById, [userId])
+    pool.query(selectUsersById, [request.params.userId])
       .then((data) => {
         if (data.rowCount === 0) {
           duplicate.userNotExist = 'userId does not exist';
@@ -37,7 +37,7 @@ export default class OtherController {
         }
         return false;
       });
-    pool.query(selectCanById, [userId])
+    pool.query(selectCanById, [request.params.userId])
       .then((data) => {
         if (data.rowCount !== 0) {
           return response.status(409)
@@ -49,19 +49,19 @@ export default class OtherController {
         return false;
       });
 
-    const values = [age, qualification.trim(),  userId, office, party];
+    const values = [age, qualification.trim(), request.params.userId, office, party];
     pool.query(insertCandidate, values)
       .then((data) => {
         if (data.rowCount !== 0) {
-          console.log(data.rows[0]);
           const candidate = data.rows[0];
-          response.status(201)
+          return response.status(201)
             .json({
               status: 201,
               message: 'Thank you! Application is successful.',
               data: candidate,
             });
         }
+        return false;
       })
       .catch(error => response.status(500)
         .json({
@@ -117,6 +117,7 @@ export default class OtherController {
               data: voter2,
             });
         }
+        return false;
       })
       .catch(error => response.status(500)
         .json({
@@ -125,7 +126,7 @@ export default class OtherController {
         }));
   }
 
-  static result (request, response) {
+  static result(request, response) {
     const { officeId } = request.params;
     pool.query(selectAnOffice, [officeId])
       .then((data) => {
@@ -138,17 +139,17 @@ export default class OtherController {
         }
       });
 
-      pool.query( resultQuery, [officeId])
+    pool.query(resultQuery, [officeId])
       .then((data) => {
-      if (data.rowCount !== 0) {
-        const result = data.rows[0];
-        response.status(201)
-          .json({
-            status: 201,
-            message: 'Election results for office with id 1',
-            data: result,
-          });
-      }
-    })
+        if (data.rowCount !== 0) {
+          const result = data.rows[0];
+          response.status(200)
+            .json({
+              status: 200,
+              message: 'Election results for this office',
+              data: result,
+            });
+        }
+      });
   }
 }
