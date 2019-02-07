@@ -1,4 +1,7 @@
 import pool from '../database/dbConnection';
+import { dataUri } from './middlewares/multerUpload';
+import { uploader } from 'cloudinary';
+
 import {
   queryPartiesByName, insertParty, selectAllParties, selectAParty,
   queryPartiesByEmail, updatePartyName, deleteParty, queryPartiesByAcronym,
@@ -7,9 +10,22 @@ import {
 
 export default class PartyController {
   static createParty(request, response) {
+    let image = 'https://res.cloudinary.com/duk5ix8wp/image/upload/v1539063817/mfj9epgqaqbtpqdocet4.jpg';
+    request.body = JSON.parse(JSON.stringify(request.body));
+    if(request.file) {
+      const file = dataUri(request).content;
+      return uploader.upload(file).then((result) => {
+        image = result.url;
+      }).catch((err) => result.status(400).json({
+        messge: 'someting went wrong while processing your image',
+        data: err
+      }))
+     }
+
     const {
-      name, acronym, hqAddress, logoUrl, email, phone,
+      name, acronym, hqAddress, email, phone,
     } = request.body;
+   let logoUrl =  request.body.hasOwnProperty('logoUrl') ? request.body.logoUrl : image,
     const values = [
       name,
       acronym,

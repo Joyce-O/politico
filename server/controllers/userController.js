@@ -1,4 +1,6 @@
 import bcrypt from 'bcrypt';
+import { uploader } from 'cloudinary';
+import { dataUri } from '../middleware/upload';
 import pool from '../database/dbConnection';
 import { insertUser, queryUsersByEmail } from '../database/queries';
 import { generateToken } from '../middlewares.js/authorization';
@@ -6,9 +8,23 @@ import { hashPassword, verifyPassword } from '../utilities.js/hashPassword';
 
 export default class UserController {
   static registerUser(request, response) {
-    const {
-      firstname, lastname, email, phone, passportUrl, password,
+    let image = let images = 'http://res.cloudinary.com/dqw7jnfgo/image/upload/v1549288478/q1pmfhfjkrgnchugokpf.jpg';
+    request.body = JSON.parse(JSON.stringify(request.body));
+    if(request.file) {
+      const file = dataUri(request).content;
+      return uploader.upload(file).then((result) => {
+        image = result.url;
+      }).catch((err) => result.status(400).json({
+        messge: 'someting went wrong while processing your image',
+        data: err
+      }))
+     }
+
+     const {
+      firstname, lastname, email, phone, password,
     } = request.body;
+   let passportUrl =  request.body.hasOwnProperty('passportUrl') ? request.body.passportUrl : image,
+    
     let pswd = bcrypt.hashSync(password, 10);
     const values = [
       firstname,
