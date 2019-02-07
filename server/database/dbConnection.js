@@ -13,7 +13,6 @@ if (process.env.NODE_ENV === 'test:dev') {
   dbUrl = ({
     connectionString: process.env.DATABASE_URL || process.env.LOCALDB_URL,
   });
-  console.log(dbUrl);
 }
 
 const pool = new Pool(dbUrl);

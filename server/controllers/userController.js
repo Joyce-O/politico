@@ -48,7 +48,7 @@ export default class UserController {
 
           });
       })
-      .catch(error => response.status(500)
+      .catch(error => response.status(400)
         .json({
           status: 400,
           error: "Your input is not valid, check and try again",
@@ -93,7 +93,7 @@ export default class UserController {
       .catch((error) => {
         response.json({
           status: 400,
-          error: error.message,
+          error: 'Sorry, the credentials you provided is incorrect.',
         });
       });
   }

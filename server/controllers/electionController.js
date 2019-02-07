@@ -117,10 +117,10 @@ export default class OtherController {
         }
         return false;
       })
-      .catch(error => response.status(500)
+      .catch(error => response.status(400)
         .json({
           status: 400,
-          error: error.message,
+          error: "our input is not valid, check and try again",
         }));
   }
 
@@ -129,7 +129,7 @@ export default class OtherController {
     pool.query(selectAnOffice, [officeId])
       .then((data) => {
         if (data.rowCount === 0) {
-          response.status(201)
+          response.status(404)
             .json({
               status: 404,
               error: 'office does not exist, please check your input and try again ',
@@ -144,7 +144,6 @@ export default class OtherController {
           response.status(200)
             .json({
               status: 200,
-              message: 'Election results for this office',
               data: result,
             });
         }
