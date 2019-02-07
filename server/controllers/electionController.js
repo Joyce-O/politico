@@ -57,16 +57,15 @@ export default class OtherController {
           return response.status(201)
             .json({
               status: 201,
-              message: 'Thank you! Application is successful.',
               data: candidate,
             });
         }
         return false;
       })
-      .catch(error => response.status(500)
+      .catch(error => response.status(400)
         .json({
-          status: 500,
-          error: error.message,
+          status: 400,
+          error: "Your input is not valid, check and try again",
         }));
   }
 
@@ -113,7 +112,6 @@ export default class OtherController {
           response.status(201)
             .json({
               status: 201,
-              message: 'Candidate is registered',
               data: voter2,
             });
         }

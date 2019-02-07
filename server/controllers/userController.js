@@ -38,22 +38,20 @@ export default class UserController {
     pool.query(insertUser, values)
       .then((data) => {
         const token = generateToken(data.rows[0]);
-        const user = [firstname, lastname, email, phone,
-          passportUrl];
+        const user = { firstname, lastname, email, phone,
+          passportUrl };
 
         return response.status(201)
           .json({
-            message: 'Your signup is successful!',
             status: 201,
-            token,
-            data: user,
+            data: [{token: token, user: user}]
 
           });
       })
       .catch(error => response.status(500)
         .json({
           status: 400,
-          error: error.message,
+          error: "Your input is not valid, check and try again",
         }));
   }
 
@@ -68,14 +66,13 @@ export default class UserController {
               firstname, lastname, phone, email,
             } = data.rows[0];
             const token = generateToken(data.rows[0]);
-            const user = [
+            const user = {
               firstname, lastname, email, phone,
-            ];
+            };
             response.status(200)
               .json({
                 status: 200,
-                token,
-                data: user,
+                data: [{token: token, user: user}]
               });
           } else {
             response.status(400)
