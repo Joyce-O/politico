@@ -5,6 +5,7 @@ const append = (parent, el) => {
   return parent.appendChild(el);
 }
 let day = createNode('li');
+let ul = createNode('ul');
 let daySpan = createNode('span');
 let hour = createNode('li');
 let hourSpan = createNode('span');
