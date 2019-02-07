@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import pool from '../database/dbConnection';
 import { insertUser, queryUsersByEmail } from '../database/queries';
 import { generateToken } from '../middlewares.js/authorization';
@@ -8,13 +9,14 @@ export default class UserController {
     const {
       firstname, lastname, email, phone, passportUrl, password,
     } = request.body;
+    let pswd = bcrypt.hashSync(password, 10);
     const values = [
       firstname,
       lastname,
       email,
       phone,
       passportUrl,
-      hashPassword(password),
+      pswd,
     ];
 
     pool.query(queryUsersByEmail, [email])
