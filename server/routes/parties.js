@@ -1,11 +1,12 @@
 import express from 'express';
 import multer from 'multer';
+import { cloudinaryConfig } from './config/cloudinaryConfig'
 import PartyValidation from '../middlewares.js/PartyValidation';
 import PartyController from '../controllers/PartyController';
 import { verifyToken, adminPass } from '../middlewares.js/authorization';
 
 const parties = express.Router();
-const users = express.Router();
+parties.use('/parties', cloudinaryConfig);
 
 const storage = multer.memoryStorage();
 const multerUploads = multer({ storage }).single('logoUrl');
