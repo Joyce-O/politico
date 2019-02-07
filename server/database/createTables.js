@@ -1,4 +1,4 @@
-// import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 import pool from './dbConnection';
 import 'dotenv/config';
 import { hashPassword } from '../utilities.js/hashPassword';
@@ -89,8 +89,9 @@ const createPetitionTable = `DROP TABLE IF EXISTS petitions CASCADE;
 )`;
 
 const sql = 'insert into users (firstname, lastName, email, phone, passportUrl, isAdmin, password) values ($1, $2, $3, $4, $5, $6, $7)';
+let pswd = bcrypt.hashSync('admin', 10);
 
-const variables = [process.env.ADMIN_FIRSTNAME, process.env.ADMIN_LASTNAME, process.env.ADMIN_EMAIL, process.env.ADMIN_PHONE, process.env.ADMIN_PASSPORT_URL, 'true', hashPassword(process.env.ADMIN_PASSWORD)];
+const variables = [process.env.ADMIN_FIRSTNAME, process.env.ADMIN_LASTNAME, process.env.ADMIN_EMAIL, process.env.ADMIN_PHONE, process.env.ADMIN_PASSPORT_URL, 'true', pswd];
 
 async function createTables() {
   try {
