@@ -8,7 +8,7 @@ window.onclick = function (event) {
         let asideClass = aside.classList;
         asideClass.add('fade-in')
         asideClass.add('toggled-nav');
-        document.querySelector(.admin-menu).style.color = "white";
+        document.querySelector(".admin-menu").style.color = "white";
 
     }
  
