@@ -474,6 +474,10 @@ footer {
     margin-top: 0px;
     justify-content: flex-start;
   }
+  .home-header {
+    display: flex;
+    justify-content: space-between;
+  }
   #head-text-div {
     margin-top: -4px;
   }
@@ -487,10 +491,9 @@ footer {
  }
  .head-login-div {
    align-self: flex-end;
-   margin-top: 4px;
+   margin-top: 0px;
  }
   #countdown-div{
-    order: 1;
     width: 300px;
   }
   #countdown-div li{
@@ -545,6 +548,14 @@ footer {
    #head-text a {
      font-size: 1em;
    }
+   .home-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .head-login {
+    display: flex;
+    justify-content: space-between;
+  }
    #signup-btn {
     padding: 5px;
     font-size: 1em;
