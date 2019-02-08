@@ -5,11 +5,16 @@ let deleteBtn = document.getElementById("del-send-link");
 let cancelBtn = document.getElementById("cancel-link");
 
 let btn = document.getElementById("delete-btn");
+let div = document.querySelector(".dash-cont");
 
 let span = document.getElementsByClassName("del-close")[0];
 
 btn.onclick = function() {
   modal.style.display = "block";
+  modal.style.opacity = 1;
+  div.style.display = "none";
+
+
 }
 deleteBtn.onclick = function(e) {
     e.preventDefault();
