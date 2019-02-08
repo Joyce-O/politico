@@ -39,8 +39,8 @@ export default class OfficeController {
       })
       .catch(error => response.status(500)
         .json({
-          status: 500,
-          error: error.message,
+          status: 400,
+          error: "our input is not valid, check and try again",
         }));
   }
 
@@ -65,8 +65,8 @@ export default class OfficeController {
       })
       .catch(error => response.status(500)
         .json({
-          status: 500,
-          error: error.message,
+          status: 400,
+          error: "our input is not valid, check and try again",
         }));
   }
 
@@ -93,14 +93,13 @@ export default class OfficeController {
         return response.status(200)
           .json({
             status: 200,
-            message: 'Office fetched successfully',
             data: office,
           });
       })
       .catch(error => response.status(500)
         .json({
-          status: 500,
-          error: error.message,
+          status: 400,
+          error: "our input is not valid, check and try again",
         }));
   }
 }
