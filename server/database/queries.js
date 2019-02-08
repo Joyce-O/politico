@@ -17,4 +17,4 @@ export const selectUsersById = 'select * from users where id = $1';
 export const selectCanById = 'select * from candidates where userId = $1';
 export const insertVote = 'insert into votes (voter, office, candidate) values ($1, $2, $3) returning *';
 export const selectCanId = 'select * from candidates where id = $1';
-export const resultQuery = 'select office, candidate, count(candidate) as results from votes where votes.office = $1 group by votes.candidate, votes.office' 
+export const resultQuery = 'select office, candidate, count(candidate) as results from votes where office = $1 group by candidate, office' 
