@@ -809,4 +809,7 @@ border-radius: 5px;
 .main-admin {
   opacity: 1;
 }
+  .admin-menu li a  {
+  color: white;
+}
 }
