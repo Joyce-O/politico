@@ -108,7 +108,7 @@ export default class OtherController {
     pool.query(insertVote, values)
       .then((data) => {
         if (data.rowCount !== 0) {
-          const voter2 = data.rows[0];
+          const voter2 = data.rows;
           response.status(201)
             .json({
               status: 201,
