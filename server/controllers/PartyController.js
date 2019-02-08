@@ -1,4 +1,5 @@
 import pool from '../database/dbConnection';
+
 import {
   queryPartiesByName, insertParty, selectAllParties, selectAParty,
   queryPartiesByEmail, updatePartyName, deleteParty, queryPartiesByAcronym,
@@ -7,9 +8,13 @@ import {
 
 export default class PartyController {
   static createParty(request, response) {
+    let image = 'https://res.cloudinary.com/duk5ix8wp/image/upload/v1539063817/mfj9epgqaqbtpqdocet4.jpg';
+    request.body = JSON.parse(JSON.stringify(request.body));
+
     const {
-      name, acronym, hqAddress, logoUrl, email, phone,
+      name, acronym, hqAddress, email, phone,
     } = request.body;
+   let logoUrl =  request.body.hasOwnProperty('logoUrl') ? request.body.logoUrl : image;
     const values = [
       name,
       acronym,
@@ -24,7 +29,7 @@ export default class PartyController {
           return response.status(409)
             .json({
               status: 409,
-              message: 'Sorry the name aready exist, register with another name.',
+              error: 'Sorry the name aready exist, register with another name.',
             });
         }
       });
@@ -34,7 +39,7 @@ export default class PartyController {
           return response.status(409)
             .json({
               status: 409,
-              message: 'Sorry the acronym aready exist, register with another acronym.',
+              error: 'Sorry the acronym aready exist, register with another acronym.',
             });
         }
       });
@@ -45,7 +50,7 @@ export default class PartyController {
           return response.status(409)
             .json({
               status: 409,
-              message: 'Sorry the email aready exist, register with another email.',
+              error: 'Sorry the email aready exist, register with another email.',
             });
         }
       });
@@ -60,7 +65,6 @@ export default class PartyController {
           return response.status(201)
             .json({
               status: 201,
-              message: 'Party is successfully created',
               data: party,
 
             });
@@ -68,8 +72,8 @@ export default class PartyController {
       })
       .catch(error => response.status(500)
         .json({
-          status: 500,
-          data: [error.message],
+          status: 400,
+          error: "Your input is not valid, check and try again",
         }));
   }
 
@@ -88,14 +92,13 @@ export default class PartyController {
         return response.status(200)
           .json({
             status: 200,
-            message: 'Parties fetched successfully',
             data: partyList,
           });
       })
-      .catch(error => response.status(500)
+      .catch(error => response.status(400)
         .json({
-          status: 500,
-          error: error.message,
+          status: 400,
+          error: "Your input is not valid, check and try again",
         }));
   }
 
@@ -105,7 +108,7 @@ export default class PartyController {
       return response
         .json({
           status: 400,
-          error: 'Invalid partyId',
+          error: 'Invalid party id number, please check and try again',
         });
     }
     pool.query(selectAParty, [partyId])
@@ -122,14 +125,13 @@ export default class PartyController {
         return response.status(200)
           .json({
             status: 200,
-            message: 'Party fetched successfully',
             data: party,
           });
       })
-      .catch(error => response.status(500)
+      .catch(error => response.status(400)
         .json({
-          status: 500,
-          error: error.message,
+          status: 400,
+          error: "Your input is not valid, check and try again",
         }));
   }
 
@@ -140,7 +142,7 @@ export default class PartyController {
       return response
         .json({
           status: 400,
-          error: 'Invalid partyId',
+          error: 'Invalid party id number, check the number and try again',
         });
     }
     pool.query(selectAParty, [partyId])
@@ -171,13 +173,12 @@ export default class PartyController {
         return response.status(200)
           .json({
             status: 200,
-            message: 'Party name has been updated',
             data: party,
           })
-          .catch(error => response.status(500)
+          .catch(error => response.status(400)
             .json({
-              status: 500,
-              error: error.message,
+              status: 400,
+              error: "Your input is not valid, check and try again",
             }));
       });
   }
@@ -188,7 +189,7 @@ export default class PartyController {
       response
         .json({
           status: 400,
-          error: 'Invalid partyId',
+          error: 'Invalid party Id check and try again',
         });
       return false;
     }
@@ -209,10 +210,10 @@ export default class PartyController {
           status: 200,
           message: 'This order is deleted',
         }))
-      .catch(error => response.status(500)
+      .catch(error => response.status(400)
         .json({
-          status: 500,
-          error: error.message,
+          status: 400,
+          error: "our input is not valid, check and try again",
         }));
   }
 }
