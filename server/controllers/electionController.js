@@ -120,7 +120,7 @@ export default class OtherController {
       .catch(error => response.status(400)
         .json({
           status: 400,
-          error: "our input is not valid, check and try again",
+          error: "Your input is not valid, check and try again",
         }));
   }
 
