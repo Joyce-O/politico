@@ -140,7 +140,7 @@ export default class OtherController {
     pool.query(resultQuery, [officeId])
       .then((data) => {
         if (data.rowCount !== 0) {
-          const result = data.rows[0];
+          const result = data.rows;
           response.status(200)
             .json({
               status: 200,
