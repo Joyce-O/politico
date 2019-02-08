@@ -8,6 +8,6 @@ const electionRoute = express.Router();
 
 electionRoute.post('/office/:userId/register', verifyToken, adminPass, electionValidation.handleCreateCandidate, electionController.createCandidate);
 electionRoute.post('/votes/', verifyToken, electionValidation.handleVote, electionController.castVote);
-electionRoute.get('/office/:officeId/result', electionController.result);
+electionRoute.get('/office/:officeId/result', verifyToken, electionController.result);
 
 export default electionRoute;
