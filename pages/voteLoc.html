@@ -41,52 +41,68 @@
             <div id="flex-admin">
                 <aside class="admin-menu">
                     <div class="bg-blue" id="menu">
-                        <ul class="ul-list">
-                            <li id="welcome-admin">Admin</li>
+                        <ul class="ul-list ul-list-profile">
+                            <li id="welcome-admin">User Juliet</li>
                             <li>
-                                <!--  -->
-                                <a href="admin_dashboard.html">
-                                    <span class="menu-ico menu-ico-d">&#9916;</span>Dashboard</a>
+                                <img src="images/download.svg" class="menu-ico">
+                                <a href="profile.html">
+                                    <span>Profile</span>
+                                </a>
                             </li>
                             <li>
-                                <a href="political_offices.html">
-                                    <span class="menu-ico menu-ico-d">&#43;</span>Political Offices</a>
+                                <a href="#">
+                                    <span class="menu-ico menu-ico-d">&#x2302;</span>Political Office</a>
                             </li>
                             <li>
-                                <a href="new_party.html">
-                                    <span class="menu-ico menu-ico-d">&#43;</span>New Party</a>
+                                <img src="images/vote_ico.png" class="menu-ico">
+                                <a href="vote.html">
+                                    <span>Vote</span>
+                                </a>
+                            </li>
+                            <li>
+                                <img src="images/result.png" class="menu-ico menu-ico-black">
+                                <a href="result.html">
+                                    <span>Results</span>
+                                </a>
+                            </li>
+                            <li>
+                                <img src="images/home.svg" class="menu-ico black">
+                                <a href="politician.html">
+                                    <span>Apply for Office</span>
+                                </a>
                             </li>
                             <li>
                                 <a href="new_office.html">
-                                    <span class="menu-ico menu-ico-d">&#43;</span>New Office</a>
+                                    <span class="menu-ico menu-ico-d">&#43;</span>Send a petition</a>
                             </li>
-                            <li>
-                                <a href="petition.html">
-                                    <span class="menu-ico menu-ico-d">&#9854;</span>Petitions</a>
 
-
-                            </li>
                         </ul>
                     </div>
                 </aside>
                 <section class="main-admin">
                     <div class="dash-cont">
+                            <div class="pagination">
+                                    <a href="voteGov.html">&laquo;</a>
+                                    <a href="vote.html" >1</a>
+                                    <a href="voteGov.html">2</a>
+                                    <a href="#" class="active">3</a>
+                                    <a href="#">4</a>
+                                    <a href="#">5</a>
+                                    <a href="#">6</a>
+                                    <a href="#">&raquo;</a>
+                                  </div>
                         <div id="table-info">
-                            <a href="#">Party Details</a>
+                            <a href="#">Select the Candidate of your choice</a>
                         </div>
                         <div class="party-div">
 
-                            <div id="flag-div">
-                                <p class="party-initial">People Alliance Party
-                                    <span>...for now and the future!</span>
+                            <div id="flag-div-office">
+                                <label class="party-initial mg-20 underline" for="president">
+                                    <b>Office</b>
+                                </label>
+                                <p id="president" class="party-initial">Senate
+                                    <span>Member House of Reps.</span>
                                 </p>
-                                <img id="flag" src="images/flag.png" alt="profile name" width="20px">
-                                <div id="details-hq">
-                                    <label for="Chai">
-                                        <b>Headquarters</b>
-                                    </label>
-                                    <p>No. 4 Bimpe Road Benin City, Edo State.</p>
-                                </div>
 
                             </div>
                             <div class="party-list">
@@ -122,54 +138,36 @@
                                 <div class="margin-divide">
                                     <ul>
                                         <li class="margin-bottom bold">
-                                            Office
+                                            Party
                                         </li>
-                                        <li class="margin-bottom">Presidency</li>
-                                        <li class="margin-bottom">Senate</li>
-                                        <li class="margin-bottom">Senate</li>
-                                        <li class="margin-bottom">House of Rep.</li>
-                                        <li class="margin-bottom">House of Rep.</li>
-                                        <li class="margin-bottom">Governorship</li>
+                                        <li class="margin-bottom">APN</li>
+                                        <li class="margin-bottom">ASM</li>
+                                        <li class="margin-bottom">PAP</li>
+                                        <li class="margin-bottom">PLP</li>
+                                        <li class="margin-bottom">SPA</li>
+                                        <li class="margin-bottom">UDP</li>
                                     </ul>
                                 </div>
                                 <div class="margin-divide">
                                     <ul>
                                         <li class="margin-bottom bold">
-                                            Remarks
+                                            Select
                                         </li>
-                                        <li class="margin-bottom">Approved</li>
-                                        <li class="margin-bottom">Approved</li>
-                                        <li class="margin-bottom">Approved</li>
-                                        <li class="margin-bottom">Approved</li>
-                                        <li class="margin-bottom">Approved</li>
-                                        <li class="margin-bottom">Approved</li>
+                                        <li class="margin-bottom"><input type="radio" name="president" value="Juliana Gokan"><span class="flag-vote blue">&#127937;</span></li>
+                                        <li class="margin-bottom"><input type="radio" name="president" value="Stephen Gilbert"><span class="flag-vote blue">&#127987;</span></li>
+                                        <li class="margin-bottom"><input type="radio" name="president" value="Yusuf Omalide"><span class="flag-vote 3">&#127937;</span></li>
+                                        <li class="margin-bottom"><input type="radio" name="president" value="Benjamin Sunday"><span class="flag-vote 4">&#127937;</span></li>
+                                        <li class="margin-bottom"><input type="radio" name="president" value="Maria Hogiya"><span class="flag-vote 5">&#127937;</span></li>
+                                        <li class="margin-bottom"><input type="radio" name="president" value="Keneth Duru"><span class="flag-vote 6">&#127937;</span></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="delete-party">
-
-                            <a href="edit_party.html" id="edit-btn" class="signupbtn">Edit</a>
-                            <button id="delete-btn" type="submit" class="signupbtn">Delete</button>
-
-                        </div>
-
                     </div>
 
-            </div>
-            <div id="del-myModal" class="del-modal">
-
-                <div class="del-modal-content">
-                    <span class="del-close">&times;</span>
-                    <p class="text-center">This action cannot be reversed!</p>
-                    <div id="del-reset-psw">
-                            <button type="button" id="del-send-link" class="signupbtn">Delete</button>
-                            <button type="button" id="cancel-link" class="signupbtn">Cancel</button>
-                       
-                    </div>
-                </div>
             </div>
             </section>
+            
     </div>
     </section>
     <footer>
@@ -177,7 +175,6 @@
     </footer>
     <script src="js/main.js"></script>
     <script src="js/toggle.js"></script>
-    <script src="js/delete.js"></script>
 </body>
 
 

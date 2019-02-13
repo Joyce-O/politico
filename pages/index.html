@@ -14,30 +14,24 @@
 
 <body>
     <div class="container">
-        <header>
-            <div id="head-text-div">
-                <ul>
-                    <li id="head-text">
-                        <a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- <div id="countdown-div">
-                <ul id="ul">
-                    <li class="ema-number1">
-                        <p>2019 elections begin in: </p>
-                    </li>
-                </ul>
-            </div> -->
-            <div class="head-login-div">
-                <ul class="head-login-ul">
-                    <li>
-                        <a id="signup-btn" href="login.html">Login</a>
-                    </li>
-                </ul>
-            </div>
-        </header>
+            <header class="head-login">
+                    <div>
+                        <ul>
+                            <li id="head-text">
+                                <a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="head-login-ul">
+                            <li>
+                                <a id="signup-btn" href="login.html">Login</a>
+                            </li>
+                        </ul>
+                    </div>
+                </header>
         <section class="home-section home-section-home">
+            <!-- <center>
               <div class="countdown-div countdown-di-login">
                 <ul id="ul">
                     <li class="ema-number1">
@@ -45,6 +39,7 @@
                     </li>
                 </ul>
             </div>
+        </center> -->
             <div id="action-word">
                 <h2>
                     Welcome to
@@ -52,7 +47,7 @@
                 </h2>
             </div>
             <div class="signup-form">
-                <form action="">
+                <form id="home-signup-form" action="">
                     <p class="fill-up">Please fill in this form to create an account.</p>
 
                     <div class="signup-flex">
@@ -90,7 +85,7 @@
                         </label>
                         <input type="file" id="photo" required>
                     </center>
-                        <button type="submit" class="signupbtn signupbtn-center">Signup</button>
+                        <button id="home-signup" type="submit" class="signupbtn signupbtn-center">Signup</button>
                     </div>
                 </form>
             </div>
@@ -102,7 +97,7 @@
         </footer>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="js/formHandler.js"></script>
 </body>
 
 

@@ -17,14 +17,11 @@
         <header>
             <ul>
                 <li id="head-text">
-                    <a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
+                    <span id="menu-span" class="toggle-menu">&equiv;</span><a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
                 </li>
             </ul>
             <div class="profile-admin">
                 <div class="dash-profile">
-                    <p>
-                        <a href="admin_dashboard.html">Dashboard</a>
-                    </p>
                 </div>
                 <div>
                     <ul class="head-login-ul">
@@ -36,6 +33,7 @@
                                 <div class="dropdown-content">
 
                                     <a href="index.html">Logout</a>
+                                     <a href="admin_dashboard.html">Dashboard</a>
                                 </div>
                             </div>
                         </li>
@@ -51,14 +49,14 @@
                             <li id="welcome-admin">User Juliet</li>
                             <li>
                                 <img src="images/download.svg" class="menu-ico">
-                                <a href="#">
+                                <a href="profile.html">
                                     <span>Profile</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="candidates.html">
                                     <span class="menu-ico menu-ico-d">&#x2302;</span>Political Office</a>
-                                </li>
+                            </li>
                             <li>
                                 <img src="images/vote_ico.png" class="menu-ico">
                                 <a href="vote.html">
@@ -89,22 +87,24 @@
                     <div class="dash-cont-user">
                         <!-- Dashboard Content -->
                         <div id="user-descs">
-                            <div class="text-center">
-                                <img src="images/download.svg" id="user-img">
-                                <h5 class="bold">Location:
-                                    <span>Lagos State</span>
-                                </h5>
-                            </div>
-                            <div class="user-details">
-                                <h4>User Details</h4>
-                                <p>
-                                    <span class="bold">Name: </span> Juliet Juliana</p>
-                                <p>
-                                    <span class="bold">Email: </span class="bold">juljul@gmail.com</p>
-                                <p>
-                                    <span class="bold">Phone number: </span>+2348138802833</p>
-                                <p>
-                                    <span class="bold">Location: </span> GRA Lagos State</p>
+                            <div>
+                                <div class="text-center">
+                                    <img src="images/download.svg" id="user-img">
+                                    <h5 class="bold">Location:
+                                        <span>Lagos State</span>
+                                    </h5>
+                                </div>
+                                <div class="user-details">
+                                    <h4>User Details</h4>
+                                    <p>
+                                        <span class="bold">Name: </span> Juliet Juliana</p>
+                                    <p>
+                                        <span class="bold">Email: </span class="bold">juljul@gmail.com</p>
+                                    <p>
+                                        <span class="bold">Phone number: </span>+2348138802833</p>
+                                    <p>
+                                        <span class="bold">Location: </span> GRA Lagos State</p>
+                                </div>
                             </div>
                             <div id="user-activity">
                                 <h4>Activity History</h4>
@@ -162,6 +162,7 @@
             <p>&#169;Joyce-O Designs ~ 2019 General Elections</p>
         </footer>
         <script src="js/main.js"></script>
+        <script src="js/toggle.js"></script>    
 </body>
 
 
