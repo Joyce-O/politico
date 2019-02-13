@@ -1,8 +1,8 @@
 // Reset password modal
 
-let modal = document.getElementById('myModal');
+let modal = document.querySelector('#myModal');
 
-let btn = document.getElementById("delete-btn");
+let btn = document.getElementById("forgot-btn");
 
 let span = document.getElementsByClassName("close")[0];
 

@@ -41,49 +41,69 @@
             <div id="flex-admin">
                 <aside class="admin-menu">
                     <div class="bg-blue" id="menu">
-                        <ul class="ul-list">
-                            <li id="welcome-admin">Admin</li>
+                        <ul class="ul-list ul-list-profile">
+                            <li id="welcome-admin">User Juliet</li>
                             <li>
-                                <!--  -->
-                                <a href="admin_dashboard.html">
-                                    <span class="menu-ico menu-ico-d">&#9916;</span>Dashboard</a>
+                                <img src="images/download.svg" class="menu-ico">
+                                <a href="profile.html">
+                                    <span>Profile</span>
+                                </a>
                             </li>
                             <li>
-                                <a href="political_offices.html">
-                                    <span class="menu-ico menu-ico-d">&#43;</span>Political Offices</a>
+                                <a href="#">
+                                    <span class="menu-ico menu-ico-d">&#x2302;</span>Political Office</a>
                             </li>
                             <li>
-                                <a href="new_party.html">
-                                    <span class="menu-ico menu-ico-d">&#43;</span>New Party</a>
+                                <img src="images/vote_ico.png" class="menu-ico">
+                                <a href="vote.html">
+                                    <span>Vote</span>
+                                </a>
+                            </li>
+                            <li>
+                                <img src="images/result.png" class="menu-ico menu-ico-black">
+                                <a href="result.html">
+                                    <span>Results</span>
+                                </a>
+                            </li>
+                            <li>
+                                <img src="images/home.svg" class="menu-ico black">
+                                <a href="politician.html">
+                                    <span>Apply for Office</span>
+                                </a>
                             </li>
                             <li>
                                 <a href="new_office.html">
-                                    <span class="menu-ico menu-ico-d">&#43;</span>New Office</a>
+                                    <span class="menu-ico menu-ico-d">&#43;</span>Send a petition</a>
                             </li>
-                            <li>
-                                <a href="petition.html">
-                                    <span class="menu-ico menu-ico-d">&#9854;</span>Petitions</a>
 
-
-                            </li>
                         </ul>
                     </div>
                 </aside>
                 <section class="main-admin">
                     <div class="dash-cont">
+                            <div class="pagination">
+                                    <a href="vote.html">&laquo;</a>
+                                    <a href="vote.html">1</a>
+                                    <a href="#" class="active">2</a>
+                                    <a href="voteLoc.html">3</a>
+                                    <a href="#">4</a>
+                                    <a href="#">5</a>
+                                    <a href="#">6</a>
+                                    <a href="voteLoc.html">&raquo;</a>
+                                  </div>
                         <div id="table-info">
-                            <a href="#">Office Details</a>
+                            <a href="#">Select the Candidate of your choice</a>
                         </div>
                         <div class="party-div">
 
                             <div id="flag-div-office">
-                                    <label class="party-initial mg-20 underline" for="president">
-                                            <b>Office</b>
-                                        </label>
-                                <p id="president" class="party-initial">President
-                                    <span>Head of State</span>
+                                <label class="party-initial mg-20 underline" for="president">
+                                    <b>Office</b>
+                                </label>
+                                <p id="president" class="party-initial">Governor
+                                    <span>Enugu State</span>
                                 </p>
-                                
+
                             </div>
                             <div class="party-list">
                                 <div class="margin-divide">
@@ -131,14 +151,14 @@
                                 <div class="margin-divide">
                                     <ul>
                                         <li class="margin-bottom bold">
-                                            Remark
+                                            Select
                                         </li>
-                                        <li class="margin-bottom">Approved</li>
-                                        <li class="margin-bottom">Approved</li>
-                                        <li class="margin-bottom">Approved</li>
-                                        <li class="margin-bottom">Approved</li>
-                                        <li class="margin-bottom">Approved</li>
-                                        <li class="margin-bottom">Approved</li>
+                                        <li class="margin-bottom"><input type="radio" name="president" value="Juliana Gokan"><span class="flag-vote blue">&#127937;</span></li>
+                                        <li class="margin-bottom"><input type="radio" name="president" value="Stephen Gilbert"><span class="flag-vote blue">&#127987;</span></li>
+                                        <li class="margin-bottom"><input type="radio" name="president" value="Yusuf Omalide"><span class="flag-vote 3">&#127937;</span></li>
+                                        <li class="margin-bottom"><input type="radio" name="president" value="Benjamin Sunday"><span class="flag-vote 4">&#127937;</span></li>
+                                        <li class="margin-bottom"><input type="radio" name="president" value="Maria Hogiya"><span class="flag-vote 5">&#127937;</span></li>
+                                        <li class="margin-bottom"><input type="radio" name="president" value="Keneth Duru"><span class="flag-vote 6">&#127937;</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -147,6 +167,7 @@
 
             </div>
             </section>
+            
     </div>
     </section>
     <footer>

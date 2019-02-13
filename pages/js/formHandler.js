@@ -1,3 +1,9 @@
+    if (document.getElementById("home-signup")) {
+        document.getElementById("home-signup-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            window.location.assign("/pages/admin_dashboard.html");
+        });
+    }
 
     if (document.getElementById("edit-submit")) {
         document.getElementById("partyForm").addEventListener("submit", (e) => {
