@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="images/favicon.ico" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="css/admin.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/admin.css" /> 
 
 </head>
 
@@ -32,7 +32,7 @@
 
                                 <div class="dropdown-content">
 
-                                    <a href="index.html">Logout</a>
+                                    <a id="logout" href="#">Logout</a>
                                      <a href="admin_dashboard.html">Dashboard</a>
                                 </div>
                             </div>
@@ -85,25 +85,18 @@
                 </aside>
                 <section class="main-profile">
                     <div class="dash-cont-user">
-                        <!-- Dashboard Content -->
                         <div id="user-descs">
                             <div>
                                 <div class="text-center">
+                                    <h4 class="pad-bottom">User Details</h4>
                                     <img src="images/download.svg" id="user-img">
-                                    <h5 class="bold">Location:
-                                        <span>Lagos State</span>
-                                    </h5>
                                 </div>
                                 <div class="user-details">
-                                    <h4>User Details</h4>
-                                    <p>
-                                        <span class="bold">Name: </span> Juliet Juliana</p>
-                                    <p>
-                                        <span class="bold">Email: </span class="bold">juljul@gmail.com</p>
-                                    <p>
-                                        <span class="bold">Phone number: </span>+2348138802833</p>
-                                    <p>
-                                        <span class="bold">Location: </span> GRA Lagos State</p>
+                                    <p id="user-name" class="bold">
+                                       Juliet Juliana</p>
+                                    <p>&#9993; <span id="user-mail">juljul@gmail.com</span></p>
+                                    <p>&#9742; <span id="user-phone">+2348138802833</span></p>
+                                    <p>&#127960; <span id="user-location"> GRA Lagos State</span></p>
                                 </div>
                             </div>
                             <div id="user-activity">
@@ -161,8 +154,9 @@
         <footer>
             <p>&#169;Joyce-O Designs ~ 2019 General Elections</p>
         </footer>
-        <script src="js/main.js"></script>
-        <script src="js/toggle.js"></script>    
+        <script src="js/toggle.js"></script>
+        <script src="fetchEndpoints/profile.js"></script>
+        <script src="fetchEndpoints/logout.js"></script>   
 </body>
 
 

@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt';
 import pool from './dbConnection';
 import 'dotenv/config';
-import { hashPassword } from '../utilities.js/hashPassword';
 
 const createUserTable = `DROP TABLE IF EXISTS users CASCADE;
   CREATE TABLE users (
@@ -11,7 +10,8 @@ const createUserTable = `DROP TABLE IF EXISTS users CASCADE;
     lastname VARCHAR (128) NOT NULL,
     email VARCHAR (355) UNIQUE NOT NULL,
     phone VARCHAR(128) NOT NULL,
-    passportUrl TEXT NOT NULL,
+    passportUrl JSONB NOT NULL,
+    address VARCHAR (128) NOT NULL,
     createdOn TIMESTAMP NOT NULL DEFAULT (NOW()),
     isAdmin BOOLEAN NOT NULL DEFAULT (false),
     password VARCHAR (128) NOT NULL
@@ -88,10 +88,12 @@ const createPetitionTable = `DROP TABLE IF EXISTS petitions CASCADE;
     
 )`;
 
-const sql = 'insert into users (firstname, lastName, email, phone, passportUrl, isAdmin, password) values ($1, $2, $3, $4, $5, $6, $7)';
-let pswd = bcrypt.hashSync('admin', 10);
+const sql = 'insert into users (firstname, lastname, email, phone, passportUrl, address, isAdmin, password) values ($1, $2, $3, $4, $5, $6, $7, $8)';
+const pswd = bcrypt.hashSync('admin', 10);
 
-const variables = [process.env.ADMIN_FIRSTNAME, process.env.ADMIN_LASTNAME, process.env.ADMIN_EMAIL, process.env.ADMIN_PHONE, process.env.ADMIN_PASSPORT_URL, 'true', pswd];
+const variables = [process.env.ADMIN_FIRSTNAME, process.env.ADMIN_LASTNAME,
+  process.env.ADMIN_EMAIL, process.env.ADMIN_PHONE, process.env.ADMIN_PASSPORT_URL,
+  process.env.ADMIN_ADDRESS, true, pswd];
 
 async function createTables() {
   try {

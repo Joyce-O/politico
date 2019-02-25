@@ -1,58 +1,71 @@
 import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
+import cloudinary from 'cloudinary';
 import pool from '../database/dbConnection';
 import { insertUser, queryUsersByEmail } from '../database/queries';
 import { generateToken } from '../middlewares.js/authorization';
 import { verifyPassword } from '../utilities.js/hashPassword';
+import BufferStream from '../utilities.js/imgBufffer';
 
+dotenv.config();
 export default class UserController {
   static registerUser(request, response) {
-    let image = 'https://res.cloudinary.com/duk5ix8wp/image/upload/v1539063817/mfj9epgqaqbtpqdocet4.jpg';
-    request.body = JSON.parse(JSON.stringify(request.body));
-     const {
-      firstname, lastname, email, phone, password,
+    const {
+      firstname, lastname, email, phone, password, address,
     } = request.body;
-   let passportUrl =  request.body.hasOwnProperty('passportUrl') ? request.body.passportUrl : image;
-    
-    let pswd = bcrypt.hashSync(password, 10);
-    const values = [
-      firstname,
-      lastname,
-      email,
-      phone,
-      passportUrl,
-      pswd,
-    ];
 
-    pool.query(queryUsersByEmail, [email])
-      .then((data) => {
-        if (data.rowCount !== 0) {
-          response.status(409)
-            .json({
-              status: 409,
-              error: 'Email already exist, please use another email or login.',
-            });
-          return false;
-        }
-      });
+    const image = {};
+    const stream = new BufferStream(request.file.buffer);
 
-    pool.query(insertUser, values)
-      .then((data) => {
-        const token = generateToken(data.rows[0]);
-        const user = { firstname, lastname, email, phone,
-          passportUrl };
+    stream.pipe(cloudinary.uploader.upload_stream((result) => {
+      if (result !== undefined) {
+        image.url = result.url;
+        image.id = result.public_id;
+      }
+    }));
 
-        return response.status(201)
+    setTimeout(() => {
+      const passportUrl = image;
+      if (JSON.stringify(passportUrl) === '{}') {
+        response.status(400)
           .json({
-            status: 201,
-            data: [{token: token, user: user}]
-
+            status: 400,
+            error: 'Passport image upload failed, try again.',
           });
-      })
-      .catch(error => response.status(400)
-        .json({
-          status: 400,
-          error: "Your input is not valid, check and try again",
-        }));
+        return false;
+      }
+
+      const pswd = bcrypt.hashSync(password, 10);
+      const values = [
+        firstname,
+        lastname,
+        email,
+        phone,
+        passportUrl,
+        address,
+        pswd,
+      ];
+      pool.query(insertUser, values)
+        .then((data) => {
+          const { isadmin, id } = data.rows[0];
+          const token = generateToken({
+            isadmin, id, email, phone, passportUrl: passportUrl.url, firstname, lastname, address,
+          });
+          const user = { firstname, isadmin };
+
+          return response.status(201)
+            .json({
+              status: 201,
+              data: [{ token, user }],
+
+            });
+        })
+        .catch(error => response.status(500)
+          .json({
+            status: 500,
+            error: error.message,
+          }));
+    }, 10000);
   }
 
   static loginUser(request, response) {
@@ -63,38 +76,31 @@ export default class UserController {
           const isPassword = verifyPassword(request.body.password, data.rows[0].password);
           if (isPassword) {
             const {
-              firstname, lastname, phone, email,
+              firstname, lastname, phone, email, passporturl, isadmin, id, address,
             } = data.rows[0];
-            const token = generateToken(data.rows[0]);
-            const user = {
-              firstname, lastname, email, phone,
-            };
+            const passportUrl = passporturl.url;
+            const token = generateToken({
+              isadmin, id, email, phone, passportUrl, firstname, lastname, address,
+            });
+            const user = { firstname, isadmin };
             response.status(200)
               .json({
                 status: 200,
-                data: [{token: token, user: user}]
+                data: [{ token, user }],
               });
           } else {
             response.status(400)
               .json({
                 status: 400,
-                error: 'Sorry, the credentials you provided is incorrect.',
+                error: 'Sorry, the credentials you provided is incorrect. try again',
               });
           }
         }
-        if (data.rowCount === 0) {
-          response.status(400)
-            .json({
-              status: 400,
-              error: 'Sorry, the credentials you provided is incorrect.',
-            });
-        }
       })
-      .catch((error) => {
-        response.json({
-          status: 400,
-          error: 'Sorry, the credentials you provided is incorrect.',
-        });
-      });
+      .catch(error => response.status(500)
+        .json({
+          status: 'Fail',
+          message: error.message,
+        }));
   }
 }
