@@ -14,32 +14,23 @@
 
 <body>
     <div class="container">
-            <header class="head-login">
-                    <div>
-                        <ul>
-                            <li id="head-text">
-                                <a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <ul class="head-login-ul">
-                            <li>
-                                <a id="signup-btn" href="login.html">Login</a>
-                            </li>
-                        </ul>
-                    </div>
-                </header>
-        <section class="home-section home-section-home">
-            <!-- <center>
-              <div class="countdown-div countdown-di-login">
-                <ul id="ul">
-                    <li class="ema-number1">
-                        <p>2019 elections begin in: </p>
+        <header class="head-login">
+            <div>
+                <ul>
+                    <li id="head-text">
+                        <a href="index.html">&Popf;&oopf;&lopf;&iopf;&topf;&iopf;&copf;O</a>
                     </li>
                 </ul>
             </div>
-        </center> -->
+            <div>
+                <ul class="head-login-ul">
+                    <li>
+                        <a id="signup-btn" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="home-section home-section-home">
             <div id="action-word">
                 <h2>
                     Welcome to
@@ -47,44 +38,45 @@
                 </h2>
             </div>
             <div class="signup-form">
-                <form id="home-signup-form" action="">
+                <form id="home-signup-form">
                     <p class="fill-up">Please fill in this form to create an account.</p>
 
                     <div class="signup-flex">
                         <label for="firstname">
                         </label>
-                        <input id="name" type="text" placeholder="First name" name="firstname" required>
+                        <input id="name" type="text" placeholder="First name" name="firstname" minlength=3 required>
 
                         <label for="lastname">
                         </label>
-                        <input type="text" placeholder="Last name" name="lastname" required>
+                        <input id="lastname" type="text" placeholder="Last name" name="lastname" minlength=3 required>
 
                     </div>
+                    <h6 class="red-err" id="email-error"></h6>
                     <div class="signup-flex">
-                        <label for="othername">
-                        </label>
-                        <input id="othername" type="text" placeholder="Other name (optional)" name="othername">
-
-                        <label for="email">
-                        </label>
-                        <input type="email" placeholder="Email" name="email" required>
-
+                            <label for="othername">
+                            </label>
+                            <input id="othername" type="text" placeholder="Other name (optional)" name="othername">
+                            
+                            <label id="label-email" for="email">
+                            </label>
+                            <input id="email" type="email" placeholder="Email" name="email" required>
                     </div>
                     <div class="signup-flex">
                         <label for="phone">
                         </label>
-                        <input id="phone" type="number" placeholder="Phone number" name="phone" required>
+                        <input id="phone" type="number" placeholder="Phone number" name="phone" minlength=10 required>
                         <label for="password">
                         </label>
-                        <input type="password" placeholder="Password" name="password" required>
+                        <input id="password" type="password" placeholder="Password" name="password" minlength=4 required>
                     </div>
 
                     <div class="signup-flex-column">
-                        <center><label for="file">
-                            <!-- <b id="upload-label">Upload your photo</b> -->
-                        </label>
-                        <input type="file" id="photo" required>
-                    </center>
+                        <center>
+                            <h6 class="red-err" id="file-error"></h6>
+                            <label for="file">
+                            </label>
+                            <input type="file" id="photo" accept=".png, .jpg, .jpeg" required>
+                        </center>
                         <button id="home-signup" type="submit" class="signupbtn signupbtn-center">Signup</button>
                     </div>
                 </form>
@@ -97,7 +89,7 @@
         </footer>
     </div>
 
-    <script src="js/formHandler.js"></script>
+    <script src="fetchEndpoints/signup.js"></script>
 </body>
 
 

@@ -126,15 +126,14 @@ npm install
 ```
 4. Run "npm start" to start the app
 
-5. Navigate to
-Navigate to [`localhost:5700/api/v1`](localhost:3000/api/v1) in your browser to access the application
+5. Navigate to [`localhost:5700/api/v1`](localhost:3000/api/v1) in your browser to access the application
 
 6. Use Postman to test all endpoints
 
 
 ## Tests
 
-* The tests were written using Mocha and Mocha-http
+* The tests were written using Mocha and Chai-http
 * To run tests, navigate to the project's root directory
 * After installation, run the following command
     - `npm run test`

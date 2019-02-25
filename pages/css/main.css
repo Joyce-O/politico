@@ -7,7 +7,70 @@ body {
   height: 100vh;
   overflow: hidden;
 }
+/* unauthorized page */
+#body {
+width: 100vw;
+height: 100vh;
+}
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  border: 3px solid black;
+  align-content: center;
+}
+
+.unauthorized {
+  display: flex;
+  flex-direction: column;
+  margin: 50px auto;
+  padding: 30px 30px;
+  border-radius: 10px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.stop {
+  font-size: 100px;
+  color: brown;
+}
+
+.unauthorized h2 {
+  font-size: 3em;
+  color: #1a1a1a;
+}
+
+.unauthorized p {
+  color: green;
+  font-size: 1.5em;
+  font-style: italic;
+  transition: 1s;
+  transition-timing-function: ease-out;
+}
+
+.spinner {
+  border: 5px solid #cccccc;
+  border-radius: 50%;
+  border-top: 5px solid green;
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  animation: spin 2s linear infinite;
+  display: none;
+  position: absolute;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 /* Main container */
 .container {
   display: flex;
@@ -135,7 +198,9 @@ justify-content: center;
 }
 .signup-flex {
  display: flex;
+ /* border: 2px solid white; */
  justify-content: space-between;
+ flex: 1 1 0;
 }
 .signup-flex #phone, .signup-flex #othername, .signup-flex #name {
   margin-right: 5px;
@@ -406,11 +471,7 @@ width: fit-content;
   width: 140px;
   height: auto;
 }
-/* #user-desc {
-  flex: 0 1 30%;
-  border-right: 1px solid rgba(112, 112, 112, 0.27);
-  padding: 20px;
-} */
+
 #user-desc h4 {
   margin-bottom: 1.5rem;
   margin-top: 2rem;
@@ -454,6 +515,27 @@ a {
 }
 li {
   list-style: none;
+}
+.red-err {
+  color: yellow;
+  font-style: italic;
+}
+#email-error {
+  float: right;
+  margin-top: -15px;
+  margin-right: 10px;
+}
+#email-div {
+  display: flex;
+  margin-left: 5px;
+  flex-direction: column;
+  /* min-width: 50%; */
+  flex: 1;
+  /* justify-content: space-around; */
+}
+#other-div {
+  /* min-width: 50%; */
+  flex: 1;
 }
 /* Footer */
 footer {
@@ -604,7 +686,3 @@ footer {
   }
  
  } 
- 
- @media (max-width: 767px) {
- 
- }
