@@ -9,6 +9,7 @@
     <link rel="icon" href="images/favicon.ico" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/admin.css" />
+    <script>history.navigationMode = 'compatible';</script>
 
 </head>
 
@@ -28,7 +29,7 @@
 
                         <div class="dropdown-content">
                             <a href="profile.html"><span id="hand-pointer1">&#9758;</span>profile</a>
-                            <a href="index.html"><span id="hand-pointer2">&#9758;</span>Logout</a>
+                            <a id="logout" href="#"><span id="hand-pointer2">&#9758;</span>Logout</a>
                         </div>
                     </div>
                 </li>
@@ -185,8 +186,9 @@
         <footer>
             <p>&#169;Joyce-O Designs ~ 2019 General Elections</p>
         </footer>
-        <script src="js/main.js"></script>
         <script src="js/toggle.js"></script>
+        <script src="fetchEndpoints/admin.js"></script>
+        <script src="fetchEndpoints/logout.js"></script>
 </body>
 
 

@@ -32,17 +32,18 @@
         </header>
         <section class="home-section signup-div">
             <div class="signup-form">
-                <form action="">
+                <form id="login-form" action="">
                     <p class="fill-up">Please fill in this form to login.</p>
 
                     <label for="email">
                         <!-- <b>Email</b> -->
                     </label>
-                    <input type="email" placeholder="Enter Email" name="email" required>
+                    <h6 class="red-err" id="file-error"></h6>
+                    <input id="email" type="email" placeholder="Enter Email" name="email" required>
                     <label for="password">
                         <!-- <b>Password</b> -->
                     </label>
-                    <input type="password" placeholder="Password" name="password" required>
+                    <input id="password" type="password" placeholder="Password" name="password" required>
                     <!-- <div class="white-div2"> -->
                     <center>
                         <button type="submit" class="signupbtn signupbtn1">Login</button>
@@ -73,7 +74,7 @@
         </footer>
     </div>
 
-    <!-- <script src="js/main.js"></script> -->
+    <script src="fetchEndpoints/login.js"></script>
     <script src="js/modal.js"></script>
 </body>
 
