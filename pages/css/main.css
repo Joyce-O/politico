@@ -202,8 +202,26 @@ justify-content: center;
  justify-content: space-between;
  flex: 1 1 0;
 }
-.signup-flex #phone, .signup-flex #othername, .signup-flex #name {
+.signup-flex #phone, .signup-flex #othername, .signup-flex #name, #acronym, .shift-email#email, .shift-div {
   margin-right: 5px;
+}
+.signup-flex textarea, .signup-flex #name {
+  margin-bottom: 10px;
+  background: #ccc;
+  font-size: 1em;
+}
+.signup-flex #name  {
+  margin-top: -0px;
+}
+.signup-flex textarea:focus, .signup-flex #name:focus {
+  outline: none !important;
+  border:1px solid gren;
+  background: white;
+}
+.signup-flex label {
+  color: white;
+  font-size: .8em;
+  display: block;
 }
 
 .signup-form {
@@ -520,6 +538,21 @@ li {
   color: yellow;
   font-style: italic;
 }
+.shift-l {
+  float: left;
+  margin-top: -15px;
+  margin-right: 10px;
+  color: yellow;
+  font-style: italic;
+}
+.shift-r {
+  float: right;
+  margin-top: -15px;
+  margin-right: 10px;
+  color: yellow;
+  font-style: italic;
+}
+
 #email-error {
   float: right;
   margin-top: -15px;
@@ -536,6 +569,9 @@ li {
 #other-div {
   /* min-width: 50%; */
   flex: 1;
+}
+.margin-lft {
+  margin-left: 5px;
 }
 /* Footer */
 footer {

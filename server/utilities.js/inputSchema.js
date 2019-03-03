@@ -14,8 +14,7 @@ export const newUserSchema = Joi.object().keys({
     .label('A valid email is required'),
   phone: Joi.number().integer().required().label('A valid phone number is required'),
   passportUrl: Joi.string().label('A valid passport is required'),
-  address: Joi.string().min(3).max(200).regex(/^[a-zA-Z]*$/)
-    .required(),
+  address: Joi.string().min(3).max(200).required(),
   password: Joi.string().alphanum().min(3).max(1000)
     .required()
     .label('A valid password is required'),
@@ -35,6 +34,8 @@ export const newPartySchema = Joi.object().keys({
     .label('A valid name is required'),
   acronym: Joi.string().max(10).required()
     .label('A valid acronym'),
+  slogan: Joi.string().max(30).required()
+    .label('A valid slogan'),
   hqAddress: Joi.string().required().label('A valid address is required'),
   logoUrl: Joi.string().label('A valid logo image is required'),
   email: Joi.string().email({ minDomainAtoms: 2 }).lowercase().label('A valid email is required'),

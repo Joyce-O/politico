@@ -42,7 +42,7 @@ const login = (event) => {
       }
     })
     .catch((error) => {
-      console.log('System error', error);
+      console.log('Server error!', error);
     });
 };
 

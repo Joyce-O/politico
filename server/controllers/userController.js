@@ -57,13 +57,13 @@ export default class UserController {
             .json({
               status: 201,
               data: [{ token, user }],
-
             });
         })
         .catch(error => response.status(500)
           .json({
             status: 500,
-            error: error.message,
+            // error: error.message,
+            error: 'my error',
           }));
     }, 10000);
   }

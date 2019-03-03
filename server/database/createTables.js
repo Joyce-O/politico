@@ -23,6 +23,7 @@ const createPartyTable = `DROP TABLE IF EXISTS parties CASCADE;
     id SERIAL NOT NULL PRIMARY KEY,
     name VARCHAR (128) UNIQUE NOT NULL,
     acronym VARCHAR (10) UNIQUE NOT NULL,
+    slogan VARCHAR (30) UNIQUE NOT NULL,
     hqAddress VARCHAR (128) NOT NULL,
     logoUrl TEXT NOT NULL,
     email VARCHAR (355) UNIQUE NOT NULL,

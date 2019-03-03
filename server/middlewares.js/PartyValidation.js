@@ -1,7 +1,7 @@
 import Joi from 'joi';
-// import pool from '../database/dbConnection';
+import pool from '../database/dbConnection';
 import { newPartySchema } from '../utilities.js/inputSchema';
-// import { queryPartiesByEmail } from '../database/queries';
+import { queryPartiesByEmail, queryPartiesByName, queryPartiesByAcronym  } from '../database/queries';
 
 export default class PartyValidation {
   static handleCreateParty(request, response, next) {
@@ -14,32 +14,38 @@ export default class PartyValidation {
         });
       return false;
     }
-    // const duplicate = {};
-    // const { email, name, acronym } = request.body;
-    // pool.query(queryPartiesByEmail, [email])
-    //   .then((data) => {
-    //     if (data.rows[0].name === name) {
-    //       duplicate.dupName = 'Name already exist';
-    //     }
-    //     if (data.rows[0].acronym === acronym) {
-    //       duplicate.dupAcronym = 'Acronym already exist';
-    //     }
-    //     if (data.rowCount !== 0) {
-    //       duplicate.dupEmail = 'Email already exist';
-    //     }
+    pool.query(queryPartiesByName, [request.body.name])
+      .then((result) => {
+        if (result.rowCount !== 0) {
+          return response.status(409)
+            .json({
+              status: 409,
+              error: 'Sorry the name aready exist, register with another name.',
+            });
+        }
+      });
+    pool.query(queryPartiesByAcronym, [request.body.acronym])
+      .then((result) => {
+        if (result.rowCount !== 0) {
+          return response.status(409)
+            .json({
+              status: 409,
+              error: 'Sorry the acronym aready exist, register with another acronym.',
+            });
+        }
+      });
 
-    //     if (JSON.stringify(duplicate) !== '{}') {
-    //       return response.status(409)
-    //         .json({
-    //           status: 409,
-    //           error: duplicate,
-    //         });
-    //       // return false;
-    //     }
-    //   });
-    // request.body.name = name;
-    // request.body.email = email;
-    // request.body.acronym = acr
+    pool.query(queryPartiesByEmail, [request.body.email])
+      .then((result) => {
+        if (result.rowCount !== 0) {
+          return response.status(409)
+            .json({
+              status: 409,
+              error: 'Sorry the email aready exist, register with another email.',
+            });
+        }
+      });
+    
     next();
   }
 

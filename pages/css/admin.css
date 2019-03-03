@@ -145,6 +145,7 @@
     height: auto;
     vertical-align: middle;
   }
+
   .black {
     background: black;
   }
@@ -485,17 +486,24 @@
   justify-content: center;
   flex-direction: column;
   height: 300px;
+  order: 1;
 }
 #flag {
   margin-top: 5px;
   width: 80%;
   margin: 20px;
 }
+.menu-logo {
+  margin-top: 5px;
+  width: 40px;
+  /* margin: 20px; */
+}
 .party-list {
   display: flex;
   justify-content: space-between;
   flex: 1 1 100%;
   width: 100%;
+  order: 2;
 
 }
 .party-list li {
@@ -686,7 +694,15 @@ border-radius: 5px;
   background-color: #4CAF50;
   color: white;
 }
-
+#basic-div {
+  margin-bottom: 10px;
+}
+#basic {
+  color: white;
+}
+#basicQual {
+  padding: 10px;   
+ }
 .pagination a:hover:not(.active) {background-color: #ddd;}
 
 .flag-vote {
@@ -698,6 +714,44 @@ border-radius: 5px;
 .blue {
   color: red;
 }
+/* edit button */
+.containerImg {
+  position: relative;
+  width: 20%;
+  max-width: 400px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.containerImg img {
+  width: 20%;
+  height: auto;
+}
+
+.containerImg .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 8px 18px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.containerImg .btn:hover {
+  background-color: black;
+}
+#wrapperpix {
+  /* visibility: hidden; */
+  display: none;
+}
+
 /* Result */
 
 @media all and (max-width:1000px) {
