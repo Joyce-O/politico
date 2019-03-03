@@ -167,12 +167,12 @@ export default class PartyController {
           .json({
             status: 200,
             data: party,
-          })
-          .catch(error => response.status(400)
-            .json({
-              status: 400,
-              error: 'Your input is not valid, check and try again',
-            }));
+          });
+        // .catch(error => response.status(400)
+        //   .json({
+        //     status: 400,
+        //     error: 'Your input is not valid, check and try again',
+        //   }));
       });
   }
 

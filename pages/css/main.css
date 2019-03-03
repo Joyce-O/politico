@@ -205,13 +205,16 @@ justify-content: center;
 .signup-flex #phone, .signup-flex #othername, .signup-flex #name, #acronym, .shift-email#email, .shift-div {
   margin-right: 5px;
 }
-.signup-flex textarea, .signup-flex #name {
+.signup-flex textarea {
   margin-bottom: 10px;
   background: #ccc;
   font-size: 1em;
 }
+
 .signup-flex #name  {
   margin-top: -0px;
+  font-size: .8em;
+  padding-bottom: 20px;
 }
 .signup-flex textarea:focus, .signup-flex #name:focus {
   outline: none !important;

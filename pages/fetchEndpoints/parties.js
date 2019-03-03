@@ -31,30 +31,44 @@ const fileError = document.getElementById('file-error');
   // const nameEdit = document.querySelector('#name').value.trim();
   const party = JSON.parse(localStorage.getItem('partyToEdit'));
   const token = localStorage.getItem('token');
-  console.log(party);
   const {
     id, name, acronym, hqaddress, slogan, phone, email,
   } = party;
   const { url } = JSON.parse(party.logourl);
-
+  
 const edit = (event) => {
   event.preventDefault();
+  const name =  document.querySelector('#name').value.trim();
+  Number(id)
+  // console.log(token);
+  // const baseUrl = `http://localhost:5700/api/v1/${id}/name`;
+  // const options = {
+  //   method: 'PATCH',
+  //   headers: {
+  //     Accept: 'application/json, text/plain, */*',
+  //     'Content-type': 'application/json',
+  //   },
+  //   body: JSON.stringify({
+  //     editName, token,
+  //   }),
+  // };
 
-  const baseUrl = `http://localhost:5700/api/v1/${id}/name?`;
-  const options = {
-    method: 'PATCH',
+  fetch(`http://localhost:5700/api/v1/parties/2/name`, {
+    method: 'PUT',
     headers: {
       Accept: 'application/json, text/plain, */*',
       'Content-type': 'application/json',
+      // Authorization: token,
     },
     body: JSON.stringify({
       name, token,
     }),
-  };
-
-  fetch(baseUrl, options)
+  })
+  // fetch(baseUrl, options)
     .then(response => response.json())
     .then((data) => {
+      console.log(data.error);
+
       const err = 'Name already exist';
       if (data.error === err) {
         fileError.innerHTML = err;
