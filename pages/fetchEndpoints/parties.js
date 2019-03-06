@@ -53,7 +53,7 @@ const edit = (event) => {
   //   }),
   // };
 
-  fetch(`http://localhost:5700/api/v1/parties/2/name`, {
+  fetch(`http://localhost:5700/api/v1/parties/${id}/name`, {
     method: 'PUT',
     headers: {
       Accept: 'application/json, text/plain, */*',
