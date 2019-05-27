@@ -39,8 +39,8 @@ export default class OfficeController {
       })
       .catch(error => response.status(500)
         .json({
-          status: 400,
-          error: "our input is not valid, check and try again",
+          status: 500,
+          error: "Your input is not valid, check and try again",
         }));
   }
 

@@ -18,6 +18,7 @@ const signup = (event) => {
   const lastName = document.getElementById('lastname').value.trim();
   const email = document.getElementById('email').value.trim();
   const phone = document.getElementById('phone').value.trim();
+  const address = document.getElementById('address').value.trim();
   const password = document.getElementById('password').value.trim();
 
   const url = 'http://localhost:5700/api/v1/auth/signup?';
@@ -28,6 +29,7 @@ const signup = (event) => {
   formData.append('email', email);
   formData.append('phone', phone);
   formData.append('passportUrl', photo.files[0]);
+  formData.append('address', address);
   formData.append('password', password);
   const options = {
     method: 'POST',
@@ -63,7 +65,7 @@ const signup = (event) => {
       }
     })
     .catch((error) => {
-      console.log('System error', error);
+      console.log('Server error!', error);
     });
 };
 

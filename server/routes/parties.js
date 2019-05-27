@@ -12,7 +12,7 @@ const multerUploads = multer({ storage }).single('logoUrl');
 parties.post('/', multerUploads, verifyToken, adminPass, PartyValidation.handleCreateParty, PartyController.createParty);
 parties.get('/', verifyToken, PartyController.getAllParties);
 parties.get('/:partyId', verifyToken, PartyController.getOneParty);
-parties.patch('/:partyId/name', verifyToken, PartyValidation.handleEditParty, PartyController.editParty);
+parties.put('/:partyId/name', verifyToken, PartyValidation.handleEditParty, PartyController.editParty);
 parties.delete('/:partyId', verifyToken, adminPass, PartyController.deleteParty);
 
 export default parties;

@@ -9,6 +9,7 @@
     <link rel="icon" href="images/favicon.ico" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/admin.css" />
+    <script src="fetchEndpoints/partyDetails.js"></script>
 
 </head>
 
@@ -60,12 +61,12 @@
                                 <a href="new_office.html">
                                     <span class="menu-ico menu-ico-d">&#43;</span>New Office</a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="petition.html">
                                     <span class="menu-ico menu-ico-d">&#9854;</span>Petitions</a>
 
 
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </aside>
@@ -74,9 +75,9 @@
                         <div id="table-info">
                             <a href="#">Party Details</a>
                         </div>
-                        <div class="party-div party-details-div">
+                        <div id="party-div" class="party-div party-details-div">
 
-                            <div id="flag-div">
+                            <!-- <div id="flag-div">
                                 <p class="party-initial">People Alliance Party
                                     <span>...for now and the future!</span>
                                 </p>
@@ -88,7 +89,7 @@
                                     <p>No. 4 Bimpe Road Benin City, Edo State.</p>
                                 </div>
 
-                            </div>
+                            </div> -->
                             <div class="party-list">
                                 <div class="margin-divide">
                                     <ul>
@@ -161,7 +162,7 @@
 
                 <div class="del-modal-content">
                     <span class="del-close">&times;</span>
-                    <h4 class="text-center">This action cannot be reversed!</h4>
+                    <h4 id="feedack" class="text-center">This action cannot be reversed!</h4>
                     <div id="del-reset-psw">
                             <button type="button" id="del-send-link" class="signupbtn">Delete</button>
                             <button type="button" id="cancel-link" class="signupbtn">Cancel</button>
@@ -175,7 +176,6 @@
     <footer>
         <p>&#169;Joyce-O Designs ~ 2019 General Elections</p>
     </footer>
-    <script src="js/main.js"></script>
     <script src="js/toggle.js"></script>
     <script src="js/delete.js"></script>
 </body>

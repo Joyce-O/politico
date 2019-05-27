@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Politico | Signup</title>
+    <title>Politico | Party</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="images/favicon.ico" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
@@ -42,35 +42,66 @@
         <section class="home-section signup-div">
             <div class="signup-form">
                 <form id="partyForm" action="">
-                    <p class="fill-up">&#9997; Edit Party Details</p>
-                    <label for="name">
-                    </label>
-                    <input id="name" type="text" placeholder="Party name" name="Peoples Lifting Party" value="Peoples Lifting Party">
+                    <p class="fill-up">&#9997; Edit Party Name</p>
+                    <!-- <div class="signup-flex"> -->
+                    <center>
+                        <div class="containerImg">
+                            <h6 class="red-err" id="file-error"></h6>
+                            <label for="file">
+                                <img id="to-edit" src="images/flag.png" alt="Snow" style="width:100%">
+                                <!-- <button id="edit-img" class="btn">&#9998; logo</button> -->
+                        </div>
+                        <div id="wrapperpix">
+                            <input type="file" id="uplodfile">
+                        </div>
+                    </center>
+                    <div class="signup-flex">
+                        <div class="shift-div" style="width:50%;">
+                            <label id="file-error" for="name">Party Name</label>
+                            <input id="name" style="width:100%; padding-top:10px; padding-left: 5px;" type="text" placeholder="Party name" name="name" minlength=3 required>
+                        </div>
 
-                    <label for="lastname">
-                    </label>
-                    <input type="text" placeholder="Headquarters Address" name="No. 30 Asokoro Street Ikeja Lagos" value="No. 30 Asokoro Street Ikeja Lagos">
+                        <div style="width:50%;">
+                            <label for="acronym-edit">Acronym</label>
+                            <textarea id="acronym-edit" rows="2" cols="5" placeholder="What did you do today?" minlength="5" maxlength="20" style="width:100%; padding-top:10px; padding-left: 5px;" contenteditable="false" disabled>
+                        </textarea>
+                        </div>
+                    </div>
 
-
-                    <label for="email">
-                    </label>
-                    <input type="email" placeholder="Email" name="plp.gov@hotmail.com" value="plp.gov@hotmail.com">
-
-                    <label for="phone">
-                    </label>
-                    <input id="phone" type="number" value="080903415678">
-
-                    <!-- <div class="signup-flex-column"> -->
-                        <button id="edit-submit" type="submit" class="signupbtn signupbtn-center" >Submit</button>
-                    <!-- </div> -->
+                    <div class="signup-flex">
+                        <div class="shift-div" style="width:50%;">
+                            <label for="email">Email</label>
+                            <textarea id="email" rows="2" cols="5" placeholder="What did you do today?" minlength="5" maxlength="20"
+                                style="width:100%; padding-top:10px; padding-left: 5px;" contenteditable="false" disabled>
+                        </textarea>
+                        </div>
+                        <div style="width:50%;">
+                            <label for="slogan">Slogan</label>
+                            <textarea id="slogan" rows="2" cols="5" placeholder="What did you do today?" minlength="5" maxlength="20" style="width:100%; padding-top:10px; padding-left: 5px;" contenteditable="false" disabled>
+                        </textarea>
+                        </div>
+                    </div>
+                    <div class="signup-flex">
+                            <div class="shift-div" style="width:50%;">
+                             <label for="phone">Phone Number</label>
+                        <textarea id="phone" rows="2" cols="5" placeholder="What did you do today?" minlength="5" maxlength="20"
+                            style="width:100%; padding-top:10px; padding-left: 5px;" contenteditable="false" disabled>
+                        </textarea>
+                        </div>
+                        <div style="width:50%;">
+                         <label for="hdqtrs">Headquarters Address</label>
+                        <textarea id="hdqtrs" rows="2" cols="5" placeholder="Headquarters Address" minlength="5" maxlength="20" style="width:100%; padding-top:10px; padding-left: 5px;" contenteditable="false" disabled> 
+                        </textarea>
+                    </div>
+                    </div>
+                    <button id="edit-submit" type="submit" class="signupbtn signupbtn-center">Submit</button>
                 </form>
             </div>
 
         </section>
     </div>
 
-    <script src="js/main.js"></script>
-    <script src="js/formHandler.js"></script>
+    <script src="fetchEndpoints/parties.js"></script>
 </body>
 
 

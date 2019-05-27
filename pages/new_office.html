@@ -39,6 +39,7 @@
             <div class="signup-form signup-form-candidate">
                 <form id="addOffice" action="">
                     <p class="fill-up">Add a Political Office</p>
+                    <h6 class="red-err" id="name-error"></h6>
                         <label for="name">
                         </label>
                         <input type="text" id="name" placeholder="Name of office" name="name" required>
@@ -47,14 +48,21 @@
                         </label>
                         <input type="text" id="type" placeholder="Type (e.g. federal, legislative, state...)" name="title" id="type" required>
 
-                   
-                        <label for="type">
+                        <label for="ageLimit">
                         </label>
-                        <input type="text" id="type" placeholder="Type (e.g Governor") name="title" id="type" required>
+                        <input id="ageLimit"type="number" placeholder="Minimum age" name="ageLimit" required>
 
-                        <label for="phone">
+                        <div id="basic-div">
+                        <center><label id="basic" for="basicQual">Basic qualification
                         </label>
-                        <input id="phone"type="number" placeholder="Phone number" name="phone" required>
+                        <select id="basicQual" required>
+                            <option value="">Please select</option>
+                            <option value="school certificate level">school certificate level</option>
+                            <option value="undergraduate level">undergraduate level</option>
+                            <option value="postgraduate level">postgraduate level</option>
+                          </select>
+                          </center>
+                        </div>
 
                         <button id="submitOffice" type="submit" class="signupbtn signupbtn-center">Submit</button>
                     </div>
@@ -64,8 +72,7 @@
         </section>
     </div>
 
-    <script src="js/main.js"></script>
-    <script src="js/formHandler.js"></script>
+    <script src="fetchEndpoints/createOffice.js"></script>
 </body>
 
 

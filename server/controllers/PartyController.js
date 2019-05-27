@@ -1,80 +1,73 @@
+import cloudinary from 'cloudinary';
 import pool from '../database/dbConnection';
 
 import {
-  queryPartiesByName, insertParty, selectAllParties, selectAParty,
-  queryPartiesByEmail, updatePartyName, deleteParty, queryPartiesByAcronym,
+  queryPartiesByName, insertParty, selectAllParties, selectAParty, updatePartyName, deleteParty,
 } from '../database/queries';
+
+import BufferStream from '../utilities.js/imgBufffer';
 
 
 export default class PartyController {
   static createParty(request, response) {
-    let image = 'https://res.cloudinary.com/duk5ix8wp/image/upload/v1539063817/mfj9epgqaqbtpqdocet4.jpg';
-    request.body = JSON.parse(JSON.stringify(request.body));
-
     const {
-      name, acronym, hqAddress, email, phone,
+      name, acronym, slogan, hqAddress, email, phone,
     } = request.body;
-   let logoUrl =  request.body.hasOwnProperty('logoUrl') ? request.body.logoUrl : image;
-    const values = [
-      name,
-      acronym,
-      hqAddress,
-      logoUrl,
-      email,
-      phone,
-    ];
-    pool.query(queryPartiesByName, [request.body.name])
-      .then((result) => {
-        if (result.rowCount !== 0) {
-          return response.status(409)
-            .json({
-              status: 409,
-              error: 'Sorry the name aready exist, register with another name.',
-            });
-        }
-      });
-    pool.query(queryPartiesByAcronym, [request.body.acronym])
-      .then((result) => {
-        if (result.rowCount !== 0) {
-          return response.status(409)
-            .json({
-              status: 409,
-              error: 'Sorry the acronym aready exist, register with another acronym.',
-            });
-        }
-      });
 
-    pool.query(queryPartiesByEmail, [request.body.email])
-      .then((result) => {
-        if (result.rowCount !== 0) {
-          return response.status(409)
-            .json({
-              status: 409,
-              error: 'Sorry the email aready exist, register with another email.',
-            });
-        }
-      });
-    pool.query(insertParty, values)
-      .then((data) => {
-        if (data.rowCount !== 0) {
-          const { id, createdOn } = data.rows[0];
-          const party = {
-            id, name, acronym, hqAddress, email, phone, createdOn,
-          };
+    const image = {};
+    let stream;
+    if (request.file !== undefined) {
+      stream = new BufferStream(request.file.buffer);
+    }
+    stream.pipe(cloudinary.uploader.upload_stream((result) => {
+      if (result !== undefined) {
+        image.url = result.url;
+        image.id = result.public_id;
+      }
+    }));
 
-          return response.status(201)
-            .json({
-              status: 201,
-              data: party,
+    setTimeout(() => {
+      const logoUrl = image;
+      if (JSON.stringify(logoUrl) === '{}') {
+        response.status(400)
+          .json({
+            status: 400,
+            error: 'Logo image upload failed, try again.',
+          });
+        return false;
+      }
+      const values = [
+        name,
+        acronym,
+        slogan,
+        hqAddress,
+        logoUrl,
+        email,
+        phone,
+      ];
 
-            });
-        }
-      })
-      .catch(error => response.status(500)
-        .json({
-          status: 400,
-          error: "Your input is not valid, check and try again",
-        }));
+      pool.query(insertParty, values)
+        .then((data) => {
+          if (data.rowCount !== 0) {
+            const { id, createdOn } = data.rows[0];
+            const party = {
+              id, name, acronym, slogan, hqAddress, email, phone, createdOn,
+            };
+
+            return response.status(201)
+              .json({
+                status: 201,
+                data: party,
+
+              });
+          }
+        })
+        .catch(error => response.status(500)
+          .json({
+            status: 400,
+            error: 'Your input is not valid, check and try again',
+          }));
+    }, 10000);
   }
 
   static getAllParties(request, response) {
@@ -98,7 +91,7 @@ export default class PartyController {
       .catch(error => response.status(400)
         .json({
           status: 400,
-          error: "Your input is not valid, check and try again",
+          error: 'Your input is not valid, check and try again',
         }));
   }
 
@@ -131,7 +124,7 @@ export default class PartyController {
       .catch(error => response.status(400)
         .json({
           status: 400,
-          error: "Your input is not valid, check and try again",
+          error: 'Your input is not valid, check and try again',
         }));
   }
 
@@ -174,12 +167,12 @@ export default class PartyController {
           .json({
             status: 200,
             data: party,
-          })
-          .catch(error => response.status(400)
-            .json({
-              status: 400,
-              error: "Your input is not valid, check and try again",
-            }));
+          });
+        // .catch(error => response.status(400)
+        //   .json({
+        //     status: 400,
+        //     error: 'Your input is not valid, check and try again',
+        //   }));
       });
   }
 
@@ -213,7 +206,7 @@ export default class PartyController {
       .catch(error => response.status(400)
         .json({
           status: 400,
-          error: "our input is not valid, check and try again",
+          error: 'our input is not valid, check and try again',
         }));
   }
 }
