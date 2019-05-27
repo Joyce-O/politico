@@ -14,17 +14,23 @@ export default class UserController {
       firstname, lastname, email, phone, password, address,
     } = request.body;
 
-    const image = {};
-    const stream = new BufferStream(request.file.buffer);
+    // const image = {};
+    // const stream = new BufferStream(request.file.buffer);
+    // cloudinary.config({ 
+    //   cloud_name: 'politic',
+    //   api_key: '969869128871279', 
+    //   api_secret: 'zF3WCcTQ1Tlq0PPC-7gQrhfaVb4'
+    // });
 
-    stream.pipe(cloudinary.uploader.upload_stream((result) => {
-      if (result !== undefined) {
-        image.url = result.url;
-        image.id = result.public_id;
-      }
-    }));
+    // stream.pipe(cloudinary.uploader.upload_stream((result) => {
+    //   if (result !== undefined) {
+    //     image.url = result.url;
+    //     image.id = result.public_id;
+    //   }
+    // }));
 
     setTimeout(() => {
+      const image = {url: 'https://res.cloudinary.com/politic/image/upload/v1559126987/images.png', id: Math.random() }
       const passportUrl = image;
       if (JSON.stringify(passportUrl) === '{}') {
         response.status(400)
@@ -65,7 +71,7 @@ export default class UserController {
             status: 500,
             error: error.message,
           }));
-    }, 10000);
+    }, 10);
   }
 
   static loginUser(request, response) {

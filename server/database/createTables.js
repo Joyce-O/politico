@@ -10,7 +10,7 @@ const createUserTable = `DROP TABLE IF EXISTS users CASCADE;
     lastname VARCHAR (128) NOT NULL,
     email VARCHAR (355) UNIQUE NOT NULL,
     phone VARCHAR(128) NOT NULL,
-    passportUrl JSONB NOT NULL,
+    passportUrl TEXT NOT NULL,
     address VARCHAR (128) NOT NULL,
     createdOn TIMESTAMP NOT NULL DEFAULT (NOW()),
     isAdmin BOOLEAN NOT NULL DEFAULT (false),
@@ -104,7 +104,7 @@ async function createTables() {
   try {
     await pool.query(sql, variables);
   } catch (error) {
-    throw new Error('Admin insertion failed');
+    throw new Error(error);
   }
   try {
     await pool.query(createPartyTable);
