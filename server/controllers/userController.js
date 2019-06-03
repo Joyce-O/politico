@@ -11,7 +11,7 @@ dotenv.config();
 export default class UserController {
   static registerUser(request, response) {
     const {
-      firstname, lastname, email, phone, password, address,
+      firstname, lastname, email, phone, password, address
     } = request.body;
 
     // const image = {};
@@ -75,12 +75,15 @@ export default class UserController {
   }
 
   static loginUser(request, response) {
+    console.log(request.body.email);
     const isEmail = [request.body.email];
     pool.query(queryUsersByEmail, isEmail)
       .then((data) => {
         if (data.rowCount !== 0) {
+          console.log('first check', data);
           const isPassword = verifyPassword(request.body.password, data.rows[0].password);
           if (isPassword) {
+            console.log('second check', data);
             const {
               firstname, lastname, phone, email, passporturl, isadmin, id, address,
             } = data.rows[0];
@@ -95,6 +98,7 @@ export default class UserController {
                 data: [{ token, user }],
               });
           } else {
+            console.log(response);
             response.status(400)
               .json({
                 status: 400,

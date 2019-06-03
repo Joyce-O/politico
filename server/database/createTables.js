@@ -89,7 +89,7 @@ const createPetitionTable = `DROP TABLE IF EXISTS petitions CASCADE;
 )`;
 
 const sql = 'insert into users (firstname, lastname, email, phone, passportUrl, address, isAdmin, password) values ($1, $2, $3, $4, $5, $6, $7, $8)';
-const pswd = bcrypt.hashSync('admin', 10);
+const pswd = bcrypt.hashSync(process.env.ADMIN_PASSWORD, 10);
 
 const variables = [process.env.ADMIN_FIRSTNAME, process.env.ADMIN_LASTNAME,
   process.env.ADMIN_EMAIL, process.env.ADMIN_PHONE, process.env.ADMIN_PASSPORT_URL,
